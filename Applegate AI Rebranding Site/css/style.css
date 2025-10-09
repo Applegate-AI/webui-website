@@ -1,0 +1,64 @@
+/* Simple modern stylesheet for Applegate AI */
+:root{
+  --brand: #014D4A;
+  --accent: #AADD33;
+  --text: #222;
+  --muted: #6b7280;
+  --maxw: 1100px;
+}
+
+*{box-sizing:border-box}
+body{
+  margin:0;
+  font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+  color:var(--text);
+  background:#fff;
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
+}
+
+.site-nav{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:1rem 2rem;
+  background:#fff;
+  border-bottom:1px solid #eee;
+}
+.brand{font-weight:700;color:var(--brand)}
+.nav-links{list-style:none;margin:0;padding:0;display:flex;gap:1rem}
+.nav-links a{color:var(--muted);text-decoration:none}
+.btn{background:var(--brand);color:#fff;padding:.6rem 1rem;border-radius:8px;text-decoration:none}
+.btn.secondary{background:transparent;border:1px solid var(--brand);color:var(--brand)}
+
+.hero{
+  padding:5rem 2rem;
+  text-align:center;
+  background:linear-gradient(180deg, rgba(1,77,74,0.06), transparent);
+}
+.hero h1{font-size:clamp(26px,5vw,44px);margin:0 0 1rem;color:var(--brand)}
+.hero p{max-width:900px;margin:0 auto 1.5rem;color:var(--muted)}
+
+.container{max-width:var(--maxw);margin:0 auto;padding:3rem 1rem}
+.alt{background:#fafafa}
+.lede{color:var(--muted);max-width:780px;margin:0 auto 1.5rem}
+
+.steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1rem;margin-top:1.5rem}
+.card{padding:1rem;background:#fff;border-radius:8px;box-shadow:0 6px 20px rgba(2,6,23,0.04);text-align:left}
+.grid-4{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:1rem}
+
+.plans-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:1rem;margin-top:1rem}
+.plan{padding:1.2rem;border-radius:8px;border:1px solid #ececec;background:#fff}
+.price{font-weight:700;margin-top:.5rem}
+
+.work-list{list-style:disc;margin-left:1.2rem}
+
+.site-footer{padding:2rem 1rem;text-align:center;background:#fff;border-top:1px solid #eee}
+.site-footer a{color:var(--brand);text-decoration:none}
+
+form{display:grid;gap:.6rem;max-width:680px}
+input,textarea,select{padding:.6rem;border-radius:6px;border:1px solid #e6e6e6;font-size:1rem}
+textarea{min-height:120px}
+@media (max-width:700px){
+  .nav-links{display:none}
+}
