@@ -1,262 +1,15 @@
-<!-- <!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Applegate AI</title>
-  <link rel="stylesheet" href="style.css">
-</head>
-<body>
-  <header>
-    <h1>Applegate AI</h1>
-    <p>Affordable, accessible AI solutions for Norfolk businesses.</p>
-  </header>
-
-  <script src="script.js"></script>
-</body>
-</html>
-
-
- -->
-
- <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Applegate AI - AI Transformation Partner</title>
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800&display=swap');
 
-        :root {
-            --primary-color: #34ff8f9e; 
-            --background-dark: #0a0a0a00; 
-            --text-color: #cccccc;
-            --heading-color: #cccccc;
-            --card-background: #1a1a1a00;
-            --border-color: #2a2a2a;
-        }
+    <!-- Linking external CSS -->
+    <link rel="stylesheet" href="css/style.css">
 
-        body {
-            font-family: 'Inter', sans-serif;
-            margin: 0;
-            background-color: var(--background-dark);
-            color: var(--text-color);
-            line-height: 1.7;
-            -webkit-font-smoothing: antialiased;
-            -moz-osx-font-smoothing: grayscale;
-            overflow-x: hidden; 
-        }
-
-
-        .gradient-background {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: -1;
-            background: 
-                radial-gradient(circle at 20% 80%, var(--primary-color) 0%, transparent 20%),
-                radial-gradient(circle at 80% 20%, var(--primary-color) 0%, transparent 20%),
-                radial-gradient(circle at 10% 30%, var(--background-dark) 0%, transparent 20%),
-                radial-gradient(circle at 90% 70%, var(--background-dark) 0%, transparent 20%);
-            background-size: 200% 200%; 
-            filter: blur(100px); 
-            opacity: 0.3; 
-            animation: gradientMove 30s ease infinite alternate; 
-        }
-
-        @keyframes gradientMove {
-            0% {
-                background-position: 0% 0%;
-            }
-            25% {
-                background-position: 50% 100%;
-            }
-            50% {
-                background-position: 100% 0%;
-            }
-            75% {
-                background-position: 50% -50%;
-            }
-            100% {
-                background-position: 0% 0%;
-            }
-        }
-
-
-
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 24px;
-        }
-
-        section {
-            padding: 100px 0;
-            position: relative;
-            z-index: 1;
-        }
-
-
-        .main-header {
-            padding: 24px 0;
-
-            position: sticky;
-            top: 0;
-            background-color: rgba(10, 10, 10, 0.8);
-            backdrop-filter: blur(10px);
-            z-index: 100;
-        }
-
-        .main-header .container {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .logo img {
-            height: 40px; 
-            width: auto;
-            display: block;
-        }
-
-        .main-nav ul {
-            margin: 0;
-            padding: 0;
-            list-style: none;
-            display: flex;
-            gap: 35px;
-        }
-
-        .main-nav a {
-            color: var(--text-color);
-            text-decoration: none;
-            font-size: 1rem;
-            transition: color 0.3s ease;
-        }
-
-        .main-nav a:hover {
-            color: var(--primary-color);
-        }
-
-
-        .hero {
-            text-align: center;
-            padding: 120px 0;
-        }
-
-        .hero h1 {
-            font-size: 5rem;
-            font-weight: 800;
-            margin: 0 0 24px;
-            line-height: 1.1;
-            color: var(--heading-color);
-            letter-spacing: -2px;
-        }
-        
-        .hero h1 .highlight {
-            color: var(--primary-color);
-            display: inline-block;
-            perspective: 1000px;
-        }
-
-
-        @keyframes spinOut {
-            0% { transform: rotateX(0deg); opacity: 1; }
-            100% { transform: rotateX(-90deg); opacity: 0; }
-        }
-
-        @keyframes spinIn {
-            0% { transform: rotateX(90deg); opacity: 0; }
-            100% { transform: rotateX(0deg); opacity: 1; }
-        }
-
-        .highlight.spin-out {
-            animation: spinOut 0.4s ease-in forwards;
-        }
-
-        .highlight.spin-in {
-            animation: spinIn 0.4s ease-out forwards;
-        }
-
-
-        .hero p {
-            font-size: 1.25rem;
-            max-width: 700px;
-            margin: 0 auto 40px;
-        }
-
-        .cta-button {
-            display: inline-block;
-            background-color: var(--primary-color);
-            color: #0a0a0a;
-            padding: 16px 40px;
-            border-radius: 8px;
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 1rem;
-            transition: transform 0.2s ease, box-shadow 0.2s ease;
-        }
-
-        .cta-button:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 10px 20px rgba(52, 255, 144, 0.2);
-        }
-
-        .process {
-            text-align: center;
-        }
-        
-        .section-title {
-            font-size: 3rem;
-            font-weight: 700;
-            color: var(--heading-color);
-            margin-bottom: 12px;
-        }
-        
-        .section-subtitle {
-            font-size: 1.1rem;
-            max-width: 600px;
-            margin: 0 auto 80px;
-        }
-
-        .process-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-            text-align: left;
-        }
-
-        .process-step {
-            background-color: var(--card-background);
-            padding: 40px;
-            border-radius: 12px;
-            border: 1px solid var(--border-color);
-        }
-
-        .process-step .step-number {
-            font-size: 1rem;
-            font-weight: 700;
-            color: var(--primary-color);
-            margin-bottom: 16px;
-        }
-
-        .process-step h3 {
-            margin-top: 0;
-            margin-bottom: 12px;
-            font-size: 1.75rem;
-            color: var(--heading-color);
-        }
-        
-        .main-footer {
-            text-align: center;
-            padding: 50px 0;
-            border-top: 1px solid var(--border-color);
-            color: #777;
-        }
-    </style>
+    <!-- Google Fonts -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800&display=swap">
 </head>
 <body>
 
@@ -270,7 +23,7 @@
             <nav class="main-nav">
                 <ul>
                     <li><a href="#process">Our Process</a></li>
-                    <li><a href="#about">About</a></li>
+                    <li><a href="html/about.html">About</a></li>
                     <li><a href="#contact">Get In Touch</a></li>
                 </ul>
             </nav>
@@ -294,23 +47,23 @@
                     <div class="process-step">
                         <div class="step-number">STEP 01</div>
                         <h3>Identify</h3>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.</p>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit...</p>
                     </div>
                     <div class="process-step">
                         <div class="step-number">STEP 02</div>
                         <h3>Educate</h3>
-                        <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident.</p>
+                        <p>Duis aute irure dolor in reprehenderit in voluptate...</p>
                     </div>
                     <div class="process-step">
                         <div class="step-number">STEP 03</div>
                         <h3>Develop</h3>
-                        <p>Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt.</p>
+                        <p>Nemo enim ipsam voluptatem quia voluptas sit aspernatur...</p>
                     </div>
                 </div>
             </div>
         </section>
         
-        </main>
+    </main>
 
     <footer id="contact" class="main-footer">
         <div class="container">
@@ -318,84 +71,8 @@
         </div>
     </footer>
 
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const animatedTextElement = document.getElementById('animated-text');
-            const phrases = [
-                "Results.", 
-                "Growth.", 
-                "Efficiency.", 
-                "Innovation.", 
-                "Intelligence."
-            ];
-            let phraseIndex = 0;
-            const animationDuration = 400; 
-            const delayBetweenPhrases = 2000; 
-
-            function animateSpin() {
-                animatedTextElement.classList.add('spin-out');
-
-                setTimeout(() => {
-                    phraseIndex = (phraseIndex + 1) % phrases.length;
-                    animatedTextElement.textContent = phrases[phraseIndex];
-                    animatedTextElement.classList.remove('spin-out');
-                    animatedTextElement.classList.add('spin-in');
-
-                    setTimeout(() => {
-                        animatedTextElement.classList.remove('spin-in');
-                        setTimeout(animateSpin, delayBetweenPhrases); 
-                    }, animationDuration); 
-                    
-                }, animationDuration);
-            }
-
-
-            animatedTextElement.classList.add('spin-in');
-            setTimeout(() => {
-                animatedTextElement.classList.remove('spin-in');
-                setTimeout(animateSpin, delayBetweenPhrases); 
-            }, animationDuration);
-        });
-    </script>
+    <!-- External JS -->
+    <script src="js/main.js"></script>
 
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-<!-- <!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Applegate AI | Changing your business through AI automation </title>
-  <link rel="stylesheet" href="css/style.css">
-</head>
-<body>
-  <nav>
-    Home Packages Blog About Contact
-    <button>Get Started</button>
-  </nav>
-
-  <header>
-    <h1>Applegate AI Changing your business through AI automation.</h1>
-    <p>We build automations that book customers, take payments, and save you time.</p>
-    <a href="/packages">View Packages</a>
-    <a href="#">See Automation Thats Revolutionising Business As Your Reading This </a>
-  </header>
-
-  <!-- Continue with your other sections... -->
-
-  <!-- <footer>
-    <p>© 2025 Applegate AI Tech Solutions. All Rights Reserved.</p>
-  </footer>
-</body>
-</html> --> -->
-
