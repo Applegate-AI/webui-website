@@ -141,7 +141,6 @@
       font-weight:800;
       margin-bottom:20px;
       color:var(--primary-color);
-      text-shadow:0 0 12px rgba(14,170,113,0.35);
     }
 
     .card{
@@ -280,6 +279,97 @@
      color:var(--text-color);
    }
 
+   /* Form styles */
+   .form-row {
+     display: flex;
+     gap: 16px;
+     margin-bottom: 16px;
+   }
+
+   .form-group {
+     margin-bottom: 16px;
+   }
+
+   .form-group.half {
+     flex: 1;
+   }
+
+   .form-group.full {
+     width: 100%;
+   }
+
+   .form-group label {
+     display: block;
+     margin-bottom: 4px;
+     font-weight: 600;
+     color: var(--heading-color);
+   }
+
+   .form-group input,
+   .form-group textarea {
+     width: 100%;
+     padding: 12px;
+     border: 1px solid rgba(255,255,255,0.1);
+     border-radius: 8px;
+     background: var(--card-background);
+     color: var(--text-color);
+     font-family: inherit;
+   }
+
+   .form-group input:focus,
+   .form-group textarea:focus {
+     outline: none;
+     border-color: var(--primary-color);
+     box-shadow: 0 0 0 2px rgba(14,170,113,0.2);
+   }
+
+   .form-group textarea {
+     resize: vertical;
+     min-height: 80px;
+   }
+
+   .btn.demo {
+     background: rgba(255,255,255,0.1);
+     background-image: linear-gradient(45deg, var(--primary-color), #0b8a5c);
+     background-size: 200% 200%;
+     -webkit-background-clip: text;
+     -webkit-text-fill-color: transparent;
+     background-clip: text;
+     animation: hologram 3s ease-in-out infinite;
+     border: 1px solid rgba(255,255,255,0.1);
+     padding: 16px 32px;
+     font-size: 18px;
+     font-weight: 700;
+     border-radius: 12px;
+     cursor: pointer;
+     margin-top: 20px;
+     width: 100%;
+   }
+
+   @keyframes hologram {
+     0% { background-position: 0% 50%; }
+     50% { background-position: 100% 50%; }
+     100% { background-position: 0% 50%; }
+   }
+
+   /* Book call section specific styles */
+   .book-call h2.section-title {
+     font-family: inherit;
+     font-weight: 800;
+     font-size: clamp(28px, 4vw, 36px);
+     color: var(--heading-color);
+     text-align: center;
+     margin: 0 auto 16px auto;
+     letter-spacing: -0.02em;
+   }
+
+   /* Challenges section specific styles */
+   .challenges-section h2.section-title {
+     color: white;
+     text-align: center;
+     margin-bottom: 24px;
+   }
+
     /* Automation Impact Metrics (scoped) */
   /* impact-section wrapper (no root styles required) */
 
@@ -287,8 +377,8 @@
       background:var(--card-background);
       border:1px solid rgba(255,255,255,0.04);
       border-radius:var(--radius);
-      padding:34px 36px;
-      min-height:300px; /* increased height for presence */
+      padding:48px 44px; /* increased padding */
+      min-height:80vh; /* spans near top to bottom of viewport */
       max-width:var(--max-width);
       margin:28px auto; /* centered */
       box-shadow:0 8px 28px rgba(2,40,26,0.04);
@@ -303,40 +393,76 @@
       outline:2px solid var(--primary-color);
       box-shadow:0 12px 36px rgba(14,170,113,0.06);
     }
-    .impact-grid{
-      display:grid;
-      grid-template-columns:repeat(4,1fr);
-      gap:28px;
-      align-items:start;
-      position:relative;
-      padding:18px 6px 6px 6px;
+
+    /* Title inside the card - large, bold, visually dominant, centered */
+    .impact-title{
+      font-family:inherit; /* same font family as the page */
+      font-weight:800;
+      font-size:clamp(32px,5vw,56px); /* significantly larger */
+      color:var(--heading-color);
+      text-align:center;
+      margin:0 auto 16px auto;
+      letter-spacing:-0.02em;
     }
 
-    /* decorative SVG-like connector using pseudo element */
-    .impact-grid::before{
-      content:"";
-      position:absolute;
-      left:6%; right:6%; top:46%; height:2px;
-      background:linear-gradient(90deg, rgba(14,170,113,0.06), rgba(14,170,113,0.06));
-      border-radius:2px;
-      pointer-events:none;
+    /* Subheading beneath the title */
+    .impact-subheading{
+      font-size:clamp(18px,2.5vw,24px);
+      color:var(--text-color);
+      text-align:center;
+      margin:0 auto 32px auto;
+      opacity:0.85;
+      max-width:600px;
+    }
+
+    .impact-grid{
+      display:grid;
+      grid-template-columns:repeat(2,1fr);
+      gap:32px;
+      align-items:start;
+      padding:0;
     }
 
     .impact-icon{
-      width:56px;
-      height:56px;
+      width:72px;
+      height:72px;
       display:grid;
       place-items:center;
-      border-radius:12px;
+      border-radius:14px;
       background:var(--card-background);
       border:1px solid rgba(255,255,255,0.02);
       flex-shrink:0;
+      margin-bottom:16px;
     }
 
-    .impact-icon svg{ width:34px; height:34px; stroke:var(--primary-color); stroke-width:1.8; fill:none; stroke-linecap:round; stroke-linejoin:round; }
+    .impact-icon svg{ width:44px; height:44px; stroke:var(--primary-color); stroke-width:2; fill:none; stroke-linecap:round; stroke-linejoin:round; }
 
-    .impact-value{ font-weight:900; color:var(--text-color); font-size:1.45rem; }
-    .impact-label{ color:var(--text-color); opacity:0.95; font-size:1.05rem; }
+    .impact-feature-title{
+      font-weight:700;
+      color:var(--text-color);
+      font-size:clamp(18px,2.2vw,22px);
+      margin-bottom:8px;
+    }
+
+    .impact-feature-text{
+      color:var(--text-color);
+      opacity:0.8;
+      font-size:clamp(14px,1.6vw,16px);
+      line-height:1.5;
+    }
+
+    /* satisfaction row styles */
+    .impact-satisfaction{ margin-top:32px; display:flex; justify-content:center; }
+    .satisfaction-inner{ display:flex; flex-direction:column; align-items:center; gap:16px; }
+    .satisfaction-value{ font-size:clamp(24px,3.6vw,44px); font-weight:900; color:var(--text-color); }
+    .satisfaction-stars{ display:flex; gap:12px; align-items:center; }
+    .satisfaction-stars .star{ width:36px; height:36px; fill:rgba(255,255,255,0.12); stroke:rgba(255,255,255,0.25); stroke-width:1.5; }
+    .satisfaction-stars .star:nth-child(-n+4){ fill:var(--primary-color); stroke:none; }
+    .satisfaction-stars .star.partial path{ fill:url(#g); stroke:rgba(255,255,255,0.25); stroke-width:1.5; }
+    .satisfaction-lines{ position:relative; width:100%; display:flex; justify-content:center; margin-top:12px; }
+    .satisfaction-lines .line{ display:block; height:3px; background:rgba(14,170,113,0.08); width:50%; }
+    .satisfaction-lines .left{ margin-right:12px; }
+    .satisfaction-lines .right{ margin-left:12px; }
 
     @keyframes impactFade{ to{ opacity:1; } }
 
@@ -347,44 +473,15 @@
       .impact-grid::before{ top:40%; left:8%; right:8%; }
     }
 
-    /* satisfaction row styles */
-    .impact-satisfaction{ margin-top:18px; display:flex; justify-content:center; }
-    .satisfaction-inner{ display:flex; flex-direction:column; align-items:center; gap:10px; }
-    .satisfaction-value{ font-size:1.6rem; font-weight:900; color:var(--text-color); }
-    .satisfaction-stars{ display:flex; gap:6px; align-items:center; }
-    .satisfaction-stars .star{ width:22px; height:22px; fill:rgba(255,255,255,0.12); stroke:none; }
-    .satisfaction-stars .star:nth-child(-n+4){ fill:var(--primary-color); }
-    .satisfaction-stars .star.partial path{ fill:url(#g); }
-    .satisfaction-lines{ position:relative; width:100%; display:flex; justify-content:center; }
-    .satisfaction-lines .line{ display:block; height:2px; background:rgba(14,170,113,0.06); width:40%; }
-    .satisfaction-lines .left{ margin-right:8px; }
-    .satisfaction-lines .right{ margin-left:8px; }
-
-    .impact-footnote{ margin-top:14px; text-align:center; color:var(--text-color); opacity:0.6; font-size:0.85rem; }
-
-    @keyframes impactFade{ to{ opacity:1; } }
-
     @media(max-width:1000px){ .impact-grid{ grid-template-columns:repeat(2,1fr); } }
     @media(max-width:640px){
-      .impact-grid{ grid-template-columns:1fr; }
-      .impact-card{ min-height:unset; padding:22px; }
-      .impact-grid::before{ top:40%; left:8%; right:8%; }
+      .impact-grid{ grid-template-columns:1fr; gap:24px; }
+      .impact-card{ min-height:unset; padding:32px 24px; }
+      .impact-title{ font-size:clamp(24px,4vw,40px); }
+      .impact-subheading{ font-size:clamp(16px,2vw,20px); margin-bottom:24px; }
+      .satisfaction-stars .star{ width:28px; height:28px; }
+      .satisfaction-value{ font-size:clamp(20px,3vw,32px); }
     }
-
-    /* satisfaction row styles */
-    .impact-satisfaction{ margin-top:18px; display:flex; justify-content:center; }
-    .satisfaction-inner{ display:flex; flex-direction:column; align-items:center; gap:10px; }
-    .satisfaction-value{ font-size:1.6rem; font-weight:900; color:var(--text-color); }
-    .satisfaction-stars{ display:flex; gap:6px; align-items:center; }
-    .satisfaction-stars .star{ width:22px; height:22px; fill:rgba(255,255,255,0.12); stroke:none; }
-    .satisfaction-stars .star:nth-child(-n+4){ fill:var(--primary-color); }
-    .satisfaction-stars .star.partial path{ fill:url(#g); }
-    .satisfaction-lines{ position:relative; width:100%; display:flex; justify-content:center; }
-    .satisfaction-lines .line{ display:block; height:2px; background:rgba(14,170,113,0.06); width:40%; }
-    .satisfaction-lines .left{ margin-right:8px; }
-    .satisfaction-lines .right{ margin-left:8px; }
-
-    .impact-footnote{ margin-top:14px; text-align:center; color:var(--text-color); opacity:0.6; font-size:0.85rem; }
 
    
     /* WHAT WE DO */
@@ -392,6 +489,105 @@
       border-color:var(--primary-color);
       box-shadow:0 0 18px rgba(14,170,113,0.35);
       transition:0.25s ease;
+    }
+
+    /* PERFORMANCE STATS */
+    .stats-section{
+      margin:40px 0;
+    }
+
+    .stats-card{
+      background:var(--card-background);
+      border:1px solid rgba(255,255,255,0.04);
+      border-radius:var(--radius);
+      padding:32px 28px; /* significantly reduced */
+      min-height:10vh; /* shrunk for proportion */
+      max-width:var(--max-width);
+      margin:0 auto;
+      box-shadow:0 10px 40px rgba(2,40,26,0.05);
+      transition:outline .28s ease, box-shadow .28s ease;
+      outline:none;
+      opacity:0;
+      animation:statsFade .4s ease .1s forwards;
+    }
+
+    .stats-card:hover{
+      outline:2px solid var(--primary-color);
+      box-shadow:0 14px 50px rgba(14,170,113,0.08);
+    }
+
+    .stats-title{
+      font-family:inherit;
+      font-weight:800;
+      font-size:clamp(28px,4vw,36px); /* reduced */
+      color:var(--heading-color);
+      text-align:center;
+      margin:0 auto 16px auto;
+      letter-spacing:-0.02em;
+    }
+
+    .stats-grid{
+      display:grid;
+      grid-template-columns:repeat(4,1fr);
+      gap:24px; /* reduced */
+      align-items:start;
+      position:relative;
+      padding:16px 6px 6px 6px; /* reduced */
+    }
+
+    .stats-icon{
+      width:50px; /* further shrunk */
+      height:50px;
+      display:grid;
+      place-items:center;
+      border-radius:10px;
+      background:rgba(255,255,255,0.02);
+      border:1px solid rgba(255,255,255,0.03);
+      flex-shrink:0;
+      margin-bottom:6px; /* further reduced */
+      position:relative;
+      z-index:2;
+    }
+
+    .stats-icon svg{
+      width:30px; /* further shrunk */
+      height:30px;
+      stroke:var(--primary-color);
+      stroke-width:2.2;
+      fill:none;
+      stroke-linecap:round;
+      stroke-linejoin:round;
+    }
+
+    .stats-value{
+      font-weight:900;
+      color:var(--text-color);
+      font-size:clamp(16px,2vw,24px); /* further reduced */
+      margin-bottom:3px; /* further reduced */
+    }
+
+    .stats-label{
+      color:var(--text-color);
+      opacity:0.9;
+      font-size:clamp(12px,1.4vw,14px); /* further reduced */
+      line-height:1.4;
+    }
+
+    .stats-footnote{
+      margin-top:32px;
+      text-align:center;
+      color:var(--text-color);
+      opacity:0.6;
+      font-size:0.9rem;
+    }
+
+    @keyframes statsFade{ to{ opacity:1; } }
+
+    @media(max-width:1000px){ .stats-grid{ grid-template-columns:repeat(2,1fr); } }
+    @media(max-width:640px){
+      .stats-grid{ grid-template-columns:1fr; gap:28px; }
+      .stats-card{ min-height:unset; padding:40px 28px; }
+      .stats-title{ font-size:clamp(28px,5vw,36px); }
     }
 
     /* PRICING */
@@ -413,6 +609,11 @@
       max-width:700px;
       margin:0 auto;
       box-shadow:0 12px 32px rgba(2,40,26,0.08);
+    }
+
+    .call-box:hover{
+      outline:2px solid var(--primary-color);
+      box-shadow:0 12px 36px rgba(14,170,113,0.06);
     }
     
     /* Pricing / Services CSS (inserted here) - dark theme adapted to site */
@@ -546,6 +747,8 @@
     .industries-section{
       padding:72px 20px;
       background:transparent;
+      max-width: var(--max-width);
+      margin: 0 auto;
     }
 
     .industries-section .section-sub{
@@ -562,6 +765,80 @@
       gap:22px;
       max-width:var(--max-width);
       margin:0 auto;
+    }
+
+    /* CHALLENGES */
+    .challenges-section{
+      padding:100px 5%;
+      border-top:1px solid rgba(255,255,255,0.03);
+      border-bottom:1px solid rgba(255,255,255,0.03);
+    }
+
+    .challenges-container{
+      background: var(--card-background);
+      border: 1.2px solid rgba(255,255,255,0.04);
+      border-radius: 14px;
+      padding: 32px;
+      box-shadow: 0 12px 32px rgba(2,40,26,0.08);
+      max-width: var(--max-width);
+      margin: 0 auto;
+    }
+
+    .challenges-grid{
+      display:grid;
+      grid-template-columns:repeat(2,1fr);
+      gap:24px;
+      max-width:var(--max-width);
+      margin:0 auto;
+    }
+
+    .challenge-item{
+      background:var(--card-background);
+      border:1.2px solid rgba(255,255,255,0.04);
+      border-radius:12px;
+      padding:24px;
+      text-align:center;
+      box-shadow:0 4px 12px rgba(2,40,26,0.04);
+    }
+
+    .challenge-icon{
+      width:48px;
+      height:48px;
+      margin:0 auto 16px auto;
+    }
+
+    .challenge-item h3{
+      font-size:18px;
+      font-weight:700;
+      color:var(--heading-color);
+      margin-bottom:12px;
+    }
+
+    .challenge-item p{
+      font-size:14px;
+      line-height:1.5;
+      color:var(--text-color);
+      opacity:0.9;
+    }
+
+    .challenge-item:hover h3{
+      color: var(--primary-color);
+      text-shadow: 0 0 12px rgba(14,170,113,0.5);
+    }
+
+    @media(max-width:900px){
+      .challenges-grid { grid-template-columns:repeat(2,1fr); }
+    }
+
+    @media(max-width:600px){
+      .challenges-grid { grid-template-columns:1fr; }
+    }
+
+    @media(max-width:900px){
+      .challenges-section{
+        border-top: none;
+        border-bottom: none;
+      }
     }
 
     .industry-card{
@@ -615,13 +892,11 @@
       opacity:0.9;
     }
 
-    @media(max-width:1000px){
-      .industries-grid{ grid-template-columns:repeat(2,1fr); }
-    }
-
     @media(max-width:640px){
       .industries-grid{ grid-template-columns:1fr; }
-      .industries-section{ padding:40px 16px; }
+      .industries-section{ 
+        padding:40px 16px; 
+      }
     }
 
     /* === SVG ICON ANIMATION (new) === */
@@ -672,9 +947,8 @@
 
     <nav class="desktop">
       <a href="#hero">Home</a>
-      <a href="#what">What We Do</a>
+      <a href="#engineered">Who We Help</a>
       <a href="#services">Pricing</a>
-      <a href="#process">Process</a>
 
       <!-- FIXED NAV CTA: no green box -->
       <a href="#book" class="nav-cta">Book a Call</a>
@@ -694,7 +968,7 @@
         </h1>
 
         <p>
-          We build practical AI automations that save small businesses time, reduce costs, and create new capacity — without disrupting your workflow.
+          We build practical AI automations that save businesses time, reduce costs, and create new capacity — without disrupting your workflow.
         </p>
 
         <div class="cta-row">
@@ -705,56 +979,47 @@
 
 
   </section>
-  
+
   <!-- AUTOMATION IMPACT METRICS (inserted) -->
   <section id="impact" class="impact-section">
     <div class="impact-card">
-      <div class="impact-title">Our Stats</div>
+      <div class="impact-title">Customer support that works around the clock</div>
+      <div class="impact-subheading">Get reliable assistance whenever you need it, with our dedicated team ready to help.</div>
       <div class="impact-grid">
-        <!-- Item 1 -->
-        <div class="impact-item">
-          <div class="impact-icon" aria-hidden="true">
-            <!-- Growth icon: upward-trending chart -->
-            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-              <polyline points="3 16 9 10 13 14 21 6" stroke="var(--primary-color)" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
-              <polyline points="3 20 3 16" stroke="var(--primary-color)" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
-              <polyline points="21 6 21 10" stroke="var(--primary-color)" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
-          </div>
-          <div class="impact-value">1,240</div>
-          <div class="impact-label">Leads generated / month</div>
-        </div>
-
-        <!-- Item 2 -->
-        <div class="impact-item">
-          <div class="impact-icon" aria-hidden="true">
-            <!-- GBP icon -->
-            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-              <path d="M12 3c-2 0-3 1-3 3 0 2 1 3 3 3 2 0 3 1 3 3 0 2-1 3-3 3" stroke="var(--primary-color)" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
-              <path d="M9 17h6" stroke="var(--primary-color)" stroke-width="2" stroke-linecap="round"/>
-              <path d="M9 11h6" stroke="var(--primary-color)" stroke-width="2" stroke-linecap="round"/>
-            </svg>
-          </div>
-          <div class="impact-value">£28k</div>
-          <div class="impact-label">Annual cost savings</div>
-        </div>
-
-        <!-- Item 3 -->
+        <!-- Feature 1 -->
         <div class="impact-item">
           <div class="impact-icon" aria-hidden="true">
             <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="9" stroke="var(--primary-color)" stroke-width="1.8" fill="none"/><path d="M12 7v6l3 2" stroke="var(--primary-color)" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
           </div>
-          <div class="impact-value">87%</div>
-          <div class="impact-label">Faster response times</div>
+          <h4 class="impact-feature-title">24/7 Availability</h4>
+          <p class="impact-feature-text">Our services are available around the clock to provide uninterrupted support whenever your business needs it.</p>
         </div>
 
-        <!-- Item 4 -->
+        <!-- Feature 2 -->
         <div class="impact-item">
           <div class="impact-icon" aria-hidden="true">
-            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M3 6h18M3 12h12M3 18h8" stroke="var(--primary-color)" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" stroke="var(--primary-color)" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
           </div>
-          <div class="impact-value">32h</div>
-          <div class="impact-label">Admin hours saved / week</div>
+          <h4 class="impact-feature-title">Instant Responses</h4>
+          <p class="impact-feature-text">Receive quick and accurate answers to your queries through our instant response system.</p>
+        </div>
+
+        <!-- Feature 3 -->
+        <div class="impact-item">
+          <div class="impact-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2M12 11a4 4 0 1 0 0-8 4 4 0 0 0 0 8z" stroke="var(--primary-color)" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+          <h4 class="impact-feature-title">Expert Assistance</h4>
+          <p class="impact-feature-text">Your customers get help from our tailor made support agents, who are experts in their field.</p>
+        </div>
+
+        <!-- Feature 4 -->
+        <div class="impact-item">
+          <div class="impact-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="10" stroke="var(--primary-color)" stroke-width="1.8" fill="none"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z" stroke="var(--primary-color)" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+          <h4 class="impact-feature-title">Seamless integration</h4>
+          <p class="impact-feature-text">Our workflows seamlessly integrate into your business's current systems - to ensure a lightning fast, hassle free setup.</p>
         </div>
       </div>
 
@@ -763,59 +1028,33 @@
         <div class="satisfaction-inner">
           <div class="satisfaction-value">4.8 / 5</div>
           <div class="satisfaction-stars" aria-hidden="true">
-            <!-- 5 stars: 4.8 filled -->
+            <!-- 5 stars: 4.6 filled -->
             <svg class="star" viewBox="0 0 24 24"><path d="M12 2l2.6 6.9L21 10l-5 3.6L17 22l-5-3.2L7 22l1-8.4L3 10l6.4-1.1L12 2z"/></svg>
             <svg class="star" viewBox="0 0 24 24"><path d="M12 2l2.6 6.9L21 10l-5 3.6L17 22l-5-3.2L7 22l1-8.4L3 10l6.4-1.1L12 2z"/></svg>
             <svg class="star" viewBox="0 0 24 24"><path d="M12 2l2.6 6.9L21 10l-5 3.6L17 22l-5-3.2L7 22l1-8.4L3 10l6.4-1.1L12 2z"/></svg>
             <svg class="star" viewBox="0 0 24 24"><path d="M12 2l2.6 6.9L21 10l-5 3.6L17 22l-5-3.2L7 22l1-8.4L3 10l6.4-1.1L12 2z"/></svg>
-            <svg class="star partial" viewBox="0 0 24 24"><defs><linearGradient id="g"><stop offset="96%" stop-color="var(--primary-color)"/><stop offset="96%" stop-color="rgba(255,255,255,0.12)"/></linearGradient></defs><path d="M12 2l2.6 6.9L21 10l-5 3.6L17 22l-5-3.2L7 22l1-8.4L3 10l6.4-1.1L12 2z" fill="url(#g)"/></svg>
+            <svg class="star partial" viewBox="0 0 24 24"><defs><linearGradient id="g"><stop offset="67%" stop-color="var(--primary-color)"/><stop offset="67%" stop-color="rgba(255,255,255,0.12)"/></linearGradient></defs><path d="M12 2l2.6 6.9L21 10l-5 3.6L17 22l-5-3.2L7 22l1-8.4L3 10l6.4-1.1L12 2z" fill="url(#g)"/></svg>
           </div>
           <div class="satisfaction-lines">
             <span class="line left"></span>
             <span class="line right"></span>
+          <div>
           </div>
         </div>
       </div>
 
-      <div class="impact-footnote">Data collected from our partners</div>
-
     </div>
   </section>
 
-  <!-- WHAT WE DO -->
-  <section id="what" class="what-we-do">
-    <div class="section-inner">
-      <h2 class="section-title">What We Do</h2>
-
-      <div class="grid">
-        <div class="card">
-          <h3>We help service-based businesses</h3>
-          <p>Plumbers, electricians, sales teams, personal trainers, tutors, local agencies — anyone running on tight schedules.</p>
-        </div>
-
-        <div class="card">
-          <h3>We automate all your operations</h3>
-          <p>Booking systems, reminders, lead qualification, payments, dashboards and more.</p>
-        </div>
-
-        <div class="card">
-          <h3>We focus on real outcomes</h3>
-          <p>More leads captured. Faster responses. Less admin. More time to grow the business.</p>
-        </div>
-      </div>
-
-      <!-- MOVED: Built for service businesses (now inside What We Do, centered) -->
-      <div style="text-align:center; margin:40px auto 0 auto;">
+  <!-- MOVED: Built for service businesses (now inside What We Do, centered) -->
+      <div id="engineered" style="text-align:center; margin:40px auto 0 auto; scroll-margin-top: 120px;">
         <h2 class="section-title">Engineered for Scalable Operations</h2>
         <p class="section-sub">Whether you're a small local company or run a multi-location business, we adapt to each client's unique needs.</p>
       </div>
-    </div>
-  </section>
 
   <!-- INDUSTRIES / MENU (icons updated) -->
   <section id="industries" class="industries-section">
-    <div class="section-inner">
-      <div class="industries-grid">
+    <div class="industries-grid">
         <article class="industry-card">
           <div class="industry-icon">
             <!-- Salon: Head towel -->
@@ -958,10 +1197,6 @@
     </div>
   </section>
 
-  <section id="what" class="what-we-do">
-    <!-- Note: main What We Do block already included above; keep this section for structure compatibility if needed -->
-  </section>
-
   <!-- PRICING -->
   <section class="pricing-section" id="services">
   <div class="pricing-container">
@@ -1048,39 +1283,211 @@
   </div>
 </section>
 
-  <!-- PROCESS -->
-  <section id="process">
+  <!-- CHALLENGES -->
+  <section id="challenges" class="challenges-section">
     <div class="section-inner">
-      <h2 class="section-title">Process</h2>
-      <div class="grid">
-        <div class="card">
-          <h3>1. Identify</h3>
-          <p>We map your workflow and find the highest-value automation opportunities.</p>
+      <div class="challenges-container">
+        <h2 class="section-title">The Challenges You Face Every Day</h2>
+        <div class="challenges-grid">
+        <div class="challenge-item">
+          <div class="challenge-icon">
+            <!-- Hazard sign -->
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path d="M12 2L2 22h20L12 2z" stroke="var(--primary-color)" stroke-width="2" fill="none"/>
+              <line x1="12" y1="9" x2="12" y2="15" stroke="var(--primary-color)" stroke-width="2"/>
+              <circle cx="12" cy="18" r="1" fill="var(--primary-color)"/>
+            </svg>
+          </div>
+          <h3>Missed Opportunities</h3>
+          <p>Even during business hours, delayed follow ups and manual workflows allow high-intent leads to cool off before engagement.</p>
         </div>
-
-        <div class="card">
-          <h3>2. Build</h3>
-          <p>We design, build, test and refine your automation systems.</p>
+        <div class="challenge-item">
+          <div class="challenge-icon">
+            <!-- Clock -->
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="12" cy="12" r="9" stroke="var(--primary-color)" stroke-width="2" fill="none"/>
+              <path d="M12 7v6l3 2" stroke="var(--primary-color)" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <h3>After-Hours Silence</h3>
+          <p>Customers don’t stop enquiring outside business hours, your systems shouldn’t either.</p>
         </div>
-
-        <div class="card">
-          <h3>3. Deploy</h3>
-          <p>We onboard your team, hand over documentation and support long-term.</p>
+        <div class="challenge-item">
+          <div class="challenge-icon">
+            <!-- Human -->
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="12" cy="8" r="3" stroke="var(--primary-color)" stroke-width="2" fill="none"/>
+              <path d="M12 14c-3 0-5 2-5 4v2h10v-2c0-2-2-4-5-4z" stroke="var(--primary-color)" stroke-width="2" fill="none"/>
+            </svg>
+          </div>
+          <h3>Overwhelmed Team</h3>
+          <p>Your teams time is consumed by repetitive enquiries instead of high value, client-focused work.</p>
+        </div>
+        <div class="challenge-item">
+          <div class="challenge-icon">
+            <!-- 3G bar -->
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <rect x="2" y="18" width="2" height="4" fill="var(--primary-color)"/>
+              <rect x="6" y="14" width="2" height="8" fill="var(--primary-color)"/>
+              <rect x="10" y="10" width="2" height="12" fill="var(--primary-color)"/>
+              <rect x="14" y="6" width="2" height="16" fill="var(--primary-color)"/>
+            </svg>
+          </div>
+          <h3>Inconsistent Service</h3>
+          <p>Without standardised systems, service quality depends on who picks up the enquiry.</p>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- BOOK A CALL -->
-  <section id="book" class="book-call">
-    <div class="section-inner">
-      <div class="call-box">
-        <h2 class="section-title">Book a Call</h2>
-        <p>Speak with our team and find out how our AI automation can transform your business today.</p>
-        <a class="btn primary" href="#">Schedule Now</a>
+  <!-- PERFORMANCE STATS -->
+  <section id="stats" class="stats-section">
+    <div class="stats-card">
+      <div class="stats-title">Measurable Impact</div>
+      <div class="stats-grid">
+        <!-- Stat 1 -->
+        <div class="stats-item">
+          <div class="stats-icon" aria-hidden="true">
+            <!-- Diagonal arrow pointing up and right (cleaned tip) -->
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path d="M5 19L19 5 M19 5L15 5 M19 5L19 9" stroke="var(--primary-color)" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <div class="stats-value">1,240</div>
+          <div class="stats-label">Leads Generated per Month</div>
+        </div>
+
+        <!-- Stat 2 -->
+        <div class="stats-item">
+          <div class="stats-icon" aria-hidden="true">
+            <!-- Large bold pound symbol only (no coin) -->
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
+              <text x="12" y="14" text-anchor="middle" dominant-baseline="middle" font-size="20" font-weight="50" fill="var(--primary-color)">£</text>
+            </svg>
+          </div>
+          <div class="stats-value">£28k</div>
+          <div class="stats-label">Annual Cost Savings</div>
+        </div>
+
+        <!-- Stat 3 -->
+        <div class="stats-item">
+          <div class="stats-icon" aria-hidden="true">
+            <!-- Speed / lightning symbol -->
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" stroke="var(--primary-color)" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <div class="stats-value">87%</div>
+          <div class="stats-label">Faster Response Time</div>
+        </div>
+
+        <!-- Stat 4 -->
+        <div class="stats-item">
+          <div class="stats-icon" aria-hidden="true">
+            <!-- Small laptop -->
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path d="M20 16V7a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v9m16 0H4m16 0l1.28 2.55a1 1 0 0 1-.9 1.45H3.62a1 1 0 0 1-.9-1.45L4 16" stroke="var(--primary-color)" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <div class="stats-value">32h</div>
+          <div class="stats-label">Admin Hours Saved per Week</div>
+        </div>
       </div>
     </div>
   </section>
+
+  <!-- BOOK A CALL -->]
+<!-- ============================================ -->
+<!-- BOOK A CALL SECTION – APPLEGATE AI -->
+<!-- ============================================ -->
+
+<style>
+  /* Scoped styles to avoid conflicts */
+  #book-call{
+    padding: 120px 20px;
+    position: relative;
+  }
+
+  #book-call .book-call-inner{
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    gap: 40px;
+  }
+
+  #book-call .section-title{
+    color: var(--primary-color);
+    font-weight: 800;
+    font-size: 26px;
+    margin: 0 0 14px 0;
+  }
+
+  #book-call .subtitle{
+    color: var(--text-color);
+    opacity: 0.85;
+    font-size: 16px;
+    max-width: 720px;
+  }
+
+  #book-call .book-call-card{
+    background: var(--card-background);
+    border: 2px solid rgba(14,170,113,0.55);
+    border-radius: 18px;
+    padding: 18px;
+    transition: all .35s ease;
+    position: relative;
+  }
+
+  /* Signature green glow on hover */
+  #book-call .book-call-card:hover{
+    box-shadow:
+      0 0 0 1px rgba(14,170,113,0.6),
+      0 0 32px rgba(14,170,113,0.25);
+    transform: translateY(-2px);
+  }
+
+  #book-call .calendly-wrapper{
+    width: 100%;
+    height: 720px;
+    overflow: hidden;
+    border-radius: 12px;
+  }
+
+  #book-call iframe{
+    width: 100%;
+    height: 100%;
+    border: none;
+  }
+
+  @media(max-width:640px){
+    #book-call{
+      padding: 90px 16px;
+    }
+    #book-call .calendly-wrapper{
+      height: 900px;
+    }
+  }
+</style>
+
+<section id="book-call">
+  <div class="book-call-inner">
+  <div class="book-call-card">
+      <div class="calendly-wrapper">
+        <!-- Replace with your real Calendly link -->
+        <iframe
+          src="https://calendly.com/ethanapplegate/discovery-call"
+          loading="lazy">
+        </iframe>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ============================================ -->
+
+  </div>
+</section>
 
 </main>
 
