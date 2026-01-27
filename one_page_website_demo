@@ -1,1518 +1,592 @@
-<!doctype html>
-<html lang="en">
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Applegate AI - Automations for all Businesses</title>
-
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
-
-  <meta name="description" content="Applegate AI — Practical AI automations for small and local businesses. Save time, capture more leads, and scale operations.">
-
-  <style>
-    :root{
-      --primary-color:#0EAA71;
-      --background-dark:#1d222b;
-      --text-color:#cccccc;
-      --heading-color:#b9b9b9;
-  --card-background:#15171a;
-      --border-color:#0EAA71;
-      --max-width:1200px;
-      --radius:14px;
-    }
-
-    *{box-sizing:border-box;}
-    body{
-      margin:0;
-      font-family:Inter,system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial;
-      color:var(--text-color);
-      line-height:1.45;
-      text-decoration:none;
-      background:
-        radial-gradient(circle at 15% 25%, rgba(14,170,113,0.10), transparent 42%),
-        radial-gradient(circle at 85% 70%, rgba(14,170,113,0.08), transparent 50%),
-        linear-gradient(180deg, #1d222b 0%, #14171b 100%);
-      background-size:220% 220%;
-      background-attachment:fixed;
-      animation:bgShift 22s ease-in-out infinite alternate;
-    }
-
-    @keyframes bgShift {
-      0% { background-position: 0% 0%; }
-      100% { background-position: 100% 100%; }
-    }
-
-    a { 
-      color: var(--primary-color); 
-      text-decoration: none !important; 
-    }
-
-    /* HEADER */
-    header{
-      position:fixed;
-      top:0; left:0; right:0;
-      background:rgba(10,12,14,0.75);
-      backdrop-filter:blur(8px);
-      padding:16px 0;
-      border-bottom:1px solid rgba(255,255,255,0.05);
-      z-index:1000;
-    }
-
-    .nav-inner{
-      max-width:var(--max-width);
-      margin:0 auto;
-      padding:0 20px;
-      display:flex;
-      justify-content:space-between;
-      align-items:center;
-    }
-
-    .logo img{
-      height:40px;
-    }
-
-    nav.desktop{
-      display:flex;
-      gap:28px;
-      align-items:center;
-    }
-
-    /* Glowing underline animation for nav links */
-    nav.desktop a{
-      position:relative;
-      padding:6px 4px;
-      font-weight:600;
-      color:var(--heading-color);
-    }
-
-    nav.desktop a::after{
-      content:"";
-      position:absolute;
-      bottom:-2px;
-      left:0;
-      width:0%;
-      height:2px;
-      background:var(--primary-color);
-      box-shadow:0 0 10px var(--primary-color);
-      transition:width .3s ease;
-    }
-
-    nav.desktop a:hover::after{
-      width:100%;
-    }
-
-    /* NAV CTA FIX: "Book a Call" */
-    nav.desktop .nav-cta {
-      padding:6px 4px;
-      font-weight:600;
-      color:var(--primary-color);
-      position:relative;
-    }
-
-    nav.desktop .nav-cta::after {
-      content:"";
-      position:absolute;
-      bottom:-2px;
-      left:0;
-      width:0%;
-      height:2px;
-      background:var(--primary-color);
-      box-shadow:0 0 10px var(--primary-color);
-      transition:width .3s ease;
-    }
-
-    nav.desktop .nav-cta:hover::after {
-      width:100%;
-    }
-
-    /* GENERAL LAYOUT */
-    section{
-      padding:120px 20px;
-    }
-
-    .section-inner{
-      max-width:var(--max-width);
-      margin:0 auto;
-    }
-
-    h2.section-title{
-      font-size:42px;
-      font-weight:800;
-      margin-bottom:20px;
-      color:var(--primary-color);
-    }
-
-    .card{
-  background:var(--card-background);
-  border:1.2px solid rgba(255,255,255,0.04);
-  border-radius:12px;
-  padding:22px;
-  box-shadow:0 10px 28px rgba(2,40,26,0.06);
-    }
-
-    .grid{
-      display:grid;
-      grid-template-columns:repeat(3,1fr);
-      gap:24px;
-    }
-
-    @media(max-width:900px){
-      .grid { grid-template-columns:1fr; }
-    }
-
-
-  /* HERO */
-   .hero{
-   min-height:94vh;
-   display:flex;
-   align-items:center;
-   }
-
-
-  .hero-left h1 {
-  font-size: clamp(52px, 7vw, 88px); /* slightly larger than before */
-  font-weight: 800;
-  line-height: 1.12; /* increase line-height to avoid descender clipping */
-  color: var(--heading-color);
-  margin: 0 0 6px 0;
-  max-width: 900px; /* ensures it doesn’t stretch too wide on large screens */
-  }
-  
-  #animated-text {
-  display: inline-block;
-  /* responsive reserved width: at least 14 characters or 220px */
-  min-width: max(220px, 14ch);
-  text-align: left;
-  white-space:nowrap;
-  vertical-align:bottom;
-  }
-
-
-
-  .hero-grid{
-   display:grid;
-   grid-template-columns:1fr 400px;
-   gap:40px;
-   max-width:var(--max-width);
-   margin:0 auto;   
-   }
-
-
-  .hero-left{
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  /* nudge left slightly for visual alignment */
-  padding-left:4px;
-  }
-
-    /* keep 'We Sell' and the animated word on a single line */
-    .sell-line{
-      display:inline-block;
-      white-space:nowrap;
-      overflow:hidden; /* ensure animated transitions don't push layout */
-      vertical-align:bottom;
-      padding-bottom:6px; /* space for descenders (y, g) */
-    }
-
-    /* ensure spinning text doesn't change flow: animate transform/opacity only */
-    .spin-in, .spin-out { display:inline-block; }
-
-
- 
-   #animated-text{
-     color:var(--primary-color);
-     display:inline-block;
-     /* keep animations transform-only to avoid layout reflow */
-     will-change:transform,opacity;
-   }
-
-
-   .spin-in{
-     animation:spinIn .4s forwards;
-   }
-   .spin-out{
-     animation:spinOut .4s forwards;
-   }
-
-
-   @keyframes spinIn{
-     0%{transform:rotateX(-90deg);opacity:0;}
-     100%{transform:rotateX(0);opacity:1;}
-   }
-   @keyframes spinOut{
-     0%{transform:rotateX(0);opacity:1;}
-     100%{transform:rotateX(90deg);opacity:0;}
-   }
-
-
-   .hero p{
-     margin-top:18px;
-     max-width:500px;
-   }
-
-
-   .cta-row{
-     margin-top:24px;
-     display:flex;
-     gap:16px;
-   }
-
-
-   .btn{
-     padding:12px 20px;
-     border-radius:12px;
-     font-weight:700;
-     display:inline-block;
-     cursor:pointer;
-     border:1px solid rgba(255,255,255,0.06);
-   }
-
-
-   .btn.primary{
-     background:linear-gradient(90deg,var(--primary-color),#0b8a5c);
-     color:#02281a;
-   }
-   .btn.ghost{
-     background:transparent;
-     color:var(--text-color);
-   }
-
-   /* Form styles */
-   .form-row {
-     display: flex;
-     gap: 16px;
-     margin-bottom: 16px;
-   }
-
-   .form-group {
-     margin-bottom: 16px;
-   }
-
-   .form-group.half {
-     flex: 1;
-   }
-
-   .form-group.full {
-     width: 100%;
-   }
-
-   .form-group label {
-     display: block;
-     margin-bottom: 4px;
-     font-weight: 600;
-     color: var(--heading-color);
-   }
-
-   .form-group input,
-   .form-group textarea {
-     width: 100%;
-     padding: 12px;
-     border: 1px solid rgba(255,255,255,0.1);
-     border-radius: 8px;
-     background: var(--card-background);
-     color: var(--text-color);
-     font-family: inherit;
-   }
-
-   .form-group input:focus,
-   .form-group textarea:focus {
-     outline: none;
-     border-color: var(--primary-color);
-     box-shadow: 0 0 0 2px rgba(14,170,113,0.2);
-   }
-
-   .form-group textarea {
-     resize: vertical;
-     min-height: 80px;
-   }
-
-   .btn.demo {
-     background: rgba(255,255,255,0.1);
-     background-image: linear-gradient(45deg, var(--primary-color), #0b8a5c);
-     background-size: 200% 200%;
-     -webkit-background-clip: text;
-     -webkit-text-fill-color: transparent;
-     background-clip: text;
-     animation: hologram 3s ease-in-out infinite;
-     border: 1px solid rgba(255,255,255,0.1);
-     padding: 16px 32px;
-     font-size: 18px;
-     font-weight: 700;
-     border-radius: 12px;
-     cursor: pointer;
-     margin-top: 20px;
-     width: 100%;
-   }
-
-   @keyframes hologram {
-     0% { background-position: 0% 50%; }
-     50% { background-position: 100% 50%; }
-     100% { background-position: 0% 50%; }
-   }
-
-   /* Book call section specific styles */
-   .book-call h2.section-title {
-     font-family: inherit;
-     font-weight: 800;
-     font-size: clamp(28px, 4vw, 36px);
-     color: var(--heading-color);
-     text-align: center;
-     margin: 0 auto 16px auto;
-     letter-spacing: -0.02em;
-   }
-
-   /* Challenges section specific styles */
-   .challenges-section h2.section-title {
-     color: white;
-     text-align: center;
-     margin-bottom: 24px;
-   }
-
-    /* Automation Impact Metrics (scoped) */
-  /* impact-section wrapper (no root styles required) */
-
-    .impact-card{
-      background:var(--card-background);
-      border:1px solid rgba(255,255,255,0.04);
-      border-radius:var(--radius);
-      padding:48px 44px; /* increased padding */
-      min-height:80vh; /* spans near top to bottom of viewport */
-      max-width:var(--max-width);
-      margin:28px auto; /* centered */
-      box-shadow:0 8px 28px rgba(2,40,26,0.04);
-      transition:box-shadow .22s ease, outline .22s ease;
-      outline: none;
-      opacity:0; /* fade-in on load */
-      animation:impactFade .36s ease .06s forwards;
-    }
-
-    .impact-card:hover{
-      /* green outline and very soft glow on hover, no scale */
-      outline:2px solid var(--primary-color);
-      box-shadow:0 12px 36px rgba(14,170,113,0.06);
-    }
-
-    /* Title inside the card - large, bold, visually dominant, centered */
-    .impact-title{
-      font-family:inherit; /* same font family as the page */
-      font-weight:800;
-      font-size:clamp(32px,5vw,56px); /* significantly larger */
-      color:var(--heading-color);
-      text-align:center;
-      margin:0 auto 16px auto;
-      letter-spacing:-0.02em;
-    }
-
-    /* Subheading beneath the title */
-    .impact-subheading{
-      font-size:clamp(18px,2.5vw,24px);
-      color:var(--text-color);
-      text-align:center;
-      margin:0 auto 32px auto;
-      opacity:0.85;
-      max-width:600px;
-    }
-
-    .impact-grid{
-      display:grid;
-      grid-template-columns:repeat(2,1fr);
-      gap:32px;
-      align-items:start;
-      padding:0;
-    }
-
-    .impact-icon{
-      width:72px;
-      height:72px;
-      display:grid;
-      place-items:center;
-      border-radius:14px;
-      background:var(--card-background);
-      border:1px solid rgba(255,255,255,0.02);
-      flex-shrink:0;
-      margin-bottom:16px;
-    }
-
-    .impact-icon svg{ width:44px; height:44px; stroke:var(--primary-color); stroke-width:2; fill:none; stroke-linecap:round; stroke-linejoin:round; }
-
-    .impact-feature-title{
-      font-weight:700;
-      color:var(--text-color);
-      font-size:clamp(18px,2.2vw,22px);
-      margin-bottom:8px;
-    }
-
-    .impact-feature-text{
-      color:var(--text-color);
-      opacity:0.8;
-      font-size:clamp(14px,1.6vw,16px);
-      line-height:1.5;
-    }
-
-    /* satisfaction row styles */
-    .impact-satisfaction{ margin-top:32px; display:flex; justify-content:center; }
-    .satisfaction-inner{ display:flex; flex-direction:column; align-items:center; gap:16px; }
-    .satisfaction-value{ font-size:clamp(24px,3.6vw,44px); font-weight:900; color:var(--text-color); }
-    .satisfaction-stars{ display:flex; gap:12px; align-items:center; }
-    .satisfaction-stars .star{ width:36px; height:36px; fill:rgba(255,255,255,0.12); stroke:rgba(255,255,255,0.25); stroke-width:1.5; }
-    .satisfaction-stars .star:nth-child(-n+4){ fill:var(--primary-color); stroke:none; }
-    .satisfaction-stars .star.partial path{ fill:url(#g); stroke:rgba(255,255,255,0.25); stroke-width:1.5; }
-    .satisfaction-lines{ position:relative; width:100%; display:flex; justify-content:center; margin-top:12px; }
-    .satisfaction-lines .line{ display:block; height:3px; background:rgba(14,170,113,0.08); width:50%; }
-    .satisfaction-lines .left{ margin-right:12px; }
-    .satisfaction-lines .right{ margin-left:12px; }
-
-    @keyframes impactFade{ to{ opacity:1; } }
-
-    @media(max-width:1000px){ .impact-grid{ grid-template-columns:repeat(2,1fr); } }
-    @media(max-width:640px){
-      .impact-grid{ grid-template-columns:1fr; }
-      .impact-card{ min-height:unset; padding:22px; }
-      .impact-grid::before{ top:40%; left:8%; right:8%; }
-    }
-
-    @media(max-width:1000px){ .impact-grid{ grid-template-columns:repeat(2,1fr); } }
-    @media(max-width:640px){
-      .impact-grid{ grid-template-columns:1fr; gap:24px; }
-      .impact-card{ min-height:unset; padding:32px 24px; }
-      .impact-title{ font-size:clamp(24px,4vw,40px); }
-      .impact-subheading{ font-size:clamp(16px,2vw,20px); margin-bottom:24px; }
-      .satisfaction-stars .star{ width:28px; height:28px; }
-      .satisfaction-value{ font-size:clamp(20px,3vw,32px); }
-    }
-
-   
-    /* WHAT WE DO */
-    .what-we-do .card:hover{
-      border-color:var(--primary-color);
-      box-shadow:0 0 18px rgba(14,170,113,0.35);
-      transition:0.25s ease;
-    }
-
-    /* PERFORMANCE STATS */
-    .stats-section{
-      margin:40px 0;
-    }
-
-    .stats-card{
-      background:var(--card-background);
-      border:1px solid rgba(255,255,255,0.04);
-      border-radius:var(--radius);
-      padding:32px 28px; /* significantly reduced */
-      min-height:10vh; /* shrunk for proportion */
-      max-width:var(--max-width);
-      margin:0 auto;
-      box-shadow:0 10px 40px rgba(2,40,26,0.05);
-      transition:outline .28s ease, box-shadow .28s ease;
-      outline:none;
-      opacity:0;
-      animation:statsFade .4s ease .1s forwards;
-    }
-
-    .stats-card:hover{
-      outline:2px solid var(--primary-color);
-      box-shadow:0 14px 50px rgba(14,170,113,0.08);
-    }
-
-    .stats-title{
-      font-family:inherit;
-      font-weight:800;
-      font-size:clamp(28px,4vw,36px); /* reduced */
-      color:var(--heading-color);
-      text-align:center;
-      margin:0 auto 16px auto;
-      letter-spacing:-0.02em;
-    }
-
-    .stats-grid{
-      display:grid;
-      grid-template-columns:repeat(4,1fr);
-      gap:24px; /* reduced */
-      align-items:start;
-      position:relative;
-      padding:16px 6px 6px 6px; /* reduced */
-    }
-
-    .stats-icon{
-      width:50px; /* further shrunk */
-      height:50px;
-      display:grid;
-      place-items:center;
-      border-radius:10px;
-      background:rgba(255,255,255,0.02);
-      border:1px solid rgba(255,255,255,0.03);
-      flex-shrink:0;
-      margin-bottom:6px; /* further reduced */
-      position:relative;
-      z-index:2;
-    }
-
-    .stats-icon svg{
-      width:30px; /* further shrunk */
-      height:30px;
-      stroke:var(--primary-color);
-      stroke-width:2.2;
-      fill:none;
-      stroke-linecap:round;
-      stroke-linejoin:round;
-    }
-
-    .stats-value{
-      font-weight:900;
-      color:var(--text-color);
-      font-size:clamp(16px,2vw,24px); /* further reduced */
-      margin-bottom:3px; /* further reduced */
-    }
-
-    .stats-label{
-      color:var(--text-color);
-      opacity:0.9;
-      font-size:clamp(12px,1.4vw,14px); /* further reduced */
-      line-height:1.4;
-    }
-
-    .stats-footnote{
-      margin-top:32px;
-      text-align:center;
-      color:var(--text-color);
-      opacity:0.6;
-      font-size:0.9rem;
-    }
-
-    @keyframes statsFade{ to{ opacity:1; } }
-
-    @media(max-width:1000px){ .stats-grid{ grid-template-columns:repeat(2,1fr); } }
-    @media(max-width:640px){
-      .stats-grid{ grid-template-columns:1fr; gap:28px; }
-      .stats-card{ min-height:unset; padding:40px 28px; }
-      .stats-title{ font-size:clamp(28px,5vw,36px); }
-    }
-
-    /* PRICING */
-    .pricing-card:hover{
-      border-color:var(--primary-color);
-      box-shadow:0 0 18px rgba(14,170,113,0.35);
-    }
-
-    /* BOOK A CALL SECTION */
-    .book-call{
-      background:transparent !important;
-    }
-
-    .call-box{
-      background:var(--card-background);
-      border:1.2px solid rgba(255,255,255,0.04); 
-      padding:32px;
-      border-radius:14px;
-      max-width:700px;
-      margin:0 auto;
-      box-shadow:0 12px 32px rgba(2,40,26,0.08);
-    }
-
-    .call-box:hover{
-      outline:2px solid var(--primary-color);
-      box-shadow:0 12px 36px rgba(14,170,113,0.06);
-    }
-    
-    /* Pricing / Services CSS (inserted here) - dark theme adapted to site */
-    .pricing-section{
-      /* animated background to match site */
-      background:
-        radial-gradient(circle at 15% 25%, rgba(14,170,113,0.10), transparent 42%),
-        radial-gradient(circle at 85% 70%, rgba(14,170,113,0.08), transparent 50%),
-        linear-gradient(180deg, #1d222b 0%, #14171b 100%);
-      background-size:220% 220%;
-      background-attachment:fixed;
-      animation:bgShift 22s ease-in-out infinite alternate;
-      /* dark overlay for contrast on cards */
-      padding:100px 5%;
-      border-top:1px solid rgba(255,255,255,0.03);
-      border-bottom:1px solid rgba(255,255,255,0.03);
-    }
-
-    .pricing-container{
-      max-width:1200px;
-      margin:0 auto;
-      display:grid;
-      grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
-      gap:32px;
-    }
-
-    .pricing-card{
-      /* unified card background */
-      background:var(--card-background);
-      color:#dce7df; /* readable text color */
-      border-radius:20px;
-      padding:36px 32px;
-      box-shadow:0 15px 40px rgba(2,40,26,0.18);
-      position:relative;
-      display:flex;
-      flex-direction:column;
-      border:1.2px solid rgba(255,255,255,0.04);
-    }
-
-    .pricing-card.featured{
-      border:2px solid rgba(14,170,113,0.18);
-      background:linear-gradient(180deg,#13241f,#0f1618);
-    }
-
-    .pricing-header h3{
-      font-size:1.6rem;
-      margin-bottom:6px;
-      color:var(--heading-color);
-    }
-
-    .pricing-header p{
-      font-size:0.95rem;
-      opacity:0.8;
-      color:var(--text-color);
-    }
-
-    .badge{
-      position:absolute;
-      top:-14px;
-      left:50%;
-      transform:translateX(-50%);
-      background:var(--primary-color);
-      color:#02281a;
-      padding:6px 14px;
-      border-radius:999px;
-      font-size:0.75rem;
-      font-weight:700;
-    }
-
-    .pricing-price{
-      margin:28px 0;
-    }
-
-    .pricing-price .setup{
-      font-size:1.4rem;
-      font-weight:700;
-      display:block;
-      color:#fff;
-    }
-
-    .pricing-price .label{
-      font-size:0.85rem;
-      opacity:0.7;
-      color:#cbd5c4;
-    }
-
-    .pricing-price .monthly{
-      margin-top:8px;
-      font-weight:600;
-      display:block;
-      color:var(--primary-color);
-    }
-
-    .pricing-features{
-      list-style:none;
-      padding:0;
-      margin:24px 0;
-      flex:1;
-    }
-
-    .pricing-features li{
-      padding:8px 0;
-      font-size:0.95rem;
-      color:var(--text-color);
-    }
-
-    .pricing-btn{
-      display:block;
-      text-align:center;
-      padding:14px 18px;
-      border-radius:14px;
-      font-weight:700;
-      background:transparent;
-      color:var(--text-color);
-      text-decoration:none;
-      transition:0.25s ease;
-      border:1px solid rgba(255,255,255,0.04);
-    }
-
-    .pricing-btn:hover{
-      transform:translateY(-1px);
-      box-shadow:0 10px 30px rgba(0,0,0,0.25);
-    }
-
-    .pricing-btn.primary{
-      background:var(--primary-color);
-      color:#02281a;
-    }
-
-    /* INDUSTRIES / MENU section (kept original visuals) */
-    .industries-section{
-      padding:72px 20px;
-      background:transparent;
-      max-width: var(--max-width);
-      margin: 0 auto;
-    }
-
-    .industries-section .section-sub{
-      color:var(--text-color);
-      max-width:900px;
-      margin:0 auto 28px auto;
-      text-align:center;
-      opacity:0.9;
-    }
-
-    .industries-grid{
-      display:grid;
-      grid-template-columns:repeat(3,1fr);
-      gap:22px;
-      max-width:var(--max-width);
-      margin:0 auto;
-    }
-
-    /* CHALLENGES */
-    .challenges-section{
-      padding:100px 5%;
-      border-top:1px solid rgba(255,255,255,0.03);
-      border-bottom:1px solid rgba(255,255,255,0.03);
-    }
-
-    .challenges-container{
-      background: var(--card-background);
-      border: 1.2px solid rgba(255,255,255,0.04);
-      border-radius: 14px;
-      padding: 32px;
-      box-shadow: 0 12px 32px rgba(2,40,26,0.08);
-      max-width: var(--max-width);
-      margin: 0 auto;
-    }
-
-    .challenges-grid{
-      display:grid;
-      grid-template-columns:repeat(2,1fr);
-      gap:24px;
-      max-width:var(--max-width);
-      margin:0 auto;
-    }
-
-    .challenge-item{
-      background:var(--card-background);
-      border:1.2px solid rgba(255,255,255,0.04);
-      border-radius:12px;
-      padding:24px;
-      text-align:center;
-      box-shadow:0 4px 12px rgba(2,40,26,0.04);
-    }
-
-    .challenge-icon{
-      width:48px;
-      height:48px;
-      margin:0 auto 16px auto;
-    }
-
-    .challenge-item h3{
-      font-size:18px;
-      font-weight:700;
-      color:var(--heading-color);
-      margin-bottom:12px;
-    }
-
-    .challenge-item p{
-      font-size:14px;
-      line-height:1.5;
-      color:var(--text-color);
-      opacity:0.9;
-    }
-
-    .challenge-item:hover h3{
-      color: var(--primary-color);
-      text-shadow: 0 0 12px rgba(14,170,113,0.5);
-    }
-
-    @media(max-width:900px){
-      .challenges-grid { grid-template-columns:repeat(2,1fr); }
-    }
-
-    @media(max-width:600px){
-      .challenges-grid { grid-template-columns:1fr; }
-    }
-
-    @media(max-width:900px){
-      .challenges-section{
-        border-top: none;
-        border-bottom: none;
-      }
-    }
-
-    .industry-card{
-      background:var(--card-background);
-      border-radius:12px;
-      padding:22px;
-      display:flex;
-      flex-direction:column;
-      gap:10px;
-      align-items:flex-start;
-      border:1.2px solid rgba(255,255,255,0.04);
-      box-shadow:0 10px 28px rgba(2,40,26,0.06);
-    }
-
-    .industry-icon{
-      width:48px;
-      height:48px;
-      display:grid;
-      place-items:center;
-      background:rgba(255,255,255,0.03);
-      border-radius:10px;
-      font-size:22px;
-      transform:translateZ(0);
-      transition:transform .22s cubic-bezier(.2,.9,.2,1), box-shadow .22s ease, background .22s ease;
-      box-shadow:0 6px 18px rgba(2,40,26,0.02);
-      animation:iconFloat 6s ease-in-out infinite;
-    }
-
-    @keyframes iconFloat{
-      0%{ transform: translateY(0) translateZ(0); }
-      50%{ transform: translateY(-6px) translateZ(6px); }
-      100%{ transform: translateY(0) translateZ(0); }
-    }
-
-    .industry-card:hover .industry-icon{
-      transform: translateY(-8px) scale(1.06) translateZ(12px);
-      box-shadow:0 18px 40px rgba(14,170,113,0.14);
-      background: linear-gradient(180deg, rgba(14,170,113,0.12), rgba(14,170,113,0.06));
-    }
-
-    .industry-card h3{
-      margin:0;
-      color:var(--heading-color);
-      font-size:1.05rem;
-    }
-
-    .industry-card p{
-      margin:0;
-      color:var(--text-color);
-      font-size:0.95rem;
-      opacity:0.9;
-    }
-
-    @media(max-width:640px){
-      .industries-grid{ grid-template-columns:1fr; }
-      .industries-section{ 
-        padding:40px 16px; 
-      }
-    }
-
-    /* === SVG ICON ANIMATION (new) === */
-    .industry-icon svg {
-      width:28px;
-      height:28px;
-      stroke:var(--primary-color);
-      stroke-width:1.8;
-      fill:none;
-      stroke-linecap:round;
-      stroke-linejoin:round;
-      filter: drop-shadow(0 0 6px rgba(14,170,113,0.20));
-      animation: iconPulse 3.6s ease-in-out infinite;
-      transition: filter .18s ease, transform .18s ease;
-    }
-
-    /* make the medical cross filled + thicker stroke */
-    .industry-icon.medical svg {
-      stroke-width:0;
-      fill:var(--primary-color);
-      filter: drop-shadow(0 0 10px rgba(14,170,113,0.25));
-      animation: none;
-      transform: scale(1);
-    }
-
-    .industry-card:hover .industry-icon svg {
-      animation-play-state:paused;
-      filter: drop-shadow(0 0 14px rgba(14,170,113,0.55));
-      transform: scale(1.04);
-    }
-
-    @keyframes iconPulse {
-      0%   { transform: scale(1);   opacity: 0.92; }
-      50%  { transform: scale(1.08); opacity: 1; }
-      100% { transform: scale(1);   opacity: 0.92; }
-    }
-
-  </style>
+<html lang="en" class="scroll-smooth antialiased"><head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Applegate AI - Automations for all Businesses</title>
+    <meta name="description" content="Applegate AI — Practical AI automations for small and local businesses. Save time, capture more leads, and scale operations.">
+
+    <!-- Fonts: Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet">
+
+    <!-- Tailwind CSS (via CDN) -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Iconify -->
+    <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
+
+    <!-- Custom Tailwind Configuration -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#0EAA71',
+                        carbon: {
+                            900: '#0c0c0e',
+                            800: '#18181b',
+                            700: '#27272a',
+                            600: '#52525b'
+                        },
+                        surface: '#18181b'
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'system-ui', 'sans-serif']
+                    },
+                    letterSpacing: {
+                        tight: '-0.025em',
+                        tighter: '-0.05em'
+                    },
+                    backgroundImage: {
+                        'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))'
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* Carbon Theme Utilities */
+        body {
+            background-color: #0c0c0e; 
+            color: #d4d4d8; 
+            font-family: 'Inter', sans-serif;
+            min-height: 100vh;
+        }
+        
+        .glass-nav {
+            background: rgba(12, 12, 14, 0.85);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(255,255,255,0.08);
+        }
+
+        /* Glass Card Base */
+        .glass-card {
+            background-color: #18181b;
+            border: 1px solid rgba(255,255,255,0.06);
+            /* Removed shadow/movement for strict flat look requested in pricing */
+        }
+        
+        .text-glow {
+            text-shadow: 0 0 30px rgba(14, 170, 113, 0.4);
+        }
+
+        /* Animated Text Rotator Styles */
+        .word-rotator {
+            display: grid;
+            grid-template-columns: 1fr;
+            text-align: left;
+            overflow: hidden;
+            height: 1.2em; /* Adjusted to fit line-height perfectly */
+            position: relative;
+        }
+
+        .word-rotator span {
+            grid-row-start: 1;
+            grid-column-start: 1;
+            opacity: 0;
+            transform: translateY(100%);
+            transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.6s ease;
+            display: block;
+            line-height: inherit; /* Ensure baseline match */
+        }
+
+        .word-rotator span.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .word-rotator span.exit {
+            opacity: 0;
+            transform: translateY(-100%);
+        }
+
+        /* Scroll Reveal Utility */
+        .reveal {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.8s cubic-bezier(0.5, 0, 0, 1);
+        }
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Carbon Grid */
+        .bg-grid {
+            background-size: 60px 60px;
+            background-image: linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+                              linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+            mask-image: linear-gradient(to bottom, transparent, black 10%, black 90%, transparent);
+        }
+    </style>
 </head>
+<body class="relative overflow-x-hidden selection:bg-primary/30 selection:text-white">
 
-<body>
+    <!-- Ambient Background Effects -->
+    <div class="fixed inset-0 z-[-1] bg-grid pointer-events-none"></div>
+    <div class="fixed top-[-10%] left-1/2 -translate-x-1/2 w-[1000px] h-[600px] bg-primary/5 rounded-full blur-[120px] pointer-events-none"></div>
 
-<header>
-  <div class="nav-inner">
-    <a href="#" class="logo">
-      <img src="assets/images/text-rect-logo.png" alt="Applegate AI Logo">
-    </a>
+    <!-- Navigation -->
+    <header class="fixed top-0 left-0 right-0 z-50 glass-nav transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
+            <!-- Logo -->
+            <a href="#" class="flex items-center gap-2 group">
+                <div class="w-6 h-6 rounded bg-primary flex items-center justify-center text-black font-bold text-xs">A</div>
+                <span class="font-semibold tracking-tight text-lg group-hover:text-primary transition-colors duration-300 text-white">APPLEGATE AI</span>
+            </a>
 
-    <nav class="desktop">
-      <a href="#hero">Home</a>
-      <a href="#engineered">Who We Help</a>
-      <a href="#services">Pricing</a>
+            <!-- Desktop Nav -->
+            <nav class="hidden md:flex items-center gap-8">
+                <a href="#hero" class="group relative py-1 text-sm font-medium text-gray-400 hover:text-white transition-colors duration-200">
+                    Home
+                    <span class="absolute bottom-0 left-0 w-0 h-[2px] bg-primary transition-all duration-300 ease-out group-hover:w-full"></span>
+                </a>
+                <a href="#engineered" class="group relative py-1 text-sm font-medium text-gray-400 hover:text-white transition-colors duration-200">
+                    Who We Help
+                    <span class="absolute bottom-0 left-0 w-0 h-[2px] bg-primary transition-all duration-300 ease-out group-hover:w-full"></span>
+                </a>
+                <a href="#services" class="group relative py-1 text-sm font-medium text-gray-400 hover:text-white transition-colors duration-200">
+                    Pricing
+                    <span class="absolute bottom-0 left-0 w-0 h-[2px] bg-primary transition-all duration-300 ease-out group-hover:w-full"></span>
+                </a>
+                <a href="#book-call" class="group relative py-1 text-sm font-semibold text-primary transition-colors duration-200 flex items-center gap-1 hover:text-white">
+                    Book a Call
+                    <iconify-icon icon="solar:arrow-right-linear" class="transition-transform group-hover:translate-x-1"></iconify-icon>
+                    <span class="absolute bottom-0 left-0 w-0 h-[2px] bg-primary transition-all duration-300 ease-out group-hover:w-full"></span>
+                </a>
+            </nav>
 
-      <!-- FIXED NAV CTA: no green box -->
-      <a href="#book" class="nav-cta">Book a Call</a>
-    </nav>
-  </div>
-</header>
-
-<main>
-
-  <!-- HERO -->
-  <section class="hero" id="hero">
-    <div class="hero-grid">
-      <div class="hero-left">
-        <h1>
-          We Don’t Sell AI.<br>
-          <span class="sell-line">We Sell <span id="animated-text">Results.</span></span>
-        </h1>
-
-        <p>
-          We build practical AI automations that save businesses time, reduce costs, and create new capacity — without disrupting your workflow.
-        </p>
-
-        <div class="cta-row">
-          <a class="btn primary" href="#book">Book a Call</a>
-          <a class="btn ghost" href="#services">View Services</a>
+            <!-- Mobile Menu Toggle -->
+            <button class="md:hidden text-white hover:text-primary transition-colors" aria-label="Menu">
+                <iconify-icon icon="solar:hamburger-menu-linear" width="24"></iconify-icon>
+            </button>
         </div>
-      </div>
+    </header>
 
+    <main>
+        <!-- Hero Section -->
+        <section id="hero" class="relative min-h-screen flex flex-col justify-center items-center pt-10 px-6 overflow-hidden">
+            <div class="max-w-5xl mx-auto text-center z-10">
+                
+                <!-- Headline -->
+                <h1 class="reveal text-5xl md:text-7xl lg:text-8xl font-bold tracking-tighter leading-[1.1] mb-8 text-white">
+                    <span class="block mb-0 md:mb-2">We Don't Sell AI.</span>
+                    <!-- Flex container for perfect baseline alignment -->
+                    <div class="flex flex-wrap justify-center items-baseline gap-x-[0.2em] md:gap-x-[0.25em]">
+                        <span class="text-carbon-600">We Sell</span>
+                        <div class="text-primary text-glow word-rotator min-w-[3ch] text-left">
+                            <span class="active">Results.</span>
+                            <span>Growth.</span>
+                            <span>Scale.</span>
+                            
+            
+                        </div>
+                    </div>
+                </h1>
 
-  </section>
+                <!-- Subheadline -->
+                <p class="reveal max-w-2xl mx-auto text-lg md:text-xl leading-relaxed mb-10 font-normal text-gray-400">
+                    Practical AI automations that save businesses time, reduce costs, and create new capacity — without disrupting your workflow.
+                </p>
 
-  <!-- AUTOMATION IMPACT METRICS (inserted) -->
-  <section id="impact" class="impact-section">
-    <div class="impact-card">
-      <div class="impact-title">Customer support that works around the clock</div>
-      <div class="impact-subheading">Get reliable assistance whenever you need it, with our dedicated team ready to help.</div>
-      <div class="impact-grid">
-        <!-- Feature 1 -->
-        <div class="impact-item">
-          <div class="impact-icon" aria-hidden="true">
-            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="9" stroke="var(--primary-color)" stroke-width="1.8" fill="none"/><path d="M12 7v6l3 2" stroke="var(--primary-color)" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          </div>
-          <h4 class="impact-feature-title">24/7 Availability</h4>
-          <p class="impact-feature-text">Our services are available around the clock to provide uninterrupted support whenever your business needs it.</p>
-        </div>
+                <!-- CTAs -->
+                <div class="reveal flex flex-col sm:flex-row items-center justify-center gap-4">
+                    <a href="#book-call" class="group relative px-8 py-3.5 rounded-lg font-semibold text-sm transition-all duration-300 overflow-hidden w-full sm:w-auto bg-primary text-black hover:bg-white">
+                        <span class="relative z-10 flex items-center justify-center gap-2">
+                            Book a Call
+                            <iconify-icon icon="solar:arrow-right-up-linear" width="18" class="group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform"></iconify-icon>
+                        </span>
+                    </a>
+                    <a href="#services" class="group px-8 py-3.5 bg-carbon-800 border rounded-lg font-medium text-sm transition-all duration-300 w-full sm:w-auto border-white/10 text-white hover:bg-carbon-700 hover:border-white/20">
+                        View Services
+                    </a>
+                </div>
+            </div>
+        </section>
 
-        <!-- Feature 2 -->
-        <div class="impact-item">
-          <div class="impact-icon" aria-hidden="true">
-            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" stroke="var(--primary-color)" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          </div>
-          <h4 class="impact-feature-title">Instant Responses</h4>
-          <p class="impact-feature-text">Receive quick and accurate answers to your queries through our instant response system.</p>
-        </div>
-
-        <!-- Feature 3 -->
-        <div class="impact-item">
-          <div class="impact-icon" aria-hidden="true">
-            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2M12 11a4 4 0 1 0 0-8 4 4 0 0 0 0 8z" stroke="var(--primary-color)" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          </div>
-          <h4 class="impact-feature-title">Expert Assistance</h4>
-          <p class="impact-feature-text">Your customers get help from our tailor made support agents, who are experts in their field.</p>
-        </div>
-
-        <!-- Feature 4 -->
-        <div class="impact-item">
-          <div class="impact-icon" aria-hidden="true">
-            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="10" stroke="var(--primary-color)" stroke-width="1.8" fill="none"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z" stroke="var(--primary-color)" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          </div>
-          <h4 class="impact-feature-title">Seamless integration</h4>
-          <p class="impact-feature-text">Our workflows seamlessly integrate into your business's current systems - to ensure a lightning fast, hassle free setup.</p>
-        </div>
-      </div>
-
-      <!-- Full-width satisfaction metric -->
-      <div class="impact-satisfaction">
-        <div class="satisfaction-inner">
-          <div class="satisfaction-value">4.8 / 5</div>
-          <div class="satisfaction-stars" aria-hidden="true">
-            <!-- 5 stars: 4.6 filled -->
-            <svg class="star" viewBox="0 0 24 24"><path d="M12 2l2.6 6.9L21 10l-5 3.6L17 22l-5-3.2L7 22l1-8.4L3 10l6.4-1.1L12 2z"/></svg>
-            <svg class="star" viewBox="0 0 24 24"><path d="M12 2l2.6 6.9L21 10l-5 3.6L17 22l-5-3.2L7 22l1-8.4L3 10l6.4-1.1L12 2z"/></svg>
-            <svg class="star" viewBox="0 0 24 24"><path d="M12 2l2.6 6.9L21 10l-5 3.6L17 22l-5-3.2L7 22l1-8.4L3 10l6.4-1.1L12 2z"/></svg>
-            <svg class="star" viewBox="0 0 24 24"><path d="M12 2l2.6 6.9L21 10l-5 3.6L17 22l-5-3.2L7 22l1-8.4L3 10l6.4-1.1L12 2z"/></svg>
-            <svg class="star partial" viewBox="0 0 24 24"><defs><linearGradient id="g"><stop offset="67%" stop-color="var(--primary-color)"/><stop offset="67%" stop-color="rgba(255,255,255,0.12)"/></linearGradient></defs><path d="M12 2l2.6 6.9L21 10l-5 3.6L17 22l-5-3.2L7 22l1-8.4L3 10l6.4-1.1L12 2z" fill="url(#g)"/></svg>
-          </div>
-          <div class="satisfaction-lines">
-            <span class="line left"></span>
-            <span class="line right"></span>
-          <div>
-          </div>
-        </div>
-      </div>
-
-    </div>
-  </section>
-
-  <!-- MOVED: Built for service businesses (now inside What We Do, centered) -->
-      <div id="engineered" style="text-align:center; margin:40px auto 0 auto; scroll-margin-top: 120px;">
-        <h2 class="section-title">Engineered for Scalable Operations</h2>
-        <p class="section-sub">Whether you're a small local company or run a multi-location business, we adapt to each client's unique needs.</p>
-      </div>
-
-  <!-- INDUSTRIES / MENU (icons updated) -->
-  <section id="industries" class="industries-section">
-    <div class="industries-grid">
-        <article class="industry-card">
-          <div class="industry-icon">
-            <!-- Salon: Head towel -->
-            <svg
-          
-            viewBox="0 0 24 24"
-            xmlns="http://www.w3.org/2000/svg"
-            aria-hidden="true"
-            focusable="false"
-            >
-            <!-- Flame -->
-            <path
-            d="M12 3.5
-            C13.2 5 14.2 6.2 14.2 7.8
-            C14.2 9.4 13 10.6 12 10.6
-            C11 10.6 9.8 9.4 9.8 7.8
-            C9.8 6.2 10.8 5 12 3.5
-            Z"
-            fill="none"
-            stroke="var(--primary-color)"
-            stroke-width="1.8"
-            stroke-linejoin="round"
-            />
-
-            <!-- Wick -->
-            <line
-            x1="12"
-            y1="10.6"
-            x2="12"
-            y2="12"
-            stroke="var(--primary-color)"
-            stroke-width="1.6"
-            stroke-linecap="round"
-            />
-
-  <!-- Candle body -->
-  <rect
-    x="8"
-    y="12"
-    width="8"
-    height="8"
-    rx="1.8"
-    ry="1.8"
-    fill="none"
-    stroke="var(--primary-color)"
-    stroke-width="1.8"
-  />
-
-  <!-- Melt detail -->
-  <path
-    d="M9.5 14
-       C10.5 15.2 11.5 14.8 12.5 15.8
-       C13.5 16.8 14.5 16.2 15.5 17.2"
-    fill="none"
-    stroke="var(--primary-color)"
-    stroke-width="1.4"
-    stroke-linecap="round"
-    opacity="0.7"
-  />
-</svg>
-
-          </svg>
-          </div>
-          <h3>Salons & Spas</h3>
-          <p>Handle appointment bookings, cancellations and personalised client follow-ups to increase repeat visits.</p>
-        </article>
-
-        <article class="industry-card">
-          <div class="industry-icon medical">
-            <!-- Medical: thick filled cross -->
-            <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-              <rect x="10" y="3" width="4" height="18" rx="1"></rect>
-              <rect x="3" y="10" width="18" height="4" rx="1"></rect>
-            </svg>
-          </div>
-          <h3>Medical & Dental</h3>
-          <p>Manage patient enquiries, appointment scheduling and automated reminders while staying professional and compliant.</p>
-        </article>
-
-        <article class="industry-card">
-          <div class="industry-icon">
-            <!-- Legal: scales of justice -->
-            <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-              <path d="M12 3v18"/>
-              <path d="M4 7h16"/>
-              <path d="M6 7l-3 6h6z"/>
-              <path d="M18 7l-3 6h6z"/>
-            </svg>
-          </div>
-          <h3>Legal Services</h3>
-          <p>Qualify potential clients, schedule consultations and automate secure intake processes.</p>
-        </article>
-
-        <article class="industry-card">
-          <div class="industry-icon">
-            <!-- Home Services: house -->
-            <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-              <path d="M3 11l9-8 9 8"/>
-              <path d="M5 10v9a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-9"/>
-            </svg>
-          </div>
-          <h3>Home Services</h3>
-          <p>Capture service requests for cleaning, HVAC, electrical and maintenance with intelligent dispatching.</p>
-        </article>
-
-        <article class="industry-card">
-          <div class="industry-icon">
-            <!-- Sales team icon -->
-          <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-            <!-- Center person -->
-          <circle cx="12" cy="6.5" r="3.2" />
-          <path d="M6.5 17c0-2.9 3.1-4.5 5.5-4.5s5.5 1.6 5.5 4.5" />
-
-          <!-- Left person -->
-          <circle cx="6" cy="8" r="2.5" />
-          <path d="M2.5 17c0-2.2 2.2-3.4 3.9-3.4" />
-
-          <!-- Right person -->
-          <circle cx="18" cy="8" r="2.5" />
-          <path d="M21.5 17c0-2.2-2.2-3.4-3.9-3.4" />
-          </svg>
-          </div>
-          <h3>Sales Teams</h3>
-          <p>Automate lead qualification, handoffs to reps, and follow-ups so your sales team closes more deals.</p>
-        </article>
-
-        <article class="industry-card">
-          <div class="industry-icon">
-            <!-- Retail: shop / building -->
-            <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-              <path d="M3 10l1-6h16l1 6"/>
-              <path d="M4 10v10h16V10"/>
-              <path d="M8 14h2v4H8zM12 14h2v4h-2zM16 14h2v4h-2z"/>
-            </svg>
-          </div>
-          <h3>Retail & E-commerce</h3>
-          <p>Answer product questions, check stock, and convert visitors into customers with chat-driven flows.</p>
-        </article>
-      </div>
-    </div>
-  </section>
-
-  <!-- PRICING -->
-  <section class="pricing-section" id="services">
-  <div class="pricing-container">
-
-    <!-- Essential -->
-    <div class="pricing-card">
-      <div class="pricing-header">
-        <h3>Essential</h3>
-        <p>Perfect for small teams and solo operators</p>
-      </div>
-
-      <div class="pricing-price">
-        <span class="setup">£1,000–£1,500</span>
-        <span class="label">one-time setup</span>
-        <span class="monthly">£350–£500 / month (Estimated)</span>
-      </div>
-
-      <ul class="pricing-features">
-        <li>24/7 AI customer chat</li>
-        <li>Basic lead capture & qualification</li>
-        <li>Website integration</li>
-        <li>Email notifications</li>
-        <li>Up to 500 conversations / month</li>
-        <li>Basic analytics dashboard</li>
-        <li>Setup & training included</li>
-      </ul>
-
-      <a href="#book" class="pricing-btn">Get Started</a>
-    </div>
-
-    <!-- Enhanced -->
-    <div class="pricing-card featured">
-      <div class="pricing-header">
-        <span class="badge">Most Popular</span>
-        <h3>Enhanced</h3>
-        <p>Ideal for growing teams handling high volumes</p>
-      </div>
-
-      <div class="pricing-price">
-        <span class="setup">£1,500–£2,500</span>
-        <span class="label">one-time setup</span>
-        <span class="monthly">£500–£1000 / month (Estimated)</span>
-      </div>
-
-      <ul class="pricing-features">
-        <li>Everything in Starter</li>
-        <li>Advanced lead qualification</li>
-        <li>Calendar booking integration</li>
-        <li>SMS & email notifications</li>
-        <li>Up to 2,000 conversations / month</li>
-        <li>Custom AI branding & tone</li>
-        <li>Priority optimisation support</li>
-        <li>CRM integration</li>
-      </ul>
-
-      <a href="#book" class="pricing-btn primary">Get Started</a>
-    </div>
-
-    <!-- Premium -->
-    <div class="pricing-card">
-      <div class="pricing-header">
-        <h3>Premium<h3>
-        <p>For multi-location and enterprise businesses</p>
-      </div>
-
-      <div class="pricing-price">
-        <span class="setup">£3,000–£5,000+</span>
-        <span class="label">one-time setup</span>
-        <span class="monthly">£1000–£2,500 / month (Estimated)</span>
-      </div>
-
-      <ul class="pricing-features">
-        <li>Everything in Growth</li>
-        <li>Unlimited conversations</li>
-        <li>Advanced CRM & system integrations</li>
-        <li>Custom workflows & automations</li>
-        <li>Advanced analytics & reporting</li>
-        <li>Dedicated account manager</li>
-      </ul>
-
-      <a href="#book" class="pricing-btn">Get Started</a>
-    </div>
-    
-  </div>
-</section>
-
-  <!-- CHALLENGES -->
-  <section id="challenges" class="challenges-section">
-    <div class="section-inner">
-      <div class="challenges-container">
-        <h2 class="section-title">The Challenges You Face Every Day</h2>
-        <div class="challenges-grid">
-        <div class="challenge-item">
-          <div class="challenge-icon">
-            <!-- Hazard sign -->
-            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-              <path d="M12 2L2 22h20L12 2z" stroke="var(--primary-color)" stroke-width="2" fill="none"/>
-              <line x1="12" y1="9" x2="12" y2="15" stroke="var(--primary-color)" stroke-width="2"/>
-              <circle cx="12" cy="18" r="1" fill="var(--primary-color)"/>
-            </svg>
-          </div>
-          <h3>Missed Opportunities</h3>
-          <p>Even during business hours, delayed follow ups and manual workflows allow high-intent leads to cool off before engagement.</p>
-        </div>
-        <div class="challenge-item">
-          <div class="challenge-icon">
-            <!-- Clock -->
-            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-              <circle cx="12" cy="12" r="9" stroke="var(--primary-color)" stroke-width="2" fill="none"/>
-              <path d="M12 7v6l3 2" stroke="var(--primary-color)" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
-          </div>
-          <h3>After-Hours Silence</h3>
-          <p>Customers don’t stop enquiring outside business hours, your systems shouldn’t either.</p>
-        </div>
-        <div class="challenge-item">
-          <div class="challenge-icon">
-            <!-- Human -->
-            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-              <circle cx="12" cy="8" r="3" stroke="var(--primary-color)" stroke-width="2" fill="none"/>
-              <path d="M12 14c-3 0-5 2-5 4v2h10v-2c0-2-2-4-5-4z" stroke="var(--primary-color)" stroke-width="2" fill="none"/>
-            </svg>
-          </div>
-          <h3>Overwhelmed Team</h3>
-          <p>Your teams time is consumed by repetitive enquiries instead of high value, client-focused work.</p>
-        </div>
-        <div class="challenge-item">
-          <div class="challenge-icon">
-            <!-- 3G bar -->
-            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-              <rect x="2" y="18" width="2" height="4" fill="var(--primary-color)"/>
-              <rect x="6" y="14" width="2" height="8" fill="var(--primary-color)"/>
-              <rect x="10" y="10" width="2" height="12" fill="var(--primary-color)"/>
-              <rect x="14" y="6" width="2" height="16" fill="var(--primary-color)"/>
-            </svg>
-          </div>
-          <h3>Inconsistent Service</h3>
-          <p>Without standardised systems, service quality depends on who picks up the enquiry.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- PERFORMANCE STATS -->
-  <section id="stats" class="stats-section">
-    <div class="stats-card">
-      <div class="stats-title">Measurable Impact</div>
-      <div class="stats-grid">
-        <!-- Stat 1 -->
-        <div class="stats-item">
-          <div class="stats-icon" aria-hidden="true">
-            <!-- Diagonal arrow pointing up and right (cleaned tip) -->
-            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-              <path d="M5 19L19 5 M19 5L15 5 M19 5L19 9" stroke="var(--primary-color)" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
-          </div>
-          <div class="stats-value">1,240</div>
-          <div class="stats-label">Leads Generated per Month</div>
+        <!-- Stats Bar -->
+        <div class="border-y border-white/5 bg-carbon-800/30 backdrop-blur-sm">
+            <div class="max-w-7xl mx-auto px-6 py-12">
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-12">
+                    <div class="reveal text-center md:text-left border-r last:border-0 pr-4 border-white/5">
+                        <div class="text-3xl md:text-4xl font-semibold tracking-tight mb-1 text-white">1,240</div>
+                        <div class="text-xs text-primary font-bold uppercase tracking-wider mb-2">Leads Generated</div>
+                        <p class="text-xs text-gray-500">Per month average</p>
+                    </div>
+                    <div class="reveal text-center md:text-left border-r last:border-0 pr-4 delay-100 border-white/5">
+                        <div class="text-3xl md:text-4xl font-semibold tracking-tight mb-1 text-white">£28k</div>
+                        <div class="text-xs text-primary font-bold uppercase tracking-wider mb-2">Cost Savings</div>
+                        <p class="text-xs text-gray-500">Annual avg per client</p>
+                    </div>
+                    <div class="reveal text-center md:text-left border-r last:border-0 pr-4 delay-200 border-white/5">
+                        <div class="text-3xl md:text-4xl font-semibold tracking-tight mb-1 text-white">87%</div>
+                        <div class="text-xs text-primary font-bold uppercase tracking-wider mb-2">Faster Response</div>
+                        <p class="text-xs text-gray-500">Vs human support</p>
+                    </div>
+                    <div class="reveal text-center md:text-left delay-300">
+                        <div class="text-3xl md:text-4xl font-semibold tracking-tight mb-1 text-white">32h</div>
+                        <div class="text-xs text-primary font-bold uppercase tracking-wider mb-2">Time Saved</div>
+                        <p class="text-xs text-gray-500">Weekly admin hours</p>
+                    </div>
+                </div>
+            </div>
         </div>
 
-        <!-- Stat 2 -->
-        <div class="stats-item">
-          <div class="stats-icon" aria-hidden="true">
-            <!-- Large bold pound symbol only (no coin) -->
-            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
-              <text x="12" y="14" text-anchor="middle" dominant-baseline="middle" font-size="20" font-weight="50" fill="var(--primary-color)">£</text>
-            </svg>
-          </div>
-          <div class="stats-value">£28k</div>
-          <div class="stats-label">Annual Cost Savings</div>
+        <!-- Impact Section -->
+        <section id="impact" class="py-32 px-6 relative">
+            <div class="max-w-7xl mx-auto">
+                <div class="mb-20 text-center max-w-3xl mx-auto">
+                    <h2 class="reveal text-3xl md:text-5xl font-semibold tracking-tight mb-6 text-white">Support that works around the clock</h2>
+                    <p class="reveal text-lg font-normal text-gray-400">Get reliable assistance whenever you need it, with our dedicated systems ready to help.</p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                    <div class="reveal glass-card p-8 rounded-2xl group transition-all duration-300 hover:border-white/20">
+                        <div class="w-12 h-12 rounded-xl bg-carbon-900 border flex items-center justify-center mb-6 border-white/10 group-hover:border-primary/50 transition-colors">
+                            <iconify-icon icon="solar:clock-circle-linear" width="24" class="text-primary" stroke-width="1.5"></iconify-icon>
+                        </div>
+                        <h3 class="text-lg font-semibold mb-3 text-white">24/7 Availability</h3>
+                        <p class="text-sm text-gray-500 leading-relaxed">Uninterrupted support whenever your business needs it, day or night.</p>
+                    </div>
+                    <div class="reveal glass-card p-8 rounded-2xl group transition-all duration-300 delay-100 hover:border-white/20">
+                        <div class="w-12 h-12 rounded-xl bg-carbon-900 border flex items-center justify-center mb-6 border-white/10 group-hover:border-primary/50 transition-colors">
+                            <iconify-icon icon="solar:bolt-linear" width="24" class="text-primary" stroke-width="1.5"></iconify-icon>
+                        </div>
+                        <h3 class="text-lg font-semibold mb-3 text-white">Instant Responses</h3>
+                        <p class="text-sm text-gray-500 leading-relaxed">Zero latency. Receive quick and accurate answers to queries instantly.</p>
+                    </div>
+                    <div class="reveal glass-card p-8 rounded-2xl group transition-all duration-300 delay-200 hover:border-white/20">
+                        <div class="w-12 h-12 rounded-xl bg-carbon-900 border flex items-center justify-center mb-6 border-white/10 group-hover:border-primary/50 transition-colors">
+                            <iconify-icon icon="solar:user-check-linear" width="24" class="text-primary" stroke-width="1.5"></iconify-icon>
+                        </div>
+                        <h3 class="text-lg font-semibold mb-3 text-white">Expert Assistance</h3>
+                        <p class="text-sm text-gray-500 leading-relaxed">Tailor-made support agents trained specifically on your business data.</p>
+                    </div>
+                    <div class="reveal glass-card p-8 rounded-2xl group transition-all duration-300 delay-300 hover:border-white/20">
+                        <div class="w-12 h-12 rounded-xl bg-carbon-900 border flex items-center justify-center mb-6 border-white/10 group-hover:border-primary/50 transition-colors">
+                            <iconify-icon icon="solar:link-circle-linear" width="24" class="text-primary" stroke-width="1.5"></iconify-icon>
+                        </div>
+                        <h3 class="text-lg font-semibold mb-3 text-white">Seamless Integration</h3>
+                        <p class="text-sm text-gray-500 leading-relaxed">Connects with your CRM, calendar, and email for a hassle-free setup.</p>
+                    </div>
+                </div>
+
+                <!-- Satisfaction Score -->
+                <div class="reveal mt-20 flex flex-col items-center justify-center">
+                    <div class="text-5xl font-bold tracking-tighter mb-4 text-white">4.8 <span class="text-2xl text-gray-500 font-normal">/ 5</span></div>
+                    <div class="flex gap-2 text-primary mb-6">
+                        <iconify-icon icon="solar:star-bold" width="24"></iconify-icon>
+                        <iconify-icon icon="solar:star-bold" width="24"></iconify-icon>
+                        <iconify-icon icon="solar:star-bold" width="24"></iconify-icon>
+                        <iconify-icon icon="solar:star-bold" width="24"></iconify-icon>
+                        <div class="relative">
+                            <iconify-icon icon="solar:star-outline" width="24" class="text-primary opacity-50"></iconify-icon>
+                            <div class="absolute top-0 left-0 overflow-hidden w-[80%] text-primary">
+                                <iconify-icon icon="solar:star-bold" width="24"></iconify-icon>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="h-px w-24 bg-gradient-to-r from-transparent via-primary/50 to-transparent"></div>
+                    <p class="mt-4 text-xs font-semibold text-gray-500 uppercase tracking-widest">Average Client Satisfaction</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Engineered Section -->
+        <section id="engineered" class="py-24 px-6 border-t border-white/5 bg-carbon-800/20">
+            <div class="max-w-7xl mx-auto">
+                <div class="text-center mb-16">
+                    <h2 class="reveal text-3xl md:text-5xl font-semibold tracking-tight mb-4 text-white">Engineered for Scalable Operations</h2>
+                    <p class="reveal max-w-2xl mx-auto text-gray-400">Whether you're a small local company or run a multi-location business, we adapt to each client's unique needs.</p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <article class="reveal glass-card p-6 rounded-xl group hover:border-primary/50 transition-colors">
+                        <div class="mb-4 text-primary group-hover:scale-110 transition-transform duration-300 origin-left">
+                            <iconify-icon icon="solar:scissors-linear" width="32" stroke-width="1.5"></iconify-icon>
+                        </div>
+                        <h3 class="text-lg font-medium mb-2 text-white">Salons &amp; Spas</h3>
+                        <p class="text-sm text-gray-500">Handle appointment bookings, cancellations and personalised client follow-ups to increase repeat visits.</p>
+                    </article>
+
+                    <article class="reveal glass-card p-6 rounded-xl group hover:border-primary/50 transition-colors delay-75">
+                        <div class="mb-4 text-primary group-hover:scale-110 transition-transform duration-300 origin-left">
+                            <iconify-icon icon="solar:heart-pulse-linear" width="32" stroke-width="1.5"></iconify-icon>
+                        </div>
+                        <h3 class="text-lg font-medium mb-2 text-white">Medical &amp; Dental</h3>
+                        <p class="text-sm text-gray-500">Manage patient enquiries, appointment scheduling and automated reminders while staying professional.</p>
+                    </article>
+
+                    <article class="reveal glass-card p-6 rounded-xl group hover:border-primary/50 transition-colors delay-150">
+                        <div class="mb-4 text-primary group-hover:scale-110 transition-transform duration-300 origin-left">
+                            <iconify-icon icon="solar:scale-linear" width="32" stroke-width="1.5"></iconify-icon>
+                        </div>
+                        <h3 class="text-lg font-medium mb-2 text-white">Legal Services</h3>
+                        <p class="text-sm text-gray-500">Qualify potential clients, schedule consultations and automate secure intake processes effectively.</p>
+                    </article>
+
+                    <article class="reveal glass-card p-6 rounded-xl group hover:border-primary/50 transition-colors delay-200">
+                        <div class="mb-4 text-primary group-hover:scale-110 transition-transform duration-300 origin-left">
+                            <iconify-icon icon="solar:home-smile-linear" width="32" stroke-width="1.5"></iconify-icon>
+                        </div>
+                        <h3 class="text-lg font-medium mb-2 text-white">Home Services</h3>
+                        <p class="text-sm text-gray-500">Capture service requests for cleaning, HVAC, and electrical with intelligent dispatching.</p>
+                    </article>
+
+                    <article class="reveal glass-card p-6 rounded-xl group hover:border-primary/50 transition-colors delay-300">
+                        <div class="mb-4 text-primary group-hover:scale-110 transition-transform duration-300 origin-left">
+                            <iconify-icon icon="solar:graph-up-linear" width="32" stroke-width="1.5"></iconify-icon>
+                        </div>
+                        <h3 class="text-lg font-medium mb-2 text-white">Sales Teams</h3>
+                        <p class="text-sm text-gray-500">Automate lead qualification, handoffs to reps, and follow-ups so your sales team closes more deals.</p>
+                    </article>
+
+                    <article class="reveal glass-card p-6 rounded-xl group hover:border-primary/50 transition-colors delay-300">
+                        <div class="mb-4 text-primary group-hover:scale-110 transition-transform duration-300 origin-left">
+                            <iconify-icon icon="solar:shop-linear" width="32" stroke-width="1.5"></iconify-icon>
+                        </div>
+                        <h3 class="text-lg font-medium mb-2 text-white">Retail &amp; E-commerce</h3>
+                        <p class="text-sm text-gray-500">Answer product questions, check stock, and convert visitors into customers with chat-driven flows.</p>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- Pricing Section -->
+        <section id="services" class="py-32 px-6 relative overflow-hidden">
+            <!-- Background glow -->
+            <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-primary/5 blur-[120px] rounded-full pointer-events-none"></div>
+
+            <div class="max-w-7xl mx-auto relative z-10">
+                <div class="text-center mb-20">
+                    <h2 class="reveal text-3xl md:text-5xl font-semibold tracking-tight mb-4 text-white">Transparent Pricing</h2>
+                    <p class="reveal text-gray-400">Choose the automation level that suits your growth stage.</p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8 items-start">
+                    <!-- Essential -->
+                    <div class="reveal glass-card p-8 rounded-2xl transition-colors duration-300 hover:border-primary">
+                        <div class="mb-8">
+                            <h3 class="text-xl font-medium mb-2 text-white">Essential</h3>
+                            <p class="text-sm text-gray-500">Perfect for small teams and solo operators.</p>
+                        </div>
+                        <div class="mb-8">
+                            <div class="text-3xl font-semibold tracking-tight text-white">£1,000–1,500</div>
+                            <div class="text-xs text-gray-500 mt-1">One-time setup</div>
+                            <div class="text-sm text-primary font-medium mt-3">£699/ month</div>
+                        </div>
+                        <ul class="space-y-4 mb-8">
+                            <li class="flex items-start gap-3 text-sm text-gray-400">
+                                <iconify-icon icon="solar:check-circle-linear" class="text-primary mt-0.5 shrink-0"></iconify-icon> 24/7 AI customer chat
+                            </li>
+                            <li class="flex items-start gap-3 text-sm text-gray-400">
+                                <iconify-icon icon="solar:check-circle-linear" class="text-primary mt-0.5 shrink-0"></iconify-icon> Basic lead capture
+                            </li>
+                            <li class="flex items-start gap-3 text-sm text-gray-400">
+                                <iconify-icon icon="solar:check-circle-linear" class="text-primary mt-0.5 shrink-0"></iconify-icon> Website integration
+                            </li>
+                            <li class="flex items-start gap-3 text-sm text-gray-400">
+                                <iconify-icon icon="solar:check-circle-linear" class="text-primary mt-0.5 shrink-0"></iconify-icon> Up to 500 conversations/mo
+                            </li>
+                        </ul>
+                        <a href="#book-call" class="block w-full py-3 text-center rounded-lg border text-sm font-medium transition-colors border-white/10 text-white hover:bg-white/5 hover:border-white/20">Get Started</a>
+                    </div>
+
+                    <!-- Enhanced (Featured) -->
+                    <div class="reveal bg-surface border border-primary/30 p-8 rounded-2xl shadow-[0_0_50px_-20px_rgba(14,170,113,0.2)] transform md:-translate-y-4 relative hover:border-primary transition-colors duration-300">
+                        <div class="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-primary text-[10px] uppercase font-bold tracking-widest px-3 py-1 rounded-full text-black">Most Popular</div>
+                        <div class="mb-8">
+                            <h3 class="text-xl font-medium mb-2 text-white">Enhanced</h3>
+                            <p class="text-sm text-gray-500">Ideal for growing teams handling high volumes.</p>
+                        </div>
+                        <div class="mb-8">
+                            <div class="text-3xl font-semibold tracking-tight text-white">£1,500–2,500</div>
+                            <div class="text-xs text-gray-500 mt-1">One-time setup</div>
+                            <div class="text-sm text-primary font-medium mt-3">£1399 / month</div>
+                        </div>
+                        <ul class="space-y-4 mb-8">
+                            <li class="flex items-start gap-3 text-sm text-white">
+                                <iconify-icon icon="solar:check-circle-bold" class="text-primary mt-0.5 shrink-0"></iconify-icon> Everything in Essential
+                            </li>
+                            <li class="flex items-start gap-3 text-sm text-white">
+                                <iconify-icon icon="solar:check-circle-bold" class="text-primary mt-0.5 shrink-0"></iconify-icon> Advanced lead qualification
+                            </li>
+                            <li class="flex items-start gap-3 text-sm text-white">
+                                <iconify-icon icon="solar:check-circle-bold" class="text-primary mt-0.5 shrink-0"></iconify-icon> Calendar booking integration
+                            </li>
+                            <li class="flex items-start gap-3 text-sm text-white">
+                                <iconify-icon icon="solar:check-circle-bold" class="text-primary mt-0.5 shrink-0"></iconify-icon> CRM integration
+                            </li>
+                            
+                        </ul>
+                        <a href="#book-call" class="block w-full py-3 text-center rounded-lg bg-primary text-sm font-bold hover:bg-primary/90 transition-colors text-black">Get Started</a>
+                    </div>
+
+                    <!-- Premium -->
+                    <div class="reveal glass-card p-8 rounded-2xl transition-colors duration-300 hover:border-primary">
+                        <div class="mb-8">
+                            <h3 class="text-xl font-medium mb-2 text-white">Premium</h3>
+                            <p class="text-sm text-gray-500">For multi-location and enterprise businesses.</p>
+                        </div>
+                        <div class="mb-8">
+                            <div class="text-3xl font-semibold tracking-tight text-white">£3,000+</div>
+                            <div class="text-xs text-gray-500 mt-1">One-time setup</div>
+                            <div class="text-sm text-primary font-medium mt-3">£2,250 / month</div>
+                        </div>
+                        <ul class="space-y-4 mb-8">
+                            <li class="flex items-start gap-3 text-sm text-gray-400">
+                                <iconify-icon icon="solar:check-circle-linear" class="text-primary mt-0.5 shrink-0"></iconify-icon> Everything in Enhanced
+                            </li>
+                            <li class="flex items-start gap-3 text-sm text-gray-400">
+                                <iconify-icon icon="solar:check-circle-linear" class="text-primary mt-0.5 shrink-0"></iconify-icon> Unlimited conversations
+                            </li>
+                            <li class="flex items-start gap-3 text-sm text-gray-400">
+                                <iconify-icon icon="solar:check-circle-linear" class="text-primary mt-0.5 shrink-0"></iconify-icon> Custom workflows
+                            </li>
+                            <li class="flex items-start gap-3 text-sm text-gray-400">
+                                <iconify-icon icon="solar:check-circle-linear" class="text-primary mt-0.5 shrink-0"></iconify-icon> Dedicated account manager
+                            </li>
+                        </ul>
+                        <a href="#book-call" class="block w-full py-3 text-center rounded-lg border text-sm font-medium transition-colors border-white/10 text-white hover:bg-white/5 hover:border-white/20">Contact Sales</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Challenges Section -->
+        <section class="py-24 px-6 bg-carbon-800/50 border-y border-white/5">
+            <div class="max-w-6xl mx-auto">
+                <div class="text-center mb-16">
+                    <h2 class="reveal text-3xl md:text-4xl font-semibold tracking-tight mb-4 text-white">The Challenges You Face Every Day</h2>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-12">
+                    <div class="reveal flex gap-5">
+                        <div class="shrink-0 w-12 h-12 rounded-lg flex items-center justify-center bg-carbon-900 border border-white/5 text-primary">
+                            <iconify-icon icon="solar:danger-circle-linear" width="24" stroke-width="1.5"></iconify-icon>
+                        </div>
+                        <div>
+                            <h3 class="text-lg font-medium mb-2 text-white">Missed Opportunities</h3>
+                            <p class="text-sm leading-relaxed text-gray-400">Delayed follow-ups allow high-intent leads to cool off before engagement.</p>
+                        </div>
+                    </div>
+                    <div class="reveal flex gap-5 delay-75">
+                        <div class="shrink-0 w-12 h-12 rounded-lg flex items-center justify-center bg-carbon-900 border border-white/5 text-primary">
+                            <iconify-icon icon="solar:clock-square-linear" width="24" stroke-width="1.5"></iconify-icon>
+                        </div>
+                        <div>
+                            <h3 class="text-lg font-medium mb-2 text-white">After-Hours Silence</h3>
+                            <p class="text-sm leading-relaxed text-gray-400">Customers don't stop enquiring outside business hours. Your systems shouldn't either.</p>
+                        </div>
+                    </div>
+                    <div class="reveal flex gap-5 delay-150">
+                        <div class="shrink-0 w-12 h-12 rounded-lg flex items-center justify-center bg-carbon-900 border border-white/5 text-primary">
+                            <iconify-icon icon="solar:users-group-rounded-linear" width="24" stroke-width="1.5"></iconify-icon>
+                        </div>
+                        <div>
+                            <h3 class="text-lg font-medium mb-2 text-white">Overwhelmed Team</h3>
+                            <p class="text-sm leading-relaxed text-gray-400">Your team's time is consumed by repetitive enquiries instead of high-value work.</p>
+                        </div>
+                    </div>
+                    <div class="reveal flex gap-5 delay-225">
+                        <div class="shrink-0 w-12 h-12 rounded-lg flex items-center justify-center bg-carbon-900 border border-white/5 text-primary">
+                            <iconify-icon icon="solar:graph-down-linear" width="24" stroke-width="1.5"></iconify-icon>
+                        </div>
+                        <div>
+                            <h3 class="text-lg font-medium mb-2 text-white">Inconsistent Service</h3>
+                            <p class="text-sm leading-relaxed text-gray-400">Without standardised systems, service quality depends entirely on who picks up the phone.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Book a Call -->
+        <section id="book-call" class="py-32 px-6">
+            <div class="max-w-4xl mx-auto text-center">
+                <h2 class="reveal text-3xl md:text-5xl font-semibold text-primary tracking-tight mb-6">Ready to Automate?</h2>
+                <p class="reveal text-lg mb-12 text-gray-400">Book a discovery call to see how we can tailor AI to your specific operations.</p>
+                
+                <!-- Boxed Calendly Container -->
+                <div class="reveal relative bg-carbon-800 border p-2 md:p-6 rounded-2xl shadow-2xl shadow-black/50 mx-auto max-w-4xl border-white/10">
+                    <div class="relative w-full h-[700px] md:h-[720px] rounded-xl overflow-hidden bg-white/5">
+                        <iframe src="https://calendly.com/ethanapplegate/discovery-call" width="100%" height="100%" frameborder="0" title="Calendly Scheduling"></iframe>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="border-t backdrop-blur-md py-12 px-6 border-white/10 bg-carbon-900/80">
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-6">
+            <div class="flex items-center gap-2">
+                <div class="w-5 h-5 rounded bg-primary flex items-center justify-center text-black font-bold text-[10px]">A</div>
+                <span class="font-semibold tracking-tight text-white text-sm">APPLEGATE AI</span>
+            </div>
+            <p class="text-xs text-gray-600">
+                © Applegate AI 2025. Built in the UK. 
+            </p>
+            <div class="flex gap-6">
+                <a href="#" class="text-xs text-gray-500 hover:text-primary transition-colors">Privacy Policy</a>
+                <a href="#" class="text-xs text-gray-500 hover:text-primary transition-colors">Terms</a>
+            </div>
         </div>
+    </footer>
 
-        <!-- Stat 3 -->
-        <div class="stats-item">
-          <div class="stats-icon" aria-hidden="true">
-            <!-- Speed / lightning symbol -->
-            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-              <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" stroke="var(--primary-color)" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
-          </div>
-          <div class="stats-value">87%</div>
-          <div class="stats-label">Faster Response Time</div>
-        </div>
+    <!-- Interactions Script -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Text Rotator Logic
+            const rotators = document.querySelectorAll('.word-rotator');
+            rotators.forEach(rotator => {
+                const words = rotator.querySelectorAll('span');
+                let currentIndex = 0;
 
-        <!-- Stat 4 -->
-        <div class="stats-item">
-          <div class="stats-icon" aria-hidden="true">
-            <!-- Small laptop -->
-            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-              <path d="M20 16V7a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v9m16 0H4m16 0l1.28 2.55a1 1 0 0 1-.9 1.45H3.62a1 1 0 0 1-.9-1.45L4 16" stroke="var(--primary-color)" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
-          </div>
-          <div class="stats-value">32h</div>
-          <div class="stats-label">Admin Hours Saved per Week</div>
-        </div>
-      </div>
-    </div>
-  </section>
+                setInterval(() => {
+                    const currentWord = words[currentIndex];
+                    const nextIndex = (currentIndex + 1) % words.length;
+                    const nextWord = words[nextIndex];
 
-  <!-- BOOK A CALL -->]
-<!-- ============================================ -->
-<!-- BOOK A CALL SECTION – APPLEGATE AI -->
-<!-- ============================================ -->
+                    // Animate out current word
+                    currentWord.classList.remove('active');
+                    currentWord.classList.add('exit');
 
-<style>
-  /* Scoped styles to avoid conflicts */
-  #book-call{
-    padding: 120px 20px;
-    position: relative;
-  }
+                    // Animate in next word
+                    nextWord.classList.remove('exit');
+                    nextWord.classList.add('active');
 
-  #book-call .book-call-inner{
-    max-width: 1200px;
-    margin: 0 auto;
-    display: grid;
-    gap: 40px;
-  }
+                    // Clean up classes after animation duration (match CSS transition)
+                    setTimeout(() => {
+                        currentWord.classList.remove('exit');
+                    }, 600);
 
-  #book-call .section-title{
-    color: var(--primary-color);
-    font-weight: 800;
-    font-size: 26px;
-    margin: 0 0 14px 0;
-  }
+                    currentIndex = nextIndex;
+                }, 3000); // 3 seconds cycle
+            });
 
-  #book-call .subtitle{
-    color: var(--text-color);
-    opacity: 0.85;
-    font-size: 16px;
-    max-width: 720px;
-  }
+            // Scroll Reveal Logic
+            const observerOptions = {
+                root: null,
+                rootMargin: '0px',
+                threshold: 0.1
+            };
 
-  #book-call .book-call-card{
-    background: var(--card-background);
-    border: 2px solid rgba(14,170,113,0.55);
-    border-radius: 18px;
-    padding: 18px;
-    transition: all .35s ease;
-    position: relative;
-  }
+            const observer = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('active');
+                        observer.unobserve(entry.target); 
+                    }
+                });
+            }, observerOptions);
 
-  /* Signature green glow on hover */
-  #book-call .book-call-card:hover{
-    box-shadow:
-      0 0 0 1px rgba(14,170,113,0.6),
-      0 0 32px rgba(14,170,113,0.25);
-    transform: translateY(-2px);
-  }
+            const revealElements = document.querySelectorAll('.reveal');
+            revealElements.forEach(el => observer.observe(el));
+        });
+    </script>
 
-  #book-call .calendly-wrapper{
-    width: 100%;
-    height: 720px;
-    overflow: hidden;
-    border-radius: 12px;
-  }
 
-  #book-call iframe{
-    width: 100%;
-    height: 100%;
-    border: none;
-  }
-
-  @media(max-width:640px){
-    #book-call{
-      padding: 90px 16px;
-    }
-    #book-call .calendly-wrapper{
-      height: 900px;
-    }
-  }
-</style>
-
-<section id="book-call">
-  <div class="book-call-inner">
-  <div class="book-call-card">
-      <div class="calendly-wrapper">
-        <!-- Replace with your real Calendly link -->
-        <iframe
-          src="https://calendly.com/ethanapplegate/discovery-call"
-          loading="lazy">
-        </iframe>
-      </div>
-    </div>
-
-  </div>
-</section>
-
-<!-- ============================================ -->
-
-  </div>
-</section>
-
-</main>
-
-<script>
-  document.addEventListener("DOMContentLoaded", () => {
-    const el = document.getElementById("animated-text");
-    const phrases = ["Results.", "Growth.", "Efficiency.", "Innovation.", "Intelligence."];
-    let idx = 0;
-    const animDur = 400;
-    const delay = 2000;
-
-    function spin(){
-      el.classList.add("spin-out");
-      setTimeout(()=>{
-        idx = (idx + 1) % phrases.length;
-        el.textContent = phrases[idx];
-        el.classList.remove("spin-out");
-        el.classList.add("spin-in");
-        setTimeout(()=>el.classList.remove("spin-in"), animDur);
-      }, animDur);
-    }
-
-    setInterval(spin, animDur + delay);
-  });
-</script>
-
-</body>
-</html>
+</body></html>
