@@ -1,341 +1,596 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
+<html lang="en" class="scroll-smooth antialiased"><head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Applegate AI - AI Transformation Partner</title>
+    <title>Applegate AI - Automations for all Businesses</title>
+    <meta name="description" content="Applegate AI — Practical AI automations for small and local businesses. Save time, capture more leads, and scale operations.">
+
+    <!-- Fonts: Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet">
+
+    <!-- Tailwind CSS (via CDN) -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Iconify -->
+    <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
+
+    <!-- Custom Tailwind Configuration -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#0EAA71',
+                        carbon: {
+                            900: '#0c0c0e',
+                            800: '#18181b',
+                            700: '#27272a',
+                            600: '#52525b'
+                        },
+                        surface: '#18181b'
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'system-ui', 'sans-serif']
+                    },
+                    letterSpacing: {
+                        tight: '-0.025em',
+                        tighter: '-0.05em'
+                    },
+                    backgroundImage: {
+                        'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))'
+                    }
+                }
+            }
+        }
+    </script>
+
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800&display=swap');
-
-        :root {
-            --primary-color: #34ff90; 
-            --background-dark: #0a0a0a; 
-            --text-color: #cccccc;
-            --heading-color: #f5f5f7;
-            --card-background: #1a1a1a;
-            --border-color: #2a2a2a;
-        }
-
+        /* Carbon Theme Utilities */
         body {
+            background-color: #0c0c0e; 
+            color: #d4d4d8; 
             font-family: 'Inter', sans-serif;
-            margin: 0;
-            background-color: var(--background-dark);
-            color: var(--text-color);
-            line-height: 1.7;
-            -webkit-font-smoothing: antialiased;
-            -moz-osx-font-smoothing: grayscale;
-            overflow-x: hidden; 
-        }
-
-
-        .gradient-background {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: -1;
-            background: 
-                radial-gradient(circle at 20% 80%, var(--primary-color) 0%, transparent 20%),
-                radial-gradient(circle at 80% 20%, var(--primary-color) 0%, transparent 20%),
-                radial-gradient(circle at 10% 30%, var(--background-dark) 0%, transparent 20%),
-                radial-gradient(circle at 90% 70%, var(--background-dark) 0%, transparent 20%);
-            background-size: 200% 200%; 
-            filter: blur(100px); 
-            opacity: 0.3; 
-            animation: gradientMove 30s ease infinite alternate; 
-        }
-
-        @keyframes gradientMove {
-            0% {
-                background-position: 0% 0%;
-            }
-            25% {
-                background-position: 50% 100%;
-            }
-            50% {
-                background-position: 100% 0%;
-            }
-            75% {
-                background-position: 50% -50%;
-            }
-            100% {
-                background-position: 0% 0%;
-            }
-        }
-
-
-
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 24px;
-        }
-
-        section {
-            padding: 100px 0;
-            position: relative;
-            z-index: 1;
-        }
-
-
-        .main-header {
-            padding: 24px 0;
-
-            position: sticky;
-            top: 0;
-            background-color: rgba(10, 10, 10, 0.8);
-            backdrop-filter: blur(10px);
-            z-index: 100;
-        }
-
-        .main-header .container {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .logo img {
-            height: 40px; 
-            width: auto;
-            display: block;
-        }
-
-        .main-nav ul {
-            margin: 0;
-            padding: 0;
-            list-style: none;
-            display: flex;
-            gap: 35px;
-        }
-
-        .main-nav a {
-            color: var(--text-color);
-            text-decoration: none;
-            font-size: 1rem;
-            transition: color 0.3s ease;
-        }
-
-        .main-nav a:hover {
-            color: var(--primary-color);
-        }
-
-
-        .hero {
-            text-align: center;
-            padding: 120px 0;
-        }
-
-        .hero h1 {
-            font-size: 5rem;
-            font-weight: 800;
-            margin: 0 0 24px;
-            line-height: 1.1;
-            color: var(--heading-color);
-            letter-spacing: -2px;
+            min-height: 100vh;
         }
         
-        .hero h1 .highlight {
-            color: var(--primary-color);
-            display: inline-block;
-            perspective: 1000px;
+        .glass-nav {
+            background: rgba(12, 12, 14, 0.85);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(255,255,255,0.08);
         }
 
-
-        @keyframes spinOut {
-            0% { transform: rotateX(0deg); opacity: 1; }
-            100% { transform: rotateX(-90deg); opacity: 0; }
-        }
-
-        @keyframes spinIn {
-            0% { transform: rotateX(90deg); opacity: 0; }
-            100% { transform: rotateX(0deg); opacity: 1; }
-        }
-
-        .highlight.spin-out {
-            animation: spinOut 0.4s ease-in forwards;
-        }
-
-        .highlight.spin-in {
-            animation: spinIn 0.4s ease-out forwards;
-        }
-
-
-        .hero p {
-            font-size: 1.25rem;
-            max-width: 700px;
-            margin: 0 auto 40px;
-        }
-
-        .cta-button {
-            display: inline-block;
-            background-color: var(--primary-color);
-            color: #0a0a0a;
-            padding: 16px 40px;
-            border-radius: 8px;
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 1rem;
-            transition: transform 0.2s ease, box-shadow 0.2s ease;
-        }
-
-        .cta-button:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 10px 20px rgba(52, 255, 144, 0.2);
-        }
-
-        .process {
-            text-align: center;
+        /* Glass Card Base */
+        .glass-card {
+            background-color: #18181b;
+            border: 1px solid rgba(255,255,255,0.06);
+            /* Removed shadow/movement for strict flat look requested in pricing */
         }
         
-        .section-title {
-            font-size: 3rem;
-            font-weight: 700;
-            color: var(--heading-color);
-            margin-bottom: 12px;
-        }
-        
-        .section-subtitle {
-            font-size: 1.1rem;
-            max-width: 600px;
-            margin: 0 auto 80px;
+        .text-glow {
+            text-shadow: 0 0 30px rgba(14, 170, 113, 0.4);
         }
 
-        .process-grid {
+        /* Animated Text Rotator Styles */
+        .word-rotator {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
+            grid-template-columns: 1fr;
             text-align: left;
+            overflow: hidden;
+            height: 1.2em; /* Adjusted to fit line-height perfectly */
+            position: relative;
         }
 
-        .process-step {
-            background-color: var(--card-background);
-            padding: 40px;
-            border-radius: 12px;
-            border: 1px solid var(--border-color);
+        .word-rotator span {
+            grid-row-start: 1;
+            grid-column-start: 1;
+            opacity: 0;
+            transform: translateY(100%);
+            transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.6s ease;
+            display: block;
+            line-height: inherit; /* Ensure baseline match */
         }
 
-        .process-step .step-number {
-            font-size: 1rem;
-            font-weight: 700;
-            color: var(--primary-color);
-            margin-bottom: 16px;
+        .word-rotator span.active {
+            opacity: 1;
+            transform: translateY(0);
         }
 
-        .process-step h3 {
-            margin-top: 0;
-            margin-bottom: 12px;
-            font-size: 1.75rem;
-            color: var(--heading-color);
+        .word-rotator span.exit {
+            opacity: 0;
+            transform: translateY(-100%);
         }
-        
-        .main-footer {
-            text-align: center;
-            padding: 50px 0;
-            border-top: 1px solid var(--border-color);
-            color: #777;
+
+        /* Scroll Reveal Utility */
+        .reveal {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.8s cubic-bezier(0.5, 0, 0, 1);
+        }
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Carbon Grid */
+        .bg-grid {
+            background-size: 60px 60px;
+            background-image: linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+                              linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+            mask-image: linear-gradient(to bottom, transparent, black 10%, black 90%, transparent);
         }
     </style>
 </head>
-<body>
+<body class="relative overflow-x-hidden selection:bg-primary/30 selection:text-white">
 
-    <div class="gradient-background"></div>
+    <!-- Ambient Background Effects -->
+    <div class="fixed inset-0 z-[-1] bg-grid pointer-events-none"></div>
+    <div class="fixed top-[-10%] left-1/2 -translate-x-1/2 w-[1000px] h-[600px] bg-primary/5 rounded-full blur-[120px] pointer-events-none"></div>
 
-    <header class="main-header">
-        <div class="container">
-            <a href="#" class="logo">
-                <img src="https://raw.githubusercontent.com/Applegate-AI/webui-website/refs/heads/main/images/text-rect-logo.png" alt="Applegate AI Logo">
+    <!-- Navigation -->
+    <header class="fixed top-0 left-0 right-0 z-50 glass-nav transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
+            <!-- Logo -->
+            <a href="#" class="flex items-center gap-2 group">
+                <div class="w-6 h-6 rounded bg-primary flex items-center justify-center text-black font-bold text-xs">A</div>
+                <span class="font-semibold tracking-tight text-lg group-hover:text-primary transition-colors duration-300 text-white">APPLEGATE AI</span>
             </a>
-            <nav class="main-nav">
-                <ul>
-                    <li><a href="#process">Our Process</a></li>
-                    <li><a href="#about">About</a></li>
-                    <li><a href="#contact">Get In Touch</a></li>
-                </ul>
+
+            <!-- Desktop Nav -->
+            <nav class="hidden md:flex items-center gap-8">
+                <a href="#hero" class="group relative py-1 text-sm font-medium text-gray-400 hover:text-white transition-colors duration-200">
+                    Home
+                    <span class="absolute bottom-0 left-0 w-0 h-[2px] bg-primary transition-all duration-300 ease-out group-hover:w-full"></span>
+                </a>
+                <a href="#engineered" class="group relative py-1 text-sm font-medium text-gray-400 hover:text-white transition-colors duration-200">
+                    Who We Help
+                    <span class="absolute bottom-0 left-0 w-0 h-[2px] bg-primary transition-all duration-300 ease-out group-hover:w-full"></span>
+                </a>
+                <a href="#services" class="group relative py-1 text-sm font-medium text-gray-400 hover:text-white transition-colors duration-200">
+                    Pricing
+                    <span class="absolute bottom-0 left-0 w-0 h-[2px] bg-primary transition-all duration-300 ease-out group-hover:w-full"></span>
+                </a>
+                <a href="#book-call" class="group relative py-1 text-sm font-semibold text-primary transition-colors duration-200 flex items-center gap-1 hover:text-white">
+                    Book a Call
+                    <iconify-icon icon="solar:arrow-right-linear" class="transition-transform group-hover:translate-x-1"></iconify-icon>
+                    <span class="absolute bottom-0 left-0 w-0 h-[2px] bg-primary transition-all duration-300 ease-out group-hover:w-full"></span>
+                </a>
             </nav>
+
+            <!-- Mobile Menu Toggle -->
+            <button class="md:hidden text-white hover:text-primary transition-colors" aria-label="Menu">
+                <iconify-icon icon="solar:hamburger-menu-linear" width="24"></iconify-icon>
+            </button>
         </div>
     </header>
 
     <main>
-        <section class="hero">
-            <div class="container">
-                <h1>We Don't Sell AI. <br>We Sell <span class="highlight" id="animated-text">Results.</span></h1>
-                <p>Your trusted partner in becoming an AI-first company. We build custom AI systems that are scalable, reliable, and designed to move the needle inside your business.</p>
-                <a href="#contact" class="cta-button">Get in Touch</a>
+        <!-- Hero Section -->
+        <section id="hero" class="relative min-h-screen flex flex-col justify-center items-center pt-10 px-6 overflow-hidden">
+            <div class="max-w-5xl mx-auto text-center z-10">
+                
+                <!-- Headline -->
+                <h1 class="reveal text-5xl md:text-7xl lg:text-8xl font-bold tracking-tighter leading-[1.1] mb-8 text-white">
+                    <span class="block mb-0 md:mb-2">We Don't Sell AI.</span>
+                    <!-- Flex container for perfect baseline alignment -->
+                    <div class="flex flex-wrap justify-center items-baseline gap-x-[0.2em] md:gap-x-[0.25em]">
+                        <span class="text-carbon-600">We Sell</span>
+                        <div class="text-primary text-glow word-rotator min-w-[3ch] text-left">
+                            <span class="active">Results.</span>
+                            <span>Growth.</span>
+                            <span>Scale.</span>
+                            
+            
+                        </div>
+                    </div>
+                </h1>
+
+                <!-- Subheadline -->
+                <p class="reveal max-w-2xl mx-auto text-lg md:text-xl leading-relaxed mb-10 font-normal text-gray-400">
+                    Practical AI automations that save businesses time, reduce costs, and create new capacity — without disrupting your workflow.
+                </p>
+
+                <!-- CTAs -->
+                <div class="reveal flex flex-col sm:flex-row items-center justify-center gap-4">
+                    <a href="#book-call" class="group relative px-8 py-3.5 rounded-lg font-semibold text-sm transition-all duration-300 overflow-hidden w-full sm:w-auto bg-primary text-black hover:bg-white">
+                        <span class="relative z-10 flex items-center justify-center gap-2">
+                            Book a Call
+                            <iconify-icon icon="solar:arrow-right-up-linear" width="18" class="group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform"></iconify-icon>
+                        </span>
+                    </a>
+                    <a href="#services" class="group px-8 py-3.5 bg-carbon-800 border rounded-lg font-medium text-sm transition-all duration-300 w-full sm:w-auto border-white/10 text-white hover:bg-carbon-700 hover:border-white/20">
+                        View Services
+                    </a>
+                </div>
             </div>
         </section>
 
-        <section id="process" class="process">
-            <div class="container">
-                <h2 class="section-title">Our AI Transformation Journey</h2>
-                <p class="section-subtitle">We guide companies through our proven 3-step process to identify opportunities, educate teams, and develop solutions that drive real-world impact.</p>
-                <div class="process-grid">
-                    <div class="process-step">
-                        <div class="step-number">STEP 01</div>
-                        <h3>Identify</h3>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.</p>
+        <!-- Stats Bar -->
+        <div class="border-y border-white/5 bg-carbon-800/30 backdrop-blur-sm">
+            <div class="max-w-7xl mx-auto px-6 py-12">
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-12">
+                    <div class="reveal text-center md:text-left border-r last:border-0 pr-4 border-white/5">
+                        <div class="text-3xl md:text-4xl font-semibold tracking-tight mb-1 text-white">1,240</div>
+                        <div class="text-xs text-primary font-bold uppercase tracking-wider mb-2">Leads Generated</div>
+                        <p class="text-xs text-gray-500">Per month average</p>
                     </div>
-                    <div class="process-step">
-                        <div class="step-number">STEP 02</div>
-                        <h3>Educate</h3>
-                        <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident.</p>
+                    <div class="reveal text-center md:text-left border-r last:border-0 pr-4 delay-100 border-white/5">
+                        <div class="text-3xl md:text-4xl font-semibold tracking-tight mb-1 text-white">£28k</div>
+                        <div class="text-xs text-primary font-bold uppercase tracking-wider mb-2">Cost Savings</div>
+                        <p class="text-xs text-gray-500">Annual avg per client</p>
                     </div>
-                    <div class="process-step">
-                        <div class="step-number">STEP 03</div>
-                        <h3>Develop</h3>
-                        <p>Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt.</p>
+                    <div class="reveal text-center md:text-left border-r last:border-0 pr-4 delay-200 border-white/5">
+                        <div class="text-3xl md:text-4xl font-semibold tracking-tight mb-1 text-white">87%</div>
+                        <div class="text-xs text-primary font-bold uppercase tracking-wider mb-2">Faster Response</div>
+                        <p class="text-xs text-gray-500">Vs human support</p>
+                    </div>
+                    <div class="reveal text-center md:text-left delay-300">
+                        <div class="text-3xl md:text-4xl font-semibold tracking-tight mb-1 text-white">32h</div>
+                        <div class="text-xs text-primary font-bold uppercase tracking-wider mb-2">Time Saved</div>
+                        <p class="text-xs text-gray-500">Weekly admin hours</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Impact Section -->
+        <section id="impact" class="py-32 px-6 relative">
+            <div class="max-w-7xl mx-auto">
+                <div class="mb-20 text-center max-w-3xl mx-auto">
+                    <h2 class="reveal text-3xl md:text-5xl font-semibold tracking-tight mb-6 text-white">Support that works around the clock</h2>
+                    <p class="reveal text-lg font-normal text-gray-400">Get reliable assistance whenever you need it, with our dedicated systems ready to help.</p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                    <div class="reveal glass-card p-8 rounded-2xl group transition-all duration-300 hover:border-white/20">
+                        <div class="w-12 h-12 rounded-xl bg-carbon-900 border flex items-center justify-center mb-6 border-white/10 group-hover:border-primary/50 transition-colors">
+                            <iconify-icon icon="solar:clock-circle-linear" width="24" class="text-primary" stroke-width="1.5"></iconify-icon>
+                        </div>
+                        <h3 class="text-lg font-semibold mb-3 text-white">24/7 Availability</h3>
+                        <p class="text-sm text-gray-500 leading-relaxed">Uninterrupted support whenever your business needs it, day or night.</p>
+                    </div>
+                    <div class="reveal glass-card p-8 rounded-2xl group transition-all duration-300 delay-100 hover:border-white/20">
+                        <div class="w-12 h-12 rounded-xl bg-carbon-900 border flex items-center justify-center mb-6 border-white/10 group-hover:border-primary/50 transition-colors">
+                            <iconify-icon icon="solar:bolt-linear" width="24" class="text-primary" stroke-width="1.5"></iconify-icon>
+                        </div>
+                        <h3 class="text-lg font-semibold mb-3 text-white">Instant Responses</h3>
+                        <p class="text-sm text-gray-500 leading-relaxed">Zero latency. Receive quick and accurate answers to queries instantly.</p>
+                    </div>
+                    <div class="reveal glass-card p-8 rounded-2xl group transition-all duration-300 delay-200 hover:border-white/20">
+                        <div class="w-12 h-12 rounded-xl bg-carbon-900 border flex items-center justify-center mb-6 border-white/10 group-hover:border-primary/50 transition-colors">
+                            <iconify-icon icon="solar:user-check-linear" width="24" class="text-primary" stroke-width="1.5"></iconify-icon>
+                        </div>
+                        <h3 class="text-lg font-semibold mb-3 text-white">Expert Assistance</h3>
+                        <p class="text-sm text-gray-500 leading-relaxed">Tailor-made support agents trained specifically on your business data.</p>
+                    </div>
+                    <div class="reveal glass-card p-8 rounded-2xl group transition-all duration-300 delay-300 hover:border-white/20">
+                        <div class="w-12 h-12 rounded-xl bg-carbon-900 border flex items-center justify-center mb-6 border-white/10 group-hover:border-primary/50 transition-colors">
+                            <iconify-icon icon="solar:link-circle-linear" width="24" class="text-primary" stroke-width="1.5"></iconify-icon>
+                        </div>
+                        <h3 class="text-lg font-semibold mb-3 text-white">Seamless Integration</h3>
+                        <p class="text-sm text-gray-500 leading-relaxed">Connects with your CRM, calendar, and email for a hassle-free setup.</p>
+                    </div>
+                </div>
+
+                <!-- Satisfaction Score -->
+                <div class="reveal mt-20 flex flex-col items-center justify-center">
+                    <div class="text-5xl font-bold tracking-tighter mb-4 text-white">4.8 <span class="text-2xl text-gray-500 font-normal">/ 5</span></div>
+                    <div class="flex gap-2 text-primary mb-6">
+                        <iconify-icon icon="solar:star-bold" width="24"></iconify-icon>
+                        <iconify-icon icon="solar:star-bold" width="24"></iconify-icon>
+                        <iconify-icon icon="solar:star-bold" width="24"></iconify-icon>
+                        <iconify-icon icon="solar:star-bold" width="24"></iconify-icon>
+                        <div class="relative">
+                            <iconify-icon icon="solar:star-outline" width="24" class="text-primary opacity-50"></iconify-icon>
+                            <div class="absolute top-0 left-0 overflow-hidden w-[80%] text-primary">
+                                <iconify-icon icon="solar:star-bold" width="24"></iconify-icon>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="h-px w-24 bg-gradient-to-r from-transparent via-primary/50 to-transparent"></div>
+                    <p class="mt-4 text-xs font-semibold text-gray-500 uppercase tracking-widest">Average Client Satisfaction</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Engineered Section -->
+        <section id="engineered" class="py-24 px-6 border-t border-white/5 bg-carbon-800/20">
+            <div class="max-w-7xl mx-auto">
+                <div class="text-center mb-16">
+                    <h2 class="reveal text-3xl md:text-5xl font-semibold tracking-tight mb-4 text-white">Engineered for Scalable Operations</h2>
+                    <p class="reveal max-w-2xl mx-auto text-gray-400">Whether you're a small local company or run a multi-location business, we adapt to each client's unique needs.</p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <article class="reveal glass-card p-6 rounded-xl group hover:border-primary/50 transition-colors">
+                        <div class="mb-4 text-primary group-hover:scale-110 transition-transform duration-300 origin-left">
+                            <iconify-icon icon="solar:scissors-linear" width="32" stroke-width="1.5"></iconify-icon>
+                        </div>
+                        <h3 class="text-lg font-medium mb-2 text-white">Salons &amp; Spas</h3>
+                        <p class="text-sm text-gray-500">Handle appointment bookings, cancellations and personalised client follow-ups to increase repeat visits.</p>
+                    </article>
+
+                    <article class="reveal glass-card p-6 rounded-xl group hover:border-primary/50 transition-colors delay-75">
+                        <div class="mb-4 text-primary group-hover:scale-110 transition-transform duration-300 origin-left">
+                            <iconify-icon icon="solar:heart-pulse-linear" width="32" stroke-width="1.5"></iconify-icon>
+                        </div>
+                        <h3 class="text-lg font-medium mb-2 text-white">Medical &amp; Dental</h3>
+                        <p class="text-sm text-gray-500">Manage patient enquiries, appointment scheduling and automated reminders while staying professional.</p>
+                    </article>
+
+                    <article class="reveal glass-card p-6 rounded-xl group hover:border-primary/50 transition-colors delay-150">
+                        <div class="mb-4 text-primary group-hover:scale-110 transition-transform duration-300 origin-left">
+                            <iconify-icon icon="solar:scale-linear" width="32" stroke-width="1.5"></iconify-icon>
+                        </div>
+                        <h3 class="text-lg font-medium mb-2 text-white">Legal Services</h3>
+                        <p class="text-sm text-gray-500">Qualify potential clients, schedule consultations and automate secure intake processes effectively.</p>
+                    </article>
+
+                    <article class="reveal glass-card p-6 rounded-xl group hover:border-primary/50 transition-colors delay-200">
+                        <div class="mb-4 text-primary group-hover:scale-110 transition-transform duration-300 origin-left">
+                            <iconify-icon icon="solar:home-smile-linear" width="32" stroke-width="1.5"></iconify-icon>
+                        </div>
+                        <h3 class="text-lg font-medium mb-2 text-white">Home Services</h3>
+                        <p class="text-sm text-gray-500">Capture service requests for cleaning, HVAC, and electrical with intelligent dispatching.</p>
+                    </article>
+
+                    <article class="reveal glass-card p-6 rounded-xl group hover:border-primary/50 transition-colors delay-300">
+                        <div class="mb-4 text-primary group-hover:scale-110 transition-transform duration-300 origin-left">
+                            <iconify-icon icon="solar:graph-up-linear" width="32" stroke-width="1.5"></iconify-icon>
+                        </div>
+                        <h3 class="text-lg font-medium mb-2 text-white">Sales Teams</h3>
+                        <p class="text-sm text-gray-500">Automate lead qualification, handoffs to reps, and follow-ups so your sales team closes more deals.</p>
+                    </article>
+
+                    <article class="reveal glass-card p-6 rounded-xl group hover:border-primary/50 transition-colors delay-300">
+                        <div class="mb-4 text-primary group-hover:scale-110 transition-transform duration-300 origin-left">
+                            <iconify-icon icon="solar:shop-linear" width="32" stroke-width="1.5"></iconify-icon>
+                        </div>
+                        <h3 class="text-lg font-medium mb-2 text-white">Retail &amp; E-commerce</h3>
+                        <p class="text-sm text-gray-500">Answer product questions, check stock, and convert visitors into customers with chat-driven flows.</p>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- Pricing Section -->
+        <section id="services" class="py-32 px-6 relative overflow-hidden">
+            <!-- Background glow -->
+            <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-primary/5 blur-[120px] rounded-full pointer-events-none"></div>
+
+            <div class="max-w-7xl mx-auto relative z-10">
+                <div class="text-center mb-20">
+                    <h2 class="reveal text-3xl md:text-5xl font-semibold tracking-tight mb-4 text-white">Transparent Pricing</h2>
+                    <p class="reveal text-gray-400">Choose the automation level that suits your growth stage.</p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8 items-start">
+                    <!-- Essential -->
+                    <div class="reveal glass-card p-8 rounded-2xl transition-colors duration-300 hover:border-primary">
+                        <div class="mb-8">
+                            <h3 class="text-xl font-medium mb-2 text-white">Essential</h3>
+                            <p class="text-sm text-gray-500">Perfect for small teams and solo operators.</p>
+                        </div>
+                        <div class="mb-8">
+                            <div class="text-3xl font-semibold tracking-tight text-white">£1,000–1,500</div>
+                            <div class="text-xs text-gray-500 mt-1">One-time setup</div>
+                            <div class="text-sm text-primary font-medium mt-3">£699/ month</div>
+                        </div>
+                        <ul class="space-y-4 mb-8">
+                            <li class="flex items-start gap-3 text-sm text-gray-400">
+                                <iconify-icon icon="solar:check-circle-linear" class="text-primary mt-0.5 shrink-0"></iconify-icon> 24/7 AI customer chat
+                            </li>
+                            <li class="flex items-start gap-3 text-sm text-gray-400">
+                                <iconify-icon icon="solar:check-circle-linear" class="text-primary mt-0.5 shrink-0"></iconify-icon> Basic lead capture
+                            </li>
+                            <li class="flex items-start gap-3 text-sm text-gray-400">
+                                <iconify-icon icon="solar:check-circle-linear" class="text-primary mt-0.5 shrink-0"></iconify-icon> Website integration
+                            </li>
+                            <li class="flex items-start gap-3 text-sm text-gray-400">
+                                <iconify-icon icon="solar:check-circle-linear" class="text-primary mt-0.5 shrink-0"></iconify-icon> 500 conversations/mo
+                            </li>
+                        </ul>
+                        <a href="#book-call" class="block w-full py-3 text-center rounded-lg border text-sm font-medium transition-colors border-white/10 text-white hover:bg-white/5 hover:border-white/20">Get Started</a>
+                    </div>
+
+                    <!-- Enhanced (Featured) -->
+                    <div class="reveal bg-surface border border-primary/30 p-8 rounded-2xl shadow-[0_0_50px_-20px_rgba(14,170,113,0.2)] transform md:-translate-y-4 relative hover:border-primary transition-colors duration-300">
+                        <div class="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-primary text-[10px] uppercase font-bold tracking-widest px-3 py-1 rounded-full text-black">Most Popular</div>
+                        <div class="mb-8">
+                            <h3 class="text-xl font-medium mb-2 text-white">Enhanced</h3>
+                            <p class="text-sm text-gray-500">Ideal for growing teams handling high volumes.</p>
+                        </div>
+                        <div class="mb-8">
+                            <div class="text-3xl font-semibold tracking-tight text-white">£1,500–2,500</div>
+                            <div class="text-xs text-gray-500 mt-1">One-time setup</div>
+                            <div class="text-sm text-primary font-medium mt-3">£1399 / month</div>
+                        </div>
+                        <ul class="space-y-4 mb-8">
+                            <li class="flex items-start gap-3 text-sm text-white">
+                                <iconify-icon icon="solar:check-circle-bold" class="text-primary mt-0.5 shrink-0"></iconify-icon> Everything in Essential
+                            </li>
+                            <li class="flex items-start gap-3 text-sm text-white">
+                                <iconify-icon icon="solar:check-circle-bold" class="text-primary mt-0.5 shrink-0"></iconify-icon> Advanced lead qualification
+                            </li>
+                            <li class="flex items-start gap-3 text-sm text-white">
+                                <iconify-icon icon="solar:check-circle-bold" class="text-primary mt-0.5 shrink-0"></iconify-icon> Calendar booking integration
+                            </li>
+                            <li class="flex items-start gap-3 text-sm text-white">
+                                <iconify-icon icon="solar:check-circle-bold" class="text-primary mt-0.5 shrink-0"></iconify-icon> 2,000 conversations/mo
+                            </li>
+                            <li class="flex items-start gap-3 text-sm text-white">
+                                <iconify-icon icon="solar:check-circle-bold" class="text-primary mt-0.5 shrink-0"></iconify-icon> CRM integration
+                            </li>
+                            
+                            
+                        </ul>
+                        <a href="#book-call" class="block w-full py-3 text-center rounded-lg bg-primary text-sm font-bold hover:bg-primary/90 transition-colors text-black">Get Started</a>
+                    </div>
+
+                    <!-- Premium -->
+                    <div class="reveal glass-card p-8 rounded-2xl transition-colors duration-300 hover:border-primary">
+                        <div class="mb-8">
+                            <h3 class="text-xl font-medium mb-2 text-white">Premium</h3>
+                            <p class="text-sm text-gray-500">For multi-location and enterprise businesses.</p>
+                        </div>
+                        <div class="mb-8">
+                            <div class="text-3xl font-semibold tracking-tight text-white">£3,000+</div>
+                            <div class="text-xs text-gray-500 mt-1">One-time setup</div>
+                            <div class="text-sm text-primary font-medium mt-3">£2,250 / month</div>
+                        </div>
+                        <ul class="space-y-4 mb-8">
+                            <li class="flex items-start gap-3 text-sm text-gray-400">
+                                <iconify-icon icon="solar:check-circle-linear" class="text-primary mt-0.5 shrink-0"></iconify-icon> Everything in Enhanced
+                            </li>
+                            <li class="flex items-start gap-3 text-sm text-gray-400">
+                                <iconify-icon icon="solar:check-circle-linear" class="text-primary mt-0.5 shrink-0"></iconify-icon> Unlimited conversations
+                            </li>
+                            <li class="flex items-start gap-3 text-sm text-gray-400">
+                                <iconify-icon icon="solar:check-circle-linear" class="text-primary mt-0.5 shrink-0"></iconify-icon> Custom workflows
+                            </li>
+                            <li class="flex items-start gap-3 text-sm text-gray-400">
+                                <iconify-icon icon="solar:check-circle-linear" class="text-primary mt-0.5 shrink-0"></iconify-icon> Dedicated account manager
+                            </li>
+                        </ul>
+                        <a href="#book-call" class="block w-full py-3 text-center rounded-lg border text-sm font-medium transition-colors border-white/10 text-white hover:bg-white/5 hover:border-white/20">Contact Sales</a>
                     </div>
                 </div>
             </div>
         </section>
-        
-        </main>
 
-    <footer id="contact" class="main-footer">
-        <div class="container">
-            <p>&copy; 2025 Applegate AI. Pioneering Intelligent Solutions.</p>
+        <!-- Challenges Section -->
+        <section class="py-24 px-6 bg-carbon-800/50 border-y border-white/5">
+            <div class="max-w-6xl mx-auto">
+                <div class="text-center mb-16">
+                    <h2 class="reveal text-3xl md:text-4xl font-semibold tracking-tight mb-4 text-white">The Challenges You Face Every Day</h2>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-12">
+                    <div class="reveal flex gap-5">
+                        <div class="shrink-0 w-12 h-12 rounded-lg flex items-center justify-center bg-carbon-900 border border-white/5 text-primary">
+                            <iconify-icon icon="solar:danger-circle-linear" width="24" stroke-width="1.5"></iconify-icon>
+                        </div>
+                        <div>
+                            <h3 class="text-lg font-medium mb-2 text-white">Missed Opportunities</h3>
+                            <p class="text-sm leading-relaxed text-gray-400">Delayed follow-ups allow high-intent leads to cool off before engagement.</p>
+                        </div>
+                    </div>
+                    <div class="reveal flex gap-5 delay-75">
+                        <div class="shrink-0 w-12 h-12 rounded-lg flex items-center justify-center bg-carbon-900 border border-white/5 text-primary">
+                            <iconify-icon icon="solar:clock-square-linear" width="24" stroke-width="1.5"></iconify-icon>
+                        </div>
+                        <div>
+                            <h3 class="text-lg font-medium mb-2 text-white">After-Hours Silence</h3>
+                            <p class="text-sm leading-relaxed text-gray-400">Customers don't stop enquiring outside business hours. Your systems shouldn't either.</p>
+                        </div>
+                    </div>
+                    <div class="reveal flex gap-5 delay-150">
+                        <div class="shrink-0 w-12 h-12 rounded-lg flex items-center justify-center bg-carbon-900 border border-white/5 text-primary">
+                            <iconify-icon icon="solar:users-group-rounded-linear" width="24" stroke-width="1.5"></iconify-icon>
+                        </div>
+                        <div>
+                            <h3 class="text-lg font-medium mb-2 text-white">Overwhelmed Team</h3>
+                            <p class="text-sm leading-relaxed text-gray-400">Your team's time is consumed by repetitive enquiries instead of high-value work.</p>
+                        </div>
+                    </div>
+                    <div class="reveal flex gap-5 delay-225">
+                        <div class="shrink-0 w-12 h-12 rounded-lg flex items-center justify-center bg-carbon-900 border border-white/5 text-primary">
+                            <iconify-icon icon="solar:graph-down-linear" width="24" stroke-width="1.5"></iconify-icon>
+                        </div>
+                        <div>
+                            <h3 class="text-lg font-medium mb-2 text-white">Inconsistent Service</h3>
+                            <p class="text-sm leading-relaxed text-gray-400">Without standardised systems, service quality depends entirely on who picks up the phone.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Book a Call -->
+        <section id="book-call" class="py-32 px-6">
+            <div class="max-w-4xl mx-auto text-center">
+                <h2 class="reveal text-3xl md:text-5xl font-semibold text-primary tracking-tight mb-6">Ready to Automate?</h2>
+                <p class="reveal text-lg mb-12 text-gray-400">Book a discovery call to see how we can tailor AI to your specific operations.</p>
+                
+                <!-- Boxed Calendly Container -->
+                <div class="reveal relative bg-carbon-800 border p-2 md:p-6 rounded-2xl shadow-2xl shadow-black/50 mx-auto max-w-4xl border-white/10">
+                    <div class="relative w-full h-[700px] md:h-[720px] rounded-xl overflow-hidden bg-white/5">
+                        <iframe src="https://calendly.com/ethanapplegate/discovery-call" width="100%" height="100%" frameborder="0" title="Calendly Scheduling"></iframe>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="border-t backdrop-blur-md py-12 px-6 border-white/10 bg-carbon-900/80">
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-6">
+            <div class="flex items-center gap-2">
+                <div class="w-5 h-5 rounded bg-primary flex items-center justify-center text-black font-bold text-[10px]">A</div>
+                <span class="font-semibold tracking-tight text-white text-sm">APPLEGATE AI</span>
+            </div>
+            <p class="text-xs text-gray-600">
+                © Applegate AI 2025. Built in the UK. 
+            </p>
+            <div class="flex gap-6">
+                <a href="#" class="text-xs text-gray-500 hover:text-primary transition-colors">Privacy Policy</a>
+                <a href="#" class="text-xs text-gray-500 hover:text-primary transition-colors">Terms</a>
+            </div>
         </div>
     </footer>
 
+    <!-- Interactions Script -->
     <script>
         document.addEventListener('DOMContentLoaded', () => {
-            const animatedTextElement = document.getElementById('animated-text');
-            const phrases = [
-                "Results.", 
-                "Growth.", 
-                "Efficiency.", 
-                "Innovation.", 
-                "Intelligence."
-            ];
-            let phraseIndex = 0;
-            const animationDuration = 400; 
-            const delayBetweenPhrases = 2000; 
+            // Text Rotator Logic
+            const rotators = document.querySelectorAll('.word-rotator');
+            rotators.forEach(rotator => {
+                const words = rotator.querySelectorAll('span');
+                let currentIndex = 0;
 
-            function animateSpin() {
-                animatedTextElement.classList.add('spin-out');
+                setInterval(() => {
+                    const currentWord = words[currentIndex];
+                    const nextIndex = (currentIndex + 1) % words.length;
+                    const nextWord = words[nextIndex];
 
-                setTimeout(() => {
-                    phraseIndex = (phraseIndex + 1) % phrases.length;
-                    animatedTextElement.textContent = phrases[phraseIndex];
-                    animatedTextElement.classList.remove('spin-out');
-                    animatedTextElement.classList.add('spin-in');
+                    // Animate out current word
+                    currentWord.classList.remove('active');
+                    currentWord.classList.add('exit');
 
+                    // Animate in next word
+                    nextWord.classList.remove('exit');
+                    nextWord.classList.add('active');
+
+                    // Clean up classes after animation duration (match CSS transition)
                     setTimeout(() => {
-                        animatedTextElement.classList.remove('spin-in');
-                        setTimeout(animateSpin, delayBetweenPhrases); 
-                    }, animationDuration); 
-                    
-                }, animationDuration);
-            }
+                        currentWord.classList.remove('exit');
+                    }, 600);
 
+                    currentIndex = nextIndex;
+                }, 3000); // 3 seconds cycle
+            });
 
-            animatedTextElement.classList.add('spin-in');
-            setTimeout(() => {
-                animatedTextElement.classList.remove('spin-in');
-                setTimeout(animateSpin, delayBetweenPhrases); 
-            }, animationDuration);
+            // Scroll Reveal Logic
+            const observerOptions = {
+                root: null,
+                rootMargin: '0px',
+                threshold: 0.1
+            };
+
+            const observer = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('active');
+                        observer.unobserve(entry.target); 
+                    }
+                });
+            }, observerOptions);
+
+            const revealElements = document.querySelectorAll('.reveal');
+            revealElements.forEach(el => observer.observe(el));
         });
     </script>
 
-</body>
-</html>
+
+</body></html>
