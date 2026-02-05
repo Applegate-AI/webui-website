@@ -1,0 +1,949 @@
+<html lang="en" class="scroll-smooth antialiased"><head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-S956J22049"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-S956J22049');
+</script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Applegate AI - Automations for all Businesses</title>
+    <meta name="description" content="Applegate AI — Practical AI automations for small and local businesses. Save time, capture more leads, and scale operations.">
+
+    <!-- Fonts: Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet">
+
+    <!-- Tailwind CSS (via CDN) -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Iconify -->
+    <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
+
+    <!-- Custom Tailwind Configuration -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#0EAA71',
+                        carbon: {
+                            900: '#0c0c0e',
+                            800: '#18181b',
+                            700: '#27272a',
+                            600: '#52525b'
+                        },
+                        surface: '#18181b'
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'system-ui', 'sans-serif']
+                    },
+                    letterSpacing: {
+                        tight: '-0.025em',
+                        tighter: '-0.05em'
+                    },
+                    backgroundImage: {
+                        'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))'
+                    }
+                }
+            }
+        }
+    </script>
+
+
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
+
+    <style>
+        /* Carbon Theme Utilities */
+        body {
+            background-color: #0c0c0e; 
+            color: #d4d4d8; 
+            font-family: 'Inter', sans-serif;
+            min-height: 100vh;
+        }
+        
+        .glass-nav {
+            background: rgba(12, 12, 14, 0.85);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(255,255,255,0.08);
+        }
+
+        /* Glass Card Base */
+        .glass-card {
+            background-color: #18181b;
+            border: 1px solid rgba(255,255,255,0.06);
+            /* Removed shadow/movement for strict flat look requested in pricing */
+        }
+        
+        .text-glow {
+            text-shadow: 0 0 30px rgba(14, 170, 113, 0.4);
+        }
+
+        /* Animated Text Rotator Styles */
+        .word-rotator {
+            display: grid;
+            grid-template-columns: 1fr;
+            text-align: left;
+            overflow: hidden;
+            height: 1.2em; /* Adjusted to fit line-height perfectly */
+            position: relative;
+        }
+
+        .word-rotator span {
+            grid-row-start: 1;
+            grid-column-start: 1;
+            opacity: 0;
+            transform: translateY(100%);
+            transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.6s ease;
+            display: block;
+            line-height: inherit; /* Ensure baseline match */
+        }
+
+        .word-rotator span.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .word-rotator span.exit {
+            opacity: 0;
+            transform: translateY(-100%);
+        }
+
+        /* Scroll Reveal Utility */
+        .reveal {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.8s cubic-bezier(0.5, 0, 0, 1);
+        }
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Carbon Grid */
+        .bg-grid {
+            background-size: 60px 60px;
+            background-image: linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+                              linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+            mask-image: linear-gradient(to bottom, transparent, black 10%, black 90%, transparent);
+        }
+
+        /* Tech Stack Infinite Scroll */
+        .slider-mask {
+            mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+            -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+        }
+
+        @keyframes infinite-scroll {
+            0% {
+                transform: translateX(0);
+            }
+            100% {
+                transform: translateX(calc(-50% - 4rem));
+            }
+        }
+
+        .animate-infinite-scroll {
+            animation: infinite-scroll 40s linear infinite;
+        }
+    </style>
+</head> 
+<body class="relative overflow-x-hidden selection:bg-primary/30 selection:text-white">
+
+    <!-- Ambient Background Effects -->
+    <div class="fixed inset-0 z-[-1] bg-grid pointer-events-none"></div>
+    <div class="fixed top-[-10%] left-1/2 -translate-x-1/2 w-[1000px] h-[600px] bg-primary/5 rounded-full blur-[120px] pointer-events-none"></div>
+
+    <!-- Navigation -->
+    <header class="fixed top-0 left-0 right-0 z-50 glass-nav transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
+            <!-- Logo -->
+            <a href="#" class="flex items-center gap-2 group">
+                <img src="/images/logo.png" alt="Applegate AI Logo" class="w-10 h-10">
+                <span class="font-semibold tracking-tight text-lg group-hover:text-primary transition-colors duration-300 text-white">APPLEGATE AI</span>
+            </a>
+
+            <!-- Desktop Nav -->
+            <nav class="hidden md:flex items-center gap-8">
+                <a href="#hero" class="group relative py-1 text-sm font-medium text-gray-400 hover:text-white transition-colors duration-200">
+                    Home
+                    <span class="absolute bottom-0 left-0 w-0 h-[2px] bg-primary transition-all duration-300 ease-out group-hover:w-full"></span>
+                </a>
+                <a href="#how-it-works" class="group relative py-1 text-sm font-medium text-gray-400 hover:text-white transition-colors duration-200">
+                    How It Works
+                    <span class="absolute bottom-0 left-0 w-0 h-[2px] bg-primary transition-all duration-300 ease-out group-hover:w-full"></span>
+                </a>
+                <a href="#engineered" class="group relative py-1 text-sm font-medium text-gray-400 hover:text-white transition-colors duration-200">
+                    Who We Help
+                    <span class="absolute bottom-0 left-0 w-0 h-[2px] bg-primary transition-all duration-300 ease-out group-hover:w-full"></span>
+                </a>
+                <a href="#services" class="group relative py-1 text-sm font-medium text-gray-400 hover:text-white transition-colors duration-200">
+                    Pricing
+                    <span class="absolute bottom-0 left-0 w-0 h-[2px] bg-primary transition-all duration-300 ease-out group-hover:w-full"></span>
+                </a>
+                <a href="#book-call" class="group relative py-1 text-sm font-semibold text-primary transition-colors duration-200 flex items-center gap-1 hover:text-white">
+                    Book a Call
+                    <iconify-icon icon="solar:arrow-right-linear" class="transition-transform group-hover:translate-x-1"></iconify-icon>
+                    <span class="absolute bottom-0 left-0 w-0 h-[2px] bg-primary transition-all duration-300 ease-out group-hover:w-full"></span>
+                </a>
+            </nav>
+
+            <!-- Mobile Menu Toggle -->
+            <button class="md:hidden text-white hover:text-primary transition-colors" aria-label="Menu">
+                <iconify-icon icon="solar:hamburger-menu-linear" width="24"></iconify-icon>
+            </button>
+        </div>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section id="hero" class="relative min-h-screen flex flex-col justify-center items-center pt-10 px-6 overflow-hidden">
+            <div class="max-w-5xl mx-auto text-center z-10">
+                
+                <!-- Headline -->
+                <h1 class="reveal text-5xl md:text-7xl lg:text-8xl font-bold tracking-tighter leading-[1.1] mb-8 text-white w-full">
+                    <span class="block mb-0 md:mb-2">We Don't Sell AI.</span>
+                    <!-- Grid container to lock the first part and allow the second to rotate without shifting -->
+                    <div class="grid grid-cols-[1fr_1fr] gap-x-[0.2em] md:gap-x-[0.25em] items-baseline w-full">
+                        <div class="text-carbon-600 text-right">We Sell</div>
+                        <div class="text-primary text-glow word-rotator text-left min-w-0">
+                            <span class="active">Results.</span>
+                            <span>Growth.</span>
+                            <span>Scale.</span>
+                        </div>
+                    </div>
+                </h1>
+
+                <!-- Subheadline -->
+                <p class="reveal max-w-2xl mx-auto text-lg md:text-xl leading-relaxed mb-10 font-normal text-gray-400">
+                    We build systems that answer enquiries, follow up leads, book appointments, and reduce admin, automatically.
+                </p>
+
+                <!-- CTAs -->
+                <div class="reveal flex flex-col sm:flex-row items-center justify-center gap-4">
+                    <a href="#book-call" class="group relative px-8 py-3.5 rounded-lg font-semibold text-sm transition-all duration-300 overflow-hidden w-full sm:w-auto bg-primary text-black hover:bg-white">
+                        <span class="relative z-10 flex items-center justify-center gap-2">
+                            Book a Call
+                            <iconify-icon icon="solar:arrow-right-up-linear" width="18" class="group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform"></iconify-icon>
+                        </span>
+                    </a>
+                    <a href="#services" class="group px-8 py-3.5 bg-carbon-800 border rounded-lg font-medium text-sm transition-all duration-300 w-full sm:w-auto border-white/10 text-white hover:bg-carbon-700 hover:border-white/20">
+                        View Services
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Stats Bar -->
+        <div class="border-y border-white/5 bg-carbon-800/30 backdrop-blur-sm">
+            <div class="max-w-7xl mx-auto px-6 py-12">
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-12">
+                    <div class="reveal text-center md:text-left border-r last:border-0 pr-4 border-white/5">
+                        <div class="text-3xl md:text-4xl font-semibold tracking-tight mb-1 text-white">1,240</div>
+                        <div class="text-xs text-primary font-bold uppercase tracking-wider mb-2">Leads Generated</div>
+                        <p class="text-xs text-gray-500">Per month average</p>
+                    </div>
+                    <div class="reveal text-center md:text-left border-r last:border-0 pr-4 delay-100 border-white/5">
+                        <div class="text-3xl md:text-4xl font-semibold tracking-tight mb-1 text-white">£28k</div>
+                        <div class="text-xs text-primary font-bold uppercase tracking-wider mb-2">Cost Savings</div>
+                        <p class="text-xs text-gray-500">Annual avg per client</p>
+                    </div>
+                    <div class="reveal text-center md:text-left border-r last:border-0 pr-4 delay-200 border-white/5">
+                        <div class="text-3xl md:text-4xl font-semibold tracking-tight mb-1 text-white">87%</div>
+                        <div class="text-xs text-primary font-bold uppercase tracking-wider mb-2">Faster Response</div>
+                        <p class="text-xs text-gray-500">Vs human support</p>
+                    </div>
+                    <div class="reveal text-center md:text-left delay-300">
+                        <div class="text-3xl md:text-4xl font-semibold tracking-tight mb-1 text-white">32h</div>
+                        <div class="text-xs text-primary font-bold uppercase tracking-wider mb-2">Time Saved</div>
+                        <p class="text-xs text-gray-500">Weekly admin hours</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Impact Section -->
+        <section id="impact" class="py-32 px-6 relative">
+            <div class="max-w-7xl mx-auto">
+                <div class="mb-20 text-center max-w-3xl mx-auto">
+                    <h2 class="reveal text-3xl md:text-5xl font-semibold tracking-tight mb-6 text-white">Support that works around the clock</h2>
+                    <p class="reveal text-lg font-normal text-gray-400">Get reliable assistance whenever you need it, with our dedicated systems ready to help.</p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                    <div class="reveal glass-card p-8 rounded-2xl group transition-all duration-300 hover:border-white/20">
+                        <div class="w-12 h-12 rounded-xl bg-carbon-900 border flex items-center justify-center mb-6 border-white/10 group-hover:border-primary/50 transition-colors">
+                            <iconify-icon icon="solar:clock-circle-linear" width="24" class="text-primary" stroke-width="1.5"></iconify-icon>
+                        </div>
+                        <h3 class="text-lg font-semibold mb-3 text-white">24/7 Availability</h3>
+                        <p class="text-sm text-gray-500 leading-relaxed">Uninterrupted support whenever your business needs it, day or night.</p>
+                    </div>
+                    <div class="reveal glass-card p-8 rounded-2xl group transition-all duration-300 delay-100 hover:border-white/20">
+                        <div class="w-12 h-12 rounded-xl bg-carbon-900 border flex items-center justify-center mb-6 border-white/10 group-hover:border-primary/50 transition-colors">
+                            <iconify-icon icon="solar:bolt-linear" width="24" class="text-primary" stroke-width="1.5"></iconify-icon>
+                        </div>
+                        <h3 class="text-lg font-semibold mb-3 text-white">Instant Responses</h3>
+                        <p class="text-sm text-gray-500 leading-relaxed">Zero latency. Receive quick and accurate answers to queries instantly.</p>
+                    </div>
+                    <div class="reveal glass-card p-8 rounded-2xl group transition-all duration-300 delay-200 hover:border-white/20">
+                        <div class="w-12 h-12 rounded-xl bg-carbon-900 border flex items-center justify-center mb-6 border-white/10 group-hover:border-primary/50 transition-colors">
+                            <iconify-icon icon="solar:user-check-linear" width="24" class="text-primary" stroke-width="1.5"></iconify-icon>
+                        </div>
+                        <h3 class="text-lg font-semibold mb-3 text-white">Expert Assistance</h3>
+                        <p class="text-sm text-gray-500 leading-relaxed">Tailor-made support agents trained specifically on your business data.</p>
+                    </div>
+                    <div class="reveal glass-card p-8 rounded-2xl group transition-all duration-300 delay-300 hover:border-white/20">
+                        <div class="w-12 h-12 rounded-xl bg-carbon-900 border flex items-center justify-center mb-6 border-white/10 group-hover:border-primary/50 transition-colors">
+                            <iconify-icon icon="solar:link-circle-linear" width="24" class="text-primary" stroke-width="1.5"></iconify-icon>
+                        </div>
+                        <h3 class="text-lg font-semibold mb-3 text-white">Seamless Integration</h3>
+                        <p class="text-sm text-gray-500 leading-relaxed">Connects with your CRM, calendar, and email for a hassle-free setup.</p>
+                    </div>
+                </div>
+
+                <!-- Satisfaction Score -->
+                <div class="reveal mt-20 flex flex-col items-center justify-center">
+                    <div class="text-5xl font-bold tracking-tighter mb-4 text-white">4.8 <span class="text-2xl text-gray-500 font-normal">/ 5</span></div>
+                    <div class="flex gap-2 text-primary mb-6">
+                        <iconify-icon icon="solar:star-bold" width="24"></iconify-icon>
+                        <iconify-icon icon="solar:star-bold" width="24"></iconify-icon>
+                        <iconify-icon icon="solar:star-bold" width="24"></iconify-icon>
+                        <iconify-icon icon="solar:star-bold" width="24"></iconify-icon>
+                        <div class="relative">
+                            <iconify-icon icon="solar:star-outline" width="24" class="text-primary opacity-50"></iconify-icon>
+                            <div class="absolute top-0 left-0 overflow-hidden w-[80%] text-primary">
+                                <iconify-icon icon="solar:star-bold" width="24"></iconify-icon>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="h-px w-24 bg-gradient-to-r from-transparent via-primary/50 to-transparent"></div>
+                    <p class="mt-4 text-xs font-semibold text-gray-500 uppercase tracking-widest">Average Client Satisfaction</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 2. HOW IT WORKS -->
+        <section id="how-it-works" class="py-24 px-6 relative">
+            <div class="max-w-7xl mx-auto">
+                <div class="text-center mb-16 max-w-3xl mx-auto">
+                    <h2 class="reveal text-3xl md:text-5xl font-semibold tracking-tight mb-4 text-white">How It Works</h2>
+                    <p class="reveal text-lg font-normal text-gray-400">Simple setup. Immediate impact. No technical skills required.</p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <!-- Step 1 -->
+                    <div class="reveal glass-card p-8 rounded-2xl group transition-all duration-300 hover:border-white/20 text-center md:text-left">
+                        <div class="w-14 h-14 rounded-xl bg-carbon-900 border flex items-center justify-center mb-6 border-white/10 group-hover:border-primary/50 transition-colors mx-auto md:mx-0">
+                            <iconify-icon icon="solar:chat-round-line-linear" width="28" class="text-primary" stroke-width="1.5"></iconify-icon>
+                        </div>
+                        <h3 class="text-xl font-semibold mb-3 text-white">1. Customers Message You</h3>
+                        <p class="text-sm text-gray-500 leading-relaxed">
+                            A client texts, emails, or calls your business with a question or booking request—at any time of day.
+                        </p>
+                    </div>
+
+                    <!-- Step 2 -->
+                    <div class="reveal glass-card p-8 rounded-2xl group transition-all duration-300 hover:border-white/20 delay-100 text-center md:text-left">
+                        <div class="w-14 h-14 rounded-xl bg-carbon-900 border flex items-center justify-center mb-6 border-white/10 group-hover:border-primary/50 transition-colors mx-auto md:mx-0">
+                            <iconify-icon icon="solar:cpu-bolt-linear" width="28" class="text-primary" stroke-width="1.5"></iconify-icon>
+                        </div>
+                        <h3 class="text-xl font-semibold mb-3 text-white">2. The System Responds</h3>
+                        <p class="text-sm text-gray-500 leading-relaxed">
+                            Our system instantly replies, answers their questions, checks your calendar availability, and qualifies the lead.
+                        </p>
+                    </div>
+
+                   <!-- Step 3 -->
+                    <div class="reveal glass-card p-8 rounded-2xl group transition-all duration-300 hover:border-white/20 delay-200 text-center md:text-left">
+                        <div class="w-14 h-14 rounded-xl bg-carbon-900 border flex items-center justify-center mb-6 border-white/10 group-hover:border-primary/50 transition-colors mx-auto md:mx-0">
+                            <iconify-icon icon="solar:calendar-add-linear" width="28" class="text-primary" stroke-width="1.5"></iconify-icon>
+                        </div>
+                        <h3 class="text-xl font-semibold mb-3 text-white">3. Your Calendar Fills Up</h3>
+                        <p class="text-sm text-gray-500 leading-relaxed">
+                            You wake up to booked appointments and qualified leads. Your team only steps in for the work that matters.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 3. WHO WE HELP (Combined Section) -->
+        <section id="who-we-help" class="relative bg-carbon-800/20 border-t border-white/5">
+            
+            <!-- A. PROBLEMS -->
+            <div class="py-24 px-6 border-b border-white/5">
+                <div class="max-w-6xl mx-auto">
+                    <div class="text-center mb-16">
+                        <h2 class="reveal text-3xl md:text-4xl font-semibold tracking-tight mb-4 text-white">The Headaches You Know Too Well</h2>
+                        <p class="reveal text-gray-400">Running a business is hard enough without getting bogged down by admin.</p>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-12">
+                        <div class="reveal flex gap-5">
+                            <div class="shrink-0 w-12 h-12 rounded-lg flex items-center justify-center bg-carbon-900 border border-white/5 text-primary">
+                                <iconify-icon icon="solar:phone-calling-rounded-linear" width="24" stroke-width="1.5"></iconify-icon>
+                            </div>
+                            <div>
+                                <h3 class="text-lg font-medium mb-2 text-white">Missed Calls = Lost Money</h3>
+                                <p class="text-sm leading-relaxed text-gray-400">Every call you can't answer is a potential client calling your competitor instead.</p>
+                            </div>
+                        </div>
+                        <div class="reveal flex gap-5 delay-75">
+                            <div class="shrink-0 w-12 h-12 rounded-lg flex items-center justify-center bg-carbon-900 border border-white/5 text-primary">
+                                <iconify-icon icon="solar:moon-stars-linear" width="24" stroke-width="1.5"></iconify-icon>
+                            </div>
+                            <div>
+                                <h3 class="text-lg font-medium mb-2 text-white">After-Hours Silence</h3>
+                                <p class="text-sm leading-relaxed text-gray-400">Customers enquire when they have time—often evenings and weekends. If you don't reply, they move on.</p>
+                            </div>
+                        </div>
+                        <div class="reveal flex gap-5 delay-150">
+                            <div class="shrink-0 w-12 h-12 rounded-lg flex items-center justify-center bg-carbon-900 border border-white/5 text-primary">
+                                <iconify-icon icon="solar:file-text-linear" width="24" stroke-width="1.5"></iconify-icon>
+                            </div>
+                            <div>
+                                <h3 class="text-lg font-medium mb-2 text-white">Buried in Admin</h3>
+                                <p class="text-sm leading-relaxed text-gray-400">Your skilled team wastes hours on repetitive scheduling tasks instead of doing the job.</p>
+                            </div>
+                        </div>
+                        <div class="reveal flex gap-5 delay-225">
+                            <div class="shrink-0 w-12 h-12 rounded-lg flex items-center justify-center bg-carbon-900 border border-white/5 text-primary">
+                                <iconify-icon icon="solar:user-speak-linear" width="24" stroke-width="1.5"></iconify-icon>
+                            </div>
+                            <div>
+                                <h3 class="text-lg font-medium mb-2 text-white">Inconsistent Service</h3>
+                                <p class="text-sm leading-relaxed text-gray-400">When you're rushing, customer service slips. A bad first impression is hard to fix.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+             <!-- B. SOLUTIONS -->
+            <div class="py-24 px-6 border-b border-white/5 bg-carbon-800/50">
+                <div class="max-w-7xl mx-auto">
+                    <div class="mb-16 text-center max-w-3xl mx-auto">
+                        <h2 class="reveal text-3xl md:text-5xl font-semibold tracking-tight mb-6 text-white">How We Fix It</h2>
+                        <p class="reveal text-lg font-normal text-gray-400">We replace the bottlenecks with reliable, automated systems.</p>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                        <div class="reveal glass-card p-8 rounded-2xl group transition-all duration-300 hover:border-white/20">
+                            <div class="w-12 h-12 rounded-xl bg-carbon-900 border flex items-center justify-center mb-6 border-white/10 group-hover:border-primary/50 transition-colors">
+                                <iconify-icon icon="solar:clock-circle-linear" width="24" class="text-primary" stroke-width="1.5"></iconify-icon>
+                            </div>
+                            <h3 class="text-lg font-semibold mb-3 text-white">24/7 Response</h3>
+                            <p class="text-sm text-gray-500 leading-relaxed">Your business is always "open" for enquiries, even when the doors are locked.</p>
+                        </div>
+                        <div class="reveal glass-card p-8 rounded-2xl group transition-all duration-300 delay-100 hover:border-white/20">
+                            <div class="w-12 h-12 rounded-xl bg-carbon-900 border flex items-center justify-center mb-6 border-white/10 group-hover:border-primary/50 transition-colors">
+                                <iconify-icon icon="solar:bolt-linear" width="24" class="text-primary" stroke-width="1.5"></iconify-icon>
+                            </div>
+                            <h3 class="text-lg font-semibold mb-3 text-white">Instant Answers</h3>
+                            <p class="text-sm text-gray-500 leading-relaxed">Customers get what they need immediately, stopping them from calling the next guy.</p>
+                        </div>
+                        <div class="reveal glass-card p-8 rounded-2xl group transition-all duration-300 delay-200 hover:border-white/20">
+                            <div class="w-12 h-12 rounded-xl bg-carbon-900 border flex items-center justify-center mb-6 border-white/10 group-hover:border-primary/50 transition-colors">
+                                <iconify-icon icon="solar:check-read-linear" width="24" class="text-primary" stroke-width="1.5"></iconify-icon>
+                            </div>
+                            <h3 class="text-lg font-semibold mb-3 text-white">Perfect Consistency</h3>
+                            <p class="text-sm text-gray-500 leading-relaxed">Every customer gets treated with the same high standard, every single time.</p>
+                        </div>
+                        <div class="reveal glass-card p-8 rounded-2xl group transition-all duration-300 delay-300 hover:border-white/20">
+                            <div class="w-12 h-12 rounded-xl bg-carbon-900 border flex items-center justify-center mb-6 border-white/10 group-hover:border-primary/50 transition-colors">
+                                <iconify-icon icon="solar:link-circle-linear" width="24" class="text-primary" stroke-width="1.5"></iconify-icon>
+                            </div>
+                            <h3 class="text-lg font-semibold mb-3 text-white">Connects to You</h3>
+                            <p class="text-sm text-gray-500 leading-relaxed">We plug directly into your existing calendar and software. No new tools to learn.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+        <!-- Engineered Section -->
+        <section id="engineered" class="py-24 px-6 border-t border-white/5 bg-carbon-800/20">
+            <div class="max-w-7xl mx-auto">
+                <div class="text-center mb-16">
+                    <h2 class="reveal text-3xl md:text-5xl font-semibold tracking-tight mb-4 text-white">Engineered for Scalable Operations</h2>
+                    <p class="reveal max-w-2xl mx-auto text-gray-400">Whether you're a small local company or run a multi-location business, we adapt to each client's unique needs.</p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <article class="reveal glass-card p-6 rounded-xl group hover:border-primary/50 transition-colors">
+                        <div class="mb-4 text-primary group-hover:scale-110 transition-transform duration-300 origin-left">
+                            <iconify-icon icon="solar:scissors-linear" width="32" stroke-width="1.5"></iconify-icon>
+                        </div>
+                        <h3 class="text-lg font-medium mb-2 text-white">Salons &amp; Spas</h3>
+                        <p class="text-sm text-gray-500">Handle appointment bookings, cancellations and personalised client follow-ups to increase repeat visits.</p>
+                    </article>
+
+                    <article class="reveal glass-card p-6 rounded-xl group hover:border-primary/50 transition-colors delay-75">
+                        <div class="mb-4 text-primary group-hover:scale-110 transition-transform duration-300 origin-left">
+                            <iconify-icon icon="solar:heart-pulse-linear" width="32" stroke-width="1.5"></iconify-icon>
+                        </div>
+                        <h3 class="text-lg font-medium mb-2 text-white">Medical &amp; Dental</h3>
+                        <p class="text-sm text-gray-500">Manage patient enquiries, appointment scheduling and automated reminders while staying professional.</p>
+                    </article>
+
+                    <article class="reveal glass-card p-6 rounded-xl group hover:border-primary/50 transition-colors delay-150">
+                        <div class="mb-4 text-primary group-hover:scale-110 transition-transform duration-300 origin-left">
+                            <iconify-icon icon="solar:scale-linear" width="32" stroke-width="1.5"></iconify-icon>
+                        </div>
+                        <h3 class="text-lg font-medium mb-2 text-white">Legal Services</h3>
+                        <p class="text-sm text-gray-500">Qualify potential clients, schedule consultations and automate secure intake processes effectively.</p>
+                    </article>
+
+                    <article class="reveal glass-card p-6 rounded-xl group hover:border-primary/50 transition-colors delay-200">
+                        <div class="mb-4 text-primary group-hover:scale-110 transition-transform duration-300 origin-left">
+                            <iconify-icon icon="solar:home-smile-linear" width="32" stroke-width="1.5"></iconify-icon>
+                        </div>
+                        <h3 class="text-lg font-medium mb-2 text-white">Home Services</h3>
+                        <p class="text-sm text-gray-500">Capture service requests for cleaning, HVAC, and electrical with intelligent dispatching.</p>
+                    </article>
+
+                    <article class="reveal glass-card p-6 rounded-xl group hover:border-primary/50 transition-colors delay-300">
+                        <div class="mb-4 text-primary group-hover:scale-110 transition-transform duration-300 origin-left">
+                            <iconify-icon icon="solar:graph-up-linear" width="32" stroke-width="1.5"></iconify-icon>
+                        </div>
+                        <h3 class="text-lg font-medium mb-2 text-white">Sales Teams</h3>
+                        <p class="text-sm text-gray-500">Automate lead qualification, handoffs to reps, and follow-ups so your sales team closes more deals.</p>
+                    </article>
+
+                    <article class="reveal glass-card p-6 rounded-xl group hover:border-primary/50 transition-colors delay-300">
+                        <div class="mb-4 text-primary group-hover:scale-110 transition-transform duration-300 origin-left">
+                            <iconify-icon icon="solar:shop-linear" width="32" stroke-width="1.5"></iconify-icon>
+                        </div>
+                        <h3 class="text-lg font-medium mb-2 text-white">Retail &amp; E-commerce</h3>
+                        <p class="text-sm text-gray-500">Answer product questions, check stock, and convert visitors into customers with chat-driven flows.</p>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- Pricing Section -->
+        <section id="services" class="py-32 px-6 relative overflow-hidden">
+            <!-- Background glow -->
+            <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-primary/5 blur-[120px] rounded-full pointer-events-none"></div>
+
+            <div class="max-w-7xl mx-auto relative z-10">
+                <div class="text-center mb-20">
+                    <h2 class="reveal text-3xl md:text-5xl font-semibold tracking-tight mb-4 text-white">Transparent Pricing</h2>
+                    <p class="reveal text-gray-400">Choose the automation level that suits your growth stage.</p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8 items-start">
+                    <!-- Essential -->
+                    <div class="reveal glass-card p-8 rounded-2xl transition-colors duration-300 hover:border-primary">
+                        <div class="mb-8">
+                            <h3 class="text-xl font-medium mb-2 text-white">Essential</h3>
+                            <p class="text-sm text-gray-500">Perfect for small teams and solo operators.</p>
+                        </div>
+                        <div class="mb-8">
+                            <div class="text-3xl font-semibold tracking-tight text-white">£1,000–1,500</div>
+                            <div class="text-xs text-gray-500 mt-1">One-time setup</div>
+                            <div class="text-sm text-primary font-medium mt-3">£699/ month</div>
+                        </div>
+                        <ul class="space-y-4 mb-8">
+                            <li class="flex items-start gap-3 text-sm text-gray-400">
+                                <iconify-icon icon="solar:check-circle-linear" class="text-primary mt-0.5 shrink-0"></iconify-icon> 24/7 AI customer chat
+                            </li>
+                            <li class="flex items-start gap-3 text-sm text-gray-400">
+                                <iconify-icon icon="solar:check-circle-linear" class="text-primary mt-0.5 shrink-0"></iconify-icon> Basic lead capture
+                            </li>
+                            <li class="flex items-start gap-3 text-sm text-gray-400">
+                                <iconify-icon icon="solar:check-circle-linear" class="text-primary mt-0.5 shrink-0"></iconify-icon> Website integration
+                            </li>
+                            <li class="flex items-start gap-3 text-sm text-gray-400">
+                                <iconify-icon icon="solar:check-circle-linear" class="text-primary mt-0.5 shrink-0"></iconify-icon> 500 conversations/mo
+                            </li>
+                        </ul>
+                        <a href="#book-call" class="block w-full py-3 text-center rounded-lg border text-sm font-medium transition-colors border-white/10 text-white hover:bg-white/5 hover:border-white/20">Get Started</a>
+                    </div>
+
+                    <!-- Enhanced (Featured) -->
+                    <div class="reveal bg-surface border border-primary/30 p-8 rounded-2xl shadow-[0_0_50px_-20px_rgba(14,170,113,0.2)] transform md:-translate-y-4 relative hover:border-primary transition-colors duration-300">
+                        <div class="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-primary text-[10px] uppercase font-bold tracking-widest px-3 py-1 rounded-full text-black">Most Popular</div>
+                        <div class="mb-8">
+                            <h3 class="text-xl font-medium mb-2 text-white">Enhanced</h3>
+                            <p class="text-sm text-gray-500">Ideal for growing teams handling high volumes.</p>
+                        </div>
+                        <div class="mb-8">
+                            <div class="text-3xl font-semibold tracking-tight text-white">£1,500–2,500</div>
+                            <div class="text-xs text-gray-500 mt-1">One-time setup</div>
+                            <div class="text-sm text-primary font-medium mt-3">£1399 / month</div>
+                        </div>
+                        <ul class="space-y-4 mb-8">
+                            <li class="flex items-start gap-3 text-sm text-white">
+                                <iconify-icon icon="solar:check-circle-bold" class="text-primary mt-0.5 shrink-0"></iconify-icon> Everything in Essential
+                            </li>
+                            <li class="flex items-start gap-3 text-sm text-white">
+                                <iconify-icon icon="solar:check-circle-bold" class="text-primary mt-0.5 shrink-0"></iconify-icon> Advanced lead qualification
+                            </li>
+                            <li class="flex items-start gap-3 text-sm text-white">
+                                <iconify-icon icon="solar:check-circle-bold" class="text-primary mt-0.5 shrink-0"></iconify-icon> Calendar booking integration
+                            </li>
+                            <li class="flex items-start gap-3 text-sm text-white">
+                                <iconify-icon icon="solar:check-circle-bold" class="text-primary mt-0.5 shrink-0"></iconify-icon> 2,000 conversations/mo
+                            </li>
+                            <li class="flex items-start gap-3 text-sm text-white">
+                                <iconify-icon icon="solar:check-circle-bold" class="text-primary mt-0.5 shrink-0"></iconify-icon> CRM integration
+                            </li>
+                            
+                            
+                        </ul>
+                        <a href="#book-call" class="block w-full py-3 text-center rounded-lg bg-primary text-sm font-bold hover:bg-primary/90 transition-colors text-black">Get Started</a>
+                    </div>
+
+                    <!-- Premium -->
+                    <div class="reveal glass-card p-8 rounded-2xl transition-colors duration-300 hover:border-primary">
+                        <div class="mb-8">
+                            <h3 class="text-xl font-medium mb-2 text-white">Premium</h3>
+                            <p class="text-sm text-gray-500">For multi-location and enterprise businesses.</p>
+                        </div>
+                        <div class="mb-8">
+                            <div class="text-3xl font-semibold tracking-tight text-white">£3,000+</div>
+                            <div class="text-xs text-gray-500 mt-1">One-time setup</div>
+                            <div class="text-sm text-primary font-medium mt-3">£2,250 / month</div>
+                        </div>
+                        <ul class="space-y-4 mb-8">
+                            <li class="flex items-start gap-3 text-sm text-gray-400">
+                                <iconify-icon icon="solar:check-circle-linear" class="text-primary mt-0.5 shrink-0"></iconify-icon> Everything in Enhanced
+                            </li>
+                            <li class="flex items-start gap-3 text-sm text-gray-400">
+                                <iconify-icon icon="solar:check-circle-linear" class="text-primary mt-0.5 shrink-0"></iconify-icon> Unlimited conversations
+                            </li>
+                            <li class="flex items-start gap-3 text-sm text-gray-400">
+                                <iconify-icon icon="solar:check-circle-linear" class="text-primary mt-0.5 shrink-0"></iconify-icon> Custom workflows
+                            </li>
+                            <li class="flex items-start gap-3 text-sm text-gray-400">
+                                <iconify-icon icon="solar:check-circle-linear" class="text-primary mt-0.5 shrink-0"></iconify-icon> Dedicated account manager
+                            </li>
+                        </ul>
+                        <a href="#book-call" class="block w-full py-3 text-center rounded-lg border text-sm font-medium transition-colors border-white/10 text-white hover:bg-white/5 hover:border-white/20">Get Started</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- NEW SECTION: TECH STACK -->
+        <section id="tech-stack" class="py-24 border-t border-white/5 bg-carbon-800/20 backdrop-blur-sm overflow-hidden">
+            <div class="max-w-7xl mx-auto px-6 text-center mb-12">
+                <h2 class="reveal text-2xl md:text-3xl font-semibold tracking-tight mb-4 text-white">Built with Industry-Leading Tools</h2>
+                <p class="reveal max-w-2xl mx-auto text-sm md:text-base text-gray-400 leading-relaxed">
+                    We design and deploy automations using proven platforms your business already relies on — ensuring reliability, scalability, and seamless integration from day one.
+                </p>
+            </div>
+
+            <!-- Slider Container -->
+            <div class="reveal relative max-w-7xl mx-auto w-full overflow-hidden slider-mask">
+                <div class="animate-infinite-scroll flex gap-16 md:gap-24 w-max items-center">
+                    <!-- Original Set -->
+                    <div class="flex items-center gap-16 md:gap-24">
+                        <iconify-icon icon="simple-icons:n8n" class="text-gray-500 h-7 w-auto grayscale opacity-50"></iconify-icon>
+                        <iconify-icon icon="simple-icons:make" class="text-gray-500 h-7 w-auto grayscale opacity-50"></iconify-icon>
+                        <iconify-icon icon="simple-icons:zapier" class="text-gray-500 h-7 w-auto grayscale opacity-50"></iconify-icon>
+                        <iconify-icon icon="simple-icons:googlecalendar" class="text-gray-500 h-7 w-auto grayscale opacity-50"></iconify-icon>
+                        <iconify-icon icon="simple-icons:calendly" class="text-gray-500 h-7 w-auto grayscale opacity-50"></iconify-icon>
+                        <iconify-icon icon="simple-icons:twilio" class="text-gray-500 h-7 w-auto grayscale opacity-50"></iconify-icon>
+                        <iconify-icon icon="simple-icons:openai" class="text-gray-500 h-7 w-auto grayscale opacity-50"></iconify-icon>
+                        <iconify-icon icon="simple-icons:apollo" class="text-gray-500 h-7 w-auto grayscale opacity-50"></iconify-icon>
+                        <iconify-icon icon="simple-icons:hubspot" class="text-gray-500 h-7 w-auto grayscale opacity-50"></iconify-icon>
+                        <iconify-icon icon="simple-icons:salesforce" class="text-gray-500 h-7 w-auto grayscale opacity-50"></iconify-icon>
+                        <iconify-icon icon="simple-icons:stripe" class="text-gray-500 h-7 w-auto grayscale opacity-50"></iconify-icon>
+                    </div>
+                    <!-- Duplicate Set for Loop -->
+                    <div class="flex items-center gap-16 md:gap-24" aria-hidden="true">
+                        <iconify-icon icon="simple-icons:n8n" class="text-gray-500 h-7 w-auto grayscale opacity-50"></iconify-icon>
+                        <iconify-icon icon="simple-icons:make" class="text-gray-500 h-7 w-auto grayscale opacity-50"></iconify-icon>
+                        <iconify-icon icon="simple-icons:zapier" class="text-gray-500 h-7 w-auto grayscale opacity-50"></iconify-icon>
+                        <iconify-icon icon="simple-icons:googlecalendar" class="text-gray-500 h-7 w-auto grayscale opacity-50"></iconify-icon>
+                        <iconify-icon icon="simple-icons:calendly" class="text-gray-500 h-7 w-auto grayscale opacity-50"></iconify-icon>
+                        <iconify-icon icon="simple-icons:twilio" class="text-gray-500 h-7 w-auto grayscale opacity-50"></iconify-icon>
+                        <iconify-icon icon="simple-icons:openai" class="text-gray-500 h-7 w-auto grayscale opacity-50"></iconify-icon>
+                        <iconify-icon icon="simple-icons:apollo" class="text-gray-500 h-7 w-auto grayscale opacity-50"></iconify-icon>
+                        <iconify-icon icon="simple-icons:hubspot" class="text-gray-500 h-7 w-auto grayscale opacity-50"></iconify-icon>
+                        <iconify-icon icon="simple-icons:salesforce" class="text-gray-500 h-7 w-auto grayscale opacity-50"></iconify-icon>
+                        <iconify-icon icon="simple-icons:stripe" class="text-gray-500 h-7 w-auto grayscale opacity-50"></iconify-icon>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Book a Call -->
+        <section id="book-call" class="py-32 px-6">
+            <div class="max-w-4xl mx-auto text-center">
+                <h2 class="reveal text-3xl md:text-5xl font-semibold text-primary tracking-tight mb-6">Ready to Automate?</h2>
+                <p class="reveal text-lg mb-12 text-gray-400">Book a discovery call to see how we can tailor AI to your specific operations.</p>
+                
+                <!-- Boxed Calendly Container -->
+                <div class="reveal relative bg-carbon-800 border p-2 md:p-6 rounded-2xl shadow-2xl shadow-black/50 mx-auto max-w-4xl border-white/10">
+                    <div class="relative w-full h-[700px] md:h-[720px] rounded-xl overflow-hidden bg-white/5">
+                        <iframe src="https://calendly.com/ethanapplegate/discovery-call" width="100%" height="100%" frameborder="0" title="Calendly Scheduling"></iframe>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="border-t backdrop-blur-md py-12 px-6 border-white/10 bg-carbon-900/80">
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-6">
+            <div class="flex items-center gap-2">
+                <div class="w-5 h-5 rounded bg-primary flex items-center justify-center text-black font-bold text-[10px]">A</div>
+                <span class="font-semibold tracking-tight text-white text-sm">APPLEGATE AI</span>
+            </div>
+            <p class="text-xs text-gray-600">
+                © Applegate AI 2025. Built in the UK. 
+            </p>
+            <div class="flex gap-6">
+                <!-- Linked Privacy Policy Button -->
+                <button onclick="openPrivacyModal()" class="text-xs text-gray-500 hover:text-primary transition-colors cursor-pointer text-left">Privacy Policy</button>
+                <a href="#" class="text-xs text-gray-500 hover:text-primary transition-colors">Terms</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- PRIVACY POLICY MODAL -->
+    <div id="privacy-modal" class="fixed inset-0 z-[100] hidden flex items-center justify-center px-4" aria-modal="true" role="dialog">
+        <!-- Backdrop -->
+        <div class="absolute inset-0 bg-black/80 backdrop-blur-sm transition-opacity opacity-0" id="privacy-backdrop"></div>
+        
+        <!-- Modal Content -->
+        <div class="relative bg-[#18181b] border border-white/10 rounded-2xl shadow-2xl w-full max-w-3xl max-h-[85vh] flex flex-col transform transition-all scale-95 opacity-0" id="privacy-content">
+            <!-- Header -->
+            <div class="p-6 border-b border-white/10 flex justify-between items-center bg-[#18181b] rounded-t-2xl z-10 shrink-0">
+                <div class="flex items-center gap-3">
+                    <div class="w-8 h-8 rounded bg-primary/10 flex items-center justify-center text-primary">
+                        <iconify-icon icon="solar:shield-check-linear" width="20"></iconify-icon>
+                    </div>
+                    <h2 class="text-xl font-semibold text-white tracking-tight">Privacy Policy</h2>
+                </div>
+                <button onclick="closePrivacyModal('dismiss')" class="text-gray-500 hover:text-white transition-colors">
+                    <iconify-icon icon="solar:close-circle-linear" width="24"></iconify-icon>
+                </button>
+            </div>
+            
+            <!-- Scrollable Content -->
+            <div class="p-6 overflow-y-auto text-sm text-gray-400 space-y-6 leading-relaxed privacy-scroll">
+                
+                <div class="space-y-2">
+                    <h3 class="text-white font-medium text-base">1. Introduction</h3>
+                    <p>Applegate AI (“we”, “us”, or “our”) is committed to protecting your privacy. This Privacy Policy explains how we collect, use, and protect information when you visit our website. By using this website, you agree to the collection and use of information in accordance with this policy.</p>
+                    <p class="text-xs text-gray-600 mt-2">Last updated: [05.02.2026]</p>
+                </div>
+
+                <div class="space-y-2">
+                    <h3 class="text-white font-medium text-base">2. Information We Collect</h3>
+                    <p>We do not collect sensitive personal data directly through this website. However, we may collect limited information automatically, including:</p>
+                    <ul class="list-disc pl-5 space-y-1 mt-1 marker:text-primary/50">
+                        <li>IP address (anonymised where possible)</li>
+                        <li>Browser type and device information</li>
+                        <li>Pages visited and time spent on the website</li>
+                        <li>Clicks and interaction data</li>
+                    </ul>
+                    <p class="mt-2">If you book a call via our embedded Calendly widget, Calendly may collect personal information such as:</p>
+                    <ul class="list-disc pl-5 space-y-1 mt-1 marker:text-primary/50">
+                        <li>Name</li>
+                        <li>Email address</li>
+                        <li>Booking details</li>
+                    </ul>
+                    <p class="mt-2 text-xs">This information is processed by Calendly and is subject to their own Privacy Policy.</p>
+                </div>
+
+                <div class="space-y-2">
+                    <h3 class="text-white font-medium text-base">3. How We Collect Information</h3>
+                    <p>We collect information through the following tools:</p>
+                    <ul class="list-disc pl-5 space-y-1 mt-1 marker:text-primary/50">
+                        <li>Google Analytics – used to analyse website traffic and user behaviour</li>
+                        <li>Calendly – used to schedule calls and meetings</li>
+                    </ul>
+                    <p>These tools may use cookies or similar technologies to function correctly.</p>
+                </div>
+
+                <div class="space-y-2">
+                    <h3 class="text-white font-medium text-base">4. How We Use Your Information</h3>
+                    <p>We use collected information solely to:</p>
+                    <ul class="list-disc pl-5 space-y-1 mt-1 marker:text-primary/50">
+                        <li>Understand how visitors use our website</li>
+                        <li>Improve website performance and user experience</li>
+                        <li>Analyse traffic and engagement metrics</li>
+                        <li>Schedule and manage calls booked through Calendly</li>
+                    </ul>
+                    <p class="font-medium text-white/80 mt-2">We do not sell, rent, or trade personal data.</p>
+                </div>
+
+                <div class="space-y-2">
+                    <h3 class="text-white font-medium text-base">5. Cookies</h3>
+                    <p>Our website uses cookies to support analytics and website functionality. Cookies may be used to:</p>
+                    <ul class="list-disc pl-5 space-y-1 mt-1 marker:text-primary/50">
+                        <li>Measure website traffic</li>
+                        <li>Understand user interactions</li>
+                        <li>Improve site performance</li>
+                    </ul>
+                    <p>You can control or disable cookies through your browser settings. By continuing to use this website, you consent to the use of cookies as described in this policy.</p>
+                </div>
+
+                <div class="space-y-2">
+                    <h3 class="text-white font-medium text-base">6. Third-Party Services</h3>
+                    <p>We use trusted third-party services to operate this website:</p>
+                    <ul class="list-disc pl-5 space-y-1 mt-1 marker:text-primary/50">
+                        <li>Google Analytics (Google LLC)</li>
+                        <li>Calendly</li>
+                    </ul>
+                    <p>These providers process data on our behalf in accordance with their own privacy policies and applicable data protection laws.</p>
+                </div>
+
+                <div class="space-y-2">
+                    <h3 class="text-white font-medium text-base">7. Data Protection &amp; Security</h3>
+                    <p>We take reasonable steps to ensure that information is handled securely.</p>
+                    <ul class="list-disc pl-5 space-y-1 mt-1 marker:text-primary/50">
+                        <li>Data is stored and processed by reputable third-party providers</li>
+                        <li>We do not store payment details or sensitive personal data on this website</li>
+                        <li>Access to data is limited to authorised purposes only</li>
+                    </ul>
+                    <p>While no method of transmission over the internet is 100% secure, we aim to use commercially acceptable means to protect information.</p>
+                </div>
+
+                <div class="space-y-2">
+                    <h3 class="text-white font-medium text-base">8. Your Data Protection Rights</h3>
+                    <p>Under UK data protection laws, you have the right to:</p>
+                    <ul class="list-disc pl-5 space-y-1 mt-1 marker:text-primary/50">
+                        <li>Request access to personal data</li>
+                        <li>Request correction or deletion of personal data</li>
+                        <li>Object to or restrict processing</li>
+                    </ul>
+                    <p>Requests can be made by contacting us using the details below.</p>
+                </div>
+
+                <div class="space-y-2">
+                    <h3 class="text-white font-medium text-base">9. Contact Information</h3>
+                    <p>If you have any questions about this Privacy Policy or how your data is handled, you may contact us at:</p>
+                    <div class="mt-2 bg-white/5 p-3 rounded-lg border border-white/5 inline-block">
+                        <p class="font-semibold text-white">Applegate AI</p>
+                        <p>Email: [This feature is coming soon]</p>
+                    </div>
+                </div>
+
+                <div class="space-y-2">
+                    <h3 class="text-white font-medium text-base">10. Changes to This Policy</h3>
+                    <p>We may update this Privacy Policy from time to time. Any changes will be posted on this page with an updated revision date.</p>
+                </div>
+
+            </div>
+
+            <!-- Footer Actions -->
+            <div class="p-6 border-t border-white/10 bg-[#18181b] rounded-b-2xl shrink-0 flex flex-col sm:flex-row gap-4 justify-between items-center sm:items-end">
+                <p class="text-xs text-gray-500 max-w-sm hidden sm:block">
+                    Please read our policy carefully to understand how we treat your personal data.
+                </p>
+                <div class="flex gap-3 w-full sm:w-auto">
+                    <button onclick="closePrivacyModal('decline')" class="flex-1 sm:flex-none px-6 py-2.5 rounded-lg font-medium text-sm transition-colors bg-carbon-700 text-white hover:bg-carbon-600 border border-white/5">
+                        Decline
+                    </button>
+                    <button onclick="closePrivacyModal('accept')" class="flex-1 sm:flex-none px-8 py-2.5 rounded-lg font-semibold text-sm transition-colors bg-primary text-black hover:bg-white shadow-[0_0_15px_-3px_rgba(14,170,113,0.4)]">
+                        Accept
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Interactions Script -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // --- Text Rotator Logic ---
+            const rotators = document.querySelectorAll('.word-rotator');
+            rotators.forEach(rotator => {
+                const words = rotator.querySelectorAll('span');
+                let currentIndex = 0;
+
+                setInterval(() => {
+                    const currentWord = words[currentIndex];
+                    const nextIndex = (currentIndex + 1) % words.length;
+                    const nextWord = words[nextIndex];
+
+                    currentWord.classList.remove('active');
+                    currentWord.classList.add('exit');
+
+                    nextWord.classList.remove('exit');
+                    nextWord.classList.add('active');
+
+                    setTimeout(() => {
+                        currentWord.classList.remove('exit');
+                    }, 600);
+
+                    currentIndex = nextIndex;
+                }, 3000);
+            });
+
+            // --- Scroll Reveal Logic ---
+            const observerOptions = {
+                root: null,
+                rootMargin: '0px',
+                threshold: 0.1
+            };
+
+            const observer = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('active');
+                        observer.unobserve(entry.target); 
+                    }
+                });
+            }, observerOptions);
+
+            const revealElements = document.querySelectorAll('.reveal');
+            revealElements.forEach(el => observer.observe(el));
+
+            // --- Privacy Modal Logic ---
+            const modal = document.getElementById('privacy-modal');
+            const content = document.getElementById('privacy-content');
+            const backdrop = document.getElementById('privacy-backdrop');
+
+            // Check if user has already accepted
+            const hasAccepted = localStorage.getItem('privacyAccepted');
+            
+            // If not accepted, show modal after a short delay for smooth loading
+            if (!hasAccepted) {
+                setTimeout(() => openPrivacyModal(), 1000);
+            }
+
+            // Expose functions to global scope for onclick handlers
+            window.openPrivacyModal = function() {
+                modal.classList.remove('hidden');
+                // Small timeout to allow removing 'hidden' before applying transitions
+                setTimeout(() => {
+                    backdrop.classList.remove('opacity-0');
+                    content.classList.remove('scale-95', 'opacity-0');
+                    content.classList.add('scale-100', 'opacity-100');
+                }, 10);
+            };
+
+            window.closePrivacyModal = function(action) {
+                // Animate out
+                backdrop.classList.add('opacity-0');
+                content.classList.remove('scale-100', 'opacity-100');
+                content.classList.add('scale-95', 'opacity-0');
+
+                // Wait for animation to finish before hiding
+                setTimeout(() => {
+                    modal.classList.add('hidden');
+                    if (action === 'accept') {
+                        localStorage.setItem('privacyAccepted', 'true');
+                    }
+                }, 300); // matches transition duration
+            };
+        });
+    </script>
+
+
+</body></html>
